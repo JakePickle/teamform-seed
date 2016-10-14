@@ -55,7 +55,7 @@ angular.module('teamform-admin-app', ['firebase'])
 	$scope.team = $firebaseArray(firebase.database().ref(refPath));
 	
 	
-	refPath = "Events/" + eventName + "/member";
+	refPath = "Events/" + eventName + "/participant";
 	$scope.member = [];
 	$scope.member = $firebaseArray(firebase.database().ref(refPath));
 	
