@@ -1,0 +1,126 @@
+.body {
+  font-family: 'Lato', sans-serif;
+}
+/*formatting of navbar*/
+.navbar {
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+}
+.navbar li {
+  padding: 5px 10px 5px 10px;
+  margin: 0;
+}
+.navbar li a {
+  font-size: 1.1em;
+  color: #fff !important;
+}
+.navbar li:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+.navbar-header {
+  padding: 5px 0px 5px 0;
+}
+.navbar-brand {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff !important;
+}
+/*formatting of carousel*/
+.carousel {
+  position: fixed;
+  opacity: 0.8;
+}
+/*formatting of headline*/
+.left, .right {
+  padding-left: 0;
+  padding-right: 0;
+}
+.headline {
+  color: #fff;
+  padding-left: 50px;
+  font-weight: bolder;
+  background: rgba(0, 0, 0, 0.4);
+}
+.headline h1{
+  margin: 0;
+  font-size: 3.2em;
+}
+.headline p {
+  font-size: 1.4em;
+  padding-top: 15px;
+}
+/*formatting of buttons*/
+.buttonline {
+  background-color: #000;
+  background: rgba(0, 0, 0, 0.6);
+}
+button {
+  display: block;
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0 auto 25px auto;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 2px;
+  border-width: 2px;
+}
+i {
+  display: inline-block;
+  padding-right: 20px;
+}
+#google {
+  color: red;
+  border-color: red;
+}
+#facebook {
+  color: dodgerblue;
+  border-color: dodgerblue;
+}
+#google:hover {
+  background-color: red;
+  color: white;
+}
+#facebook:hover{
+  background-color: dodgerblue;
+  color: white;
+}
+/*formatting of tutorial section*/
+.tuto, .fill{
+  background: rgba(0, 0, 0, 0.7);
+}
+.tuto {
+  text-align: center;
+  padding-top: 20px;
+}
+.tuto h3{
+  color: white;
+  font-size: 1.5em;
+  font-weight: bolder;
+  padding-bottom: 20px;
+}
+iframe {
+  margin-bottom: 40px;
+}
+/*formatting of about section*/
+.ab{
+  background: white;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 35px;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+/*formatting of developer section*/
+.dev{
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+.member {
+    background-color: black;
+    padding-bottom: 35px;
+}
