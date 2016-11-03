@@ -33,7 +33,7 @@ function initalizeFirebase() {
     apiKey: "AIzaSyCGA1xMB_cjAf1pEKyROtcMkLjtTbpjxis",
     authDomain: "comp3111hproj.firebaseapp.com",
     databaseURL: "https://comp3111hproj.firebaseio.com",
-    storageBucket: "",
+    storageBucket: "comp3111hproj.appspot.com",
     messagingSenderId: "622320647090"
   };
 
