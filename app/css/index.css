@@ -1,150 +1,180 @@
 .body {
-  font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif;
 }
+
 /*formatting of navbar*/
 .navbar {
-  background: rgba(0, 0, 0, 0.4);
-  border: none;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
 }
 .navbar li {
-  padding: 5px 10px 5px 10px;
-  margin: 0;
+    padding: 5px 10px 5px 10px;
+    margin: 0;
 }
 .navbar li a {
-  font-size: 1.1em;
-  color: #fff !important;
+    font-size: 1.1em;
+    color: #fff !important;
 }
 .navbar li:hover {
-  background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
 }
 .navbar-header {
-  padding: 5px 0px 5px 0;
+    padding: 5px 0px 5px 0;
 }
 .navbar-brand {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #fff !important;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff !important;
 }
+
 /*formatting of carousel*/
 .carousel {
-  position: fixed;
-  opacity: 0.8;
+    position: fixed;
+    opacity: 0.8;
 }
-/*formatting of headline*/
-.left, .right {
-  padding-left: 0;
-  padding-right: 0;
+#carouselImg1 {
+    background-image: url('../img/indexBg1.jpg');
+}
+#carouselImg2 {
+    background-image: url('../img/indexBg2.jpeg');
+}
+#carouselImg3 {
+    background-image: url('../img/indexBg3.jpg');
+}
+/*in order to make the images of the carousel responsive to
+all devices, they are kept in <div> elements as background*/
+.carouselImg {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+/*formatting of the headline column*/
+.noPaddingColumn {
+    padding-left: 0;
+    padding-right: 0;
 }
 .headline {
-  color: #fff;
-  padding-left: 50px;
-  font-weight: bolder;
-  background: rgba(0, 0, 0, 0.6);
+    /*box-sizing keeps margin width and height as part of the element*/
+    box-sizing: border-box;
+    color: #fff;
+    height: 100vh;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-weight: bolder;
+    background: rgba(0, 0, 0, 0.6);
 }
 .headline h1{
-  margin: 0;
-  font-size: 3.2em;
+    padding-top: 35vh;
+    margin: 0;
+    font-size: 3.2em;
 }
 .headline p {
-  font-size: 1.4em;
-  padding-top: 15px;
+    font-size: 1.4em;
+    padding-top: 15px;
 }
-/*formatting of buttons*/
-.buttonline {
-  background-color: #000;
-  background: rgba(0, 0, 0, 0.2);
+
+/*formatting of the button column*/
+.connect {
+    box-sizing: border-box;
+    height: 100vh;
 }
-button {
-  display: block;
-  width: 50%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 1.2em;
-  font-weight: bold;
-  margin: 0 auto 25px auto;
-  background: rgba(0, 0, 0, 0);
-  border-radius: 3px;
-  border-width: 2px;
+.buttonBlock {
+    padding-top: 35vh;
+}
+.connectButton {
+    display: block;
+    width: 50%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 auto 25px auto;
+    background: rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    border-width: 2px;
+    color: white;
 }
 i {
-  display: inline-block;
-  padding-right: 20px;
+    display: inline-block;
+    padding-right: 15px;
 }
 #google {
-  color: #d34836;
-  border-color: #d34836;
+    background-color: #d34836;
+    border-color: #d34836;
 }
 #facebook {
-  color: #3b5998;
-  border-color: #3b5998;
+    background-color: #3b5998;
+    border-color: #3b5998;
 }
 #google:hover {
-  background-color: #d34836;
-  color: white;
+    color: #d34836;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 #facebook:hover{
-  background-color: #3b5998;
-  color: white;
+    color: #3b5998;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 /*formatting of tutorial section*/
-.tuto, .fill{
-  background: rgba(0, 0, 0, 0.7);
+#tutorialCol{
+    background: rgba(0, 0, 0, 0.75);
+    text-align: center;
+    padding-top: 15px;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bolder;
 }
-.tuto {
-  text-align: center;
-  padding-top: 20px;
+
+.iframeWrapper {
+    width: 75%;
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 70px;
 }
-.tuto h3{
-  color: white;
-  font-size: 1.5em;
-  font-weight: bolder;
-  padding-bottom: 20px;
-}
-.wrapper {
-  width: 75%;
-  display: inline-block;
-  margin-bottom: 70px;
-}
+
 /*formatting of about section*/
-.ab{
-  background: white;
-  text-align: center;
-  padding-top: 25px;
-  padding-bottom: 35px;
-  padding-left: 15%;
-  padding-right: 15%;
+.aboutCol{
+    background: white;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-left: 15%;
+    padding-right: 15%;
 }
-.ab p{
-  padding-top: 20px;
-}
+
+
 /*formatting of developer section*/
-.dev{
-    background: black;
+#developerCol {
+    background: rgba(0, 0, 0, 0.7);
     color: white;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 25px;
 }
-
 .member {
-    background: black;
     padding-top: 20px;
     padding-bottom: 35px;
     text-align: center;
 }
 .member img{
-  display: inline-block;
-  margin-top: 20px;
-  margin-bottom: 20px;
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.panel-default {
+    border: 0;
 }
 .panel-default .panel-heading, .panel-default .panel-footer {
-  background: black;
-  color: white;
+    background: black;
+    color: white;
 }
+
 /*formatting of footer section*/
-.foot {
-  background: white;
-  text-align: center;
-  padding-top: 25px;
-  padding-bottom: 20px;
+#footerCol {
+    background: white;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 15px;
 }

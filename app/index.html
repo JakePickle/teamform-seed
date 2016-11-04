@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="teamform, team">
-    <title>teamform - A real-time online team forming app</title>
+    <title>Teamform - A real-time online team forming app</title>
 
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/index.css" media="screen">
-
+    <link rel="icon" href="img/icon.png">
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
 </head>
@@ -23,14 +23,16 @@
 <!--data-spy="scroll" data-target=".navbar" data-offset="30"-->
 <body>
     <!--background carousel-->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+    <div class="carousel slide" data-ride="carousel" data-interval="4000">
         <div class="carousel-inner" role="listbox">
-            <div class="item active"><img src="img/indexBg1.jpg" alt="team pic 1"></div>
-            <div class="item"><img src="img/indexBg2.jpeg" alt="team pic 2"></div>
-            <div class="item"><img src="img/indexBg3.jpg" alt="team pic 3"></div>
+            <div class="item active"><div class="carouselImg" id="carouselImg1"></div></div>
+            <div class="item"><div class="carouselImg" id="carouselImg2"></div></div>
+            <div class="item"><div class="carouselImg" id="carouselImg3"></div></div>
         </div>
     </div>
+
     <div class="container-fluid">
+
         <!--Navigation Bar-->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
@@ -48,37 +50,41 @@
             </div>
         </nav>
 
-        <!---->
+        <!--headline section-->
         <div class="row">
-            <div class="col-md-8 left">
+            <div class="col-md-8 noPaddingColumn">
                 <div class="headline">
                     <h1>Team forming has never been easier.</h1>
                     <p>Team up for your favorite event, today.</p>
                 </div>
             </div>
-            <div class="col-md-4 right">
-                <div class="buttonline">
-                    <div class="buttonblock">
-                        <button type="button" name="button" id="google"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Connect with Google</button>
-                        <button type="button" name="button" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
+            <div class="col-md-4 noPaddingColumn">
+                <div class="connect">
+                    <div class="buttonBlock">
+                        <button type="button" name="button" class="connectButton" id="google"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Connect with Google</button>
+                        <button type="button" name="button" class="connectButton" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!--tutorial section-->
         <div class="row" id="tutorial">
-            <div class="col-xs-12 tuto">
+            <div class="col-xs-12" id="tutorialCol">
                 <h3>
                     Learn how to use Teamform
                 </h3>
-                <div class="wrapper">
+                <div class="iframeWrapper">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ApIyLUpAu5A" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/Ow1-uj0ToVY" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!--about section-->
         <div class="row" id="about">
-            <div class="col-xs-12 ab">
+            <div class="col-xs-12 aboutCol">
                 <h3>About Teamform</h3>
                 <p>
                     Using Teamform web app or Android app, you can create an event to recruit teams, create a team for
@@ -92,11 +98,21 @@
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
             </div>
         </div>
+
+        <!--developer section-->
         <div class="row" id="developer">
-            <div class="col-lg-12 dev">
+            <div class="col-xs-12" id="developerCol">
                 <h3> We are Official Sunghun Fanclub / Sunghun공식팬클럽 / 成勳官方粉絲團</h3>
                 <p>
                     We have a lot of love for both Professor Sunghun and IA Peter!
@@ -181,10 +197,12 @@
                 </div>
             </div>
         </div>
-        <div class="row" id="foot">
-            <div class="col-xs-12 foot">
+        
+        <!--footer-->
+        <div class="row" id="footer">
+            <div class="col-xs-12" id="footerCol">
                 <p>
-                    Powered by Bootstrap. This is an HKUST COMP3111H Project. &copy;2016 Offcial Sunghun Fanclub.
+                    Powered by Bootstrap. This is an HKUST COMP3111H Project. &copy; 2016 Offcial Sunghun Fanclub.
                 </p>
             </div>
         </div>
@@ -192,7 +210,5 @@
 
     <!-- JavaScript of this page -->
     <script src="js/index.js"></script>
-
-
 </body>
 </html>
