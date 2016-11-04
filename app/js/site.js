@@ -30,12 +30,13 @@ function initalizeFirebase() {
 	
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyCkw0VsJJb_GRykALLYH6sYuakVtRZ7rBU",
-    authDomain: "comp3111hprojectsunghunfanclub.firebaseapp.com",
-    databaseURL: "https://comp3111hprojectsunghunfanclub.firebaseio.com",
+    apiKey: "AIzaSyCGA1xMB_cjAf1pEKyROtcMkLjtTbpjxis",
+    authDomain: "comp3111hproj.firebaseapp.com",
+    databaseURL: "https://comp3111hproj.firebaseio.com",
     storageBucket: "",
-    messagingSenderId: "216327320494"
+    messagingSenderId: "622320647090"
   };
+
   firebase.initializeApp(config);
 }    
 
