@@ -3,7 +3,7 @@
 }
 /*formatting of navbar*/
 .navbar {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
   border: none;
 }
 .navbar li {
@@ -15,7 +15,7 @@
   color: #fff !important;
 }
 .navbar li:hover {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
 }
 .navbar-header {
   padding: 5px 0px 5px 0;
@@ -39,7 +39,7 @@
   color: #fff;
   padding-left: 50px;
   font-weight: bolder;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
 }
 .headline h1{
   margin: 0;
@@ -52,7 +52,7 @@
 /*formatting of buttons*/
 .buttonline {
   background-color: #000;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.2);
 }
 button {
   display: block;
@@ -63,7 +63,7 @@ button {
   font-weight: bold;
   margin: 0 auto 25px auto;
   background: rgba(0, 0, 0, 0);
-  border-radius: 2px;
+  border-radius: 3px;
   border-width: 2px;
 }
 i {
@@ -71,19 +71,19 @@ i {
   padding-right: 20px;
 }
 #google {
-  color: red;
-  border-color: red;
+  color: #d34836;
+  border-color: #d34836;
 }
 #facebook {
-  color: dodgerblue;
-  border-color: dodgerblue;
+  color: #3b5998;
+  border-color: #3b5998;
 }
 #google:hover {
-  background-color: red;
+  background-color: #d34836;
   color: white;
 }
 #facebook:hover{
-  background-color: dodgerblue;
+  background-color: #3b5998;
   color: white;
 }
 /*formatting of tutorial section*/
@@ -100,8 +100,10 @@ i {
   font-weight: bolder;
   padding-bottom: 20px;
 }
-iframe {
-  margin-bottom: 40px;
+.wrapper {
+  width: 75%;
+  display: inline-block;
+  margin-bottom: 70px;
 }
 /*formatting of about section*/
 .ab{
@@ -112,15 +114,37 @@ iframe {
   padding-left: 15%;
   padding-right: 15%;
 }
+.ab p{
+  padding-top: 20px;
+}
 /*formatting of developer section*/
 .dev{
-    background-color: black;
+    background: black;
     color: white;
     text-align: center;
     padding-top: 20px;
-    padding-bottom: 15px;
+    padding-bottom: 25px;
 }
+
 .member {
-    background-color: black;
+    background: black;
+    padding-top: 20px;
     padding-bottom: 35px;
+    text-align: center;
+}
+.member img{
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.panel-default .panel-heading, .panel-default .panel-footer {
+  background: black;
+  color: white;
+}
+/*formatting of footer section*/
+.foot {
+  background: white;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 20px;
 }

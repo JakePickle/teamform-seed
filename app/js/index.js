@@ -15,15 +15,19 @@ $(document).ready(function(){
   //$(".carousel img").css("height", h);
   //$(".carousel img").css("width", w);
   $(".headline h1").css("padding-top", wh/2-h1h-navh/2-ph);
-  $(".headline").css("height", h-navh);
-  $(".buttonline").css("height", h-navh);
-  $(".transparent").css("height", navh);
+  $(".headline").css("margin-top", navh).css("height", h-navh);
+  $(".buttonline").css("margin-top", navh).css("height", h-navh);
+  //$(".transparent").css("height", navh);
   $(window).scroll(function() {
     if ($(document).scrollTop() > wh/2-h1h-navh/2-ph) {
       $(".navbar").css("background","black");
+     // $(".navbar li:hover").css("background", "#333");
+      //$(".navbar-nav li.active").css("background", "#333");
     }
     else {
       $(".navbar").css("background","rgba(0, 0, 0, 0.2)");
+      //$(".navbar li:hover").css("background", "rgba(0, 0, 0, 0.4)");
+      //$(".navbar-nav li.active").css("background", "rgba(0, 0, 0, 0.4)");
     }
   });
   $(".buttonblock").css("padding-top", wh/2-h1h-navh/2-ph);

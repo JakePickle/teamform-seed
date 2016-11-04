@@ -1,205 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="keywords" content="teamform, team">
-      <!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>teamform - A real-time online team forming app</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="teamform, team">
+    <title>teamform - A real-time online team forming app</title>
 
-      <!-- libraries and CSS
-		JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)
-		Bootstrap: Library and CSS for bootstrap framework (v3.3.7 is used)
-		Font-awesome: More icons for the web development (v4.6.3 is used)
-		site.css: A customized css for our web application. Not from any web framework.
-	  -->
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
 
-      <script src="lib/jquery.min.js"></script>
-      <script src="lib/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css" media="screen">
 
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-     <link rel="stylesheet" href="css/index.css" media="screen">
+    <!-- Customized libraries shared by pages -->
+    <script src="js/site.js"></script>
+</head>
 
-
-      <!-- Customized libraries shared by pages -->
-      <script src="js/site.js"></script>
-
-
-
-   </head>
-   <body>
-     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
-       <div class="carousel-inner" role="listbox">
-         <div class="item active"><img src="img/indexBg1.jpg" alt="team pic 1"></div>
-         <div class="item"><img src="img/indexBg2.jpeg" alt="team pic 2"></div>
-         <div class="item"><img src="img/indexBg3.jpg" alt="team pic 3"></div>
-       </div>
-     </div>
-     <div class="container-fluid">
-       <!--Navigation Bar-->
-       <nav class="navbar navbar-default navbar-fixed-top">
-         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Teamform</a>
-          </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#tutorial">Tutorial</a></li>
-              <li><a href="#about">About Teamform</a></li>
-              <li><a href="#developer">Developers</a></li>
-            </ul>
-          </div>
-      </nav>
-
-
-    <div class="row">
-      <div class="col-md-8 left">
-        <div class="transparent">
-
+<!-- TODO: add bootstrap scrollspy to body -->
+<!--data-spy="scroll" data-target=".navbar" data-offset="30"-->
+<body>
+    <!--background carousel-->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+        <div class="carousel-inner" role="listbox">
+            <div class="item active"><img src="img/indexBg1.jpg" alt="team pic 1"></div>
+            <div class="item"><img src="img/indexBg2.jpeg" alt="team pic 2"></div>
+            <div class="item"><img src="img/indexBg3.jpg" alt="team pic 3"></div>
         </div>
-        <div class="headline">
-          <h1>Team forming has never been easier.</h1>
-          <p>Team up for your favorite event, today.</p>
-        </div>
-      </div>
-      <div class="col-md-4 right">
-        <div class="transparent">
-
-        </div>
-        <div class="buttonline">
-          <div class="buttonblock">
-            <button type="button" name="button" id="google"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Connect with Google</button>
-            <button type="button" name="button" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
-          </div>
-        </div>
-      </div>
     </div>
-    <div class="row" id="tutorial">
-      <div class="col-xs-1 fill">
-      </div>
-      <div class="col-xs-10 tuto">
-        <h3>
-          Learn how to use Teamform
-        </h3>
-        <iframe src="https://www.youtube.com/embed/ApIyLUpAu5A" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <div class="col-xs-1 fill">
-      </div>
-    </div>
-    <div class="row" id="about">
-      <div class="col-xs-12 ab">
-        <h3>About Teamform</h3>
-        <p>
-          Using Teamform web app or Android app, you can create an event to recruit teams, create a team for
-          your members to join, or join a team for your favorite event!<br>
-          This is an HKUST COMP3111H course project.<br>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-    </div>
-    <div class="row" id="developer">
-      <div class="col-xs-12 dev">
-        <h3> We are Official Sunghun Fanclub / Sunghun공식팬클럽 / 成勳官方粉絲團</h3>
-        <p>
-          We have a lot of love for both Professor Sunghun and IA Peter!
-        </p>
-      </div>
-      <div class="col-md-2 member">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            CAO, Shuyang Lawrence
-          </div>
-          <div class="panel-body">
-            <img src="img/larry.jpg" alt="larry" />
-          </div>
-          <div class="panel-footer">
-            Backend Developer
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 member">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            LI, Pengcheng Patrick
-          </div>
-          <div class="panel-body">
-            <img src="img/patty.jpg" alt="patty" />
-          </div>
-          <div class="panel-footer">
-            Backend Developer
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 member">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            LIU, Xin Jakob
-          </div>
-          <div class="panel-body">
-            <img src="img/jakob.jpeg" alt="jakob" />
-          </div>
-          <div class="panel-footer">
-            Frontend Developer
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 member">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            PICKLE, Jacob
-          </div>
-          <div class="panel-body">
-            <img src="img/jake.jpg" alt="jake" />
-          </div>
-          <div class="panel-footer">
-            Backend Developer
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 member">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            SU, Yanzhe Kevin
-          </div>
-          <div class="panel-body">
-            <img src="img/kev.jpg" alt="kevin" />
-          </div>
-          <div class="panel-footer">
-            Frontend Developer
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 member">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            ZHANG, Kao Collin
-          </div>
-          <div class="panel-body">
-            <img src="img/collin.jpg" alt="collin" />
-          </div>
-          <div class="panel-footer">
-            Frontend Developer
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="container-fluid">
+        <!--Navigation Bar-->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Teamform</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#tutorial">Tutorial</a></li>
+                    <li><a href="#about">About Teamform</a></li>
+                    <li><a href="#developer">Developers</a></li>
+                </ul>
+            </div>
+        </nav>
 
-      <!-- JavaScript of this page -->
-      <script src="js/index.js"></script>
+        <!---->
+        <div class="row">
+            <div class="col-md-8 left">
+                <div class="headline">
+                    <h1>Team forming has never been easier.</h1>
+                    <p>Team up for your favorite event, today.</p>
+                </div>
+            </div>
+            <div class="col-md-4 right">
+                <div class="buttonline">
+                    <div class="buttonblock">
+                        <button type="button" name="button" id="google"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Connect with Google</button>
+                        <button type="button" name="button" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="tutorial">
+            <div class="col-xs-12 tuto">
+                <h3>
+                    Learn how to use Teamform
+                </h3>
+                <div class="wrapper">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ApIyLUpAu5A" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="about">
+            <div class="col-xs-12 ab">
+                <h3>About Teamform</h3>
+                <p>
+                    Using Teamform web app or Android app, you can create an event to recruit teams, create a team for
+                    your members to join, or join a team for your favorite event!<br>
+                    This is an HKUST COMP3111H course project.<br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>
+        <div class="row" id="developer">
+            <div class="col-lg-12 dev">
+                <h3> We are Official Sunghun Fanclub / Sunghun공식팬클럽 / 成勳官方粉絲團</h3>
+                <p>
+                    We have a lot of love for both Professor Sunghun and IA Peter!
+                </p>
+                <div class="col-sm-2 member">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            CAO, Shuyang Lawrence
+                        </div>
+                        <div class="panel-body">
+                            <img src="img/larry.jpg" class="img-responsive img-circle" alt="larry" />
+                        </div>
+                        <div class="panel-footer">
+                            Backend Developer
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 member">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            LI, Pengcheng Patrick
+                        </div>
+                        <div class="panel-body">
+                            <img src="img/patty.jpg" class="img-responsive img-circle" alt="patty" />
+                        </div>
+                        <div class="panel-footer">
+                            Backend Developer
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 member">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            LIU, Xin Jakob
+                        </div>
+                        <div class="panel-body">
+                            <img src="img/jakob.jpeg" class="img-responsive img-circle" alt="jakob" />
+                        </div>
+                        <div class="panel-footer">
+                            Frontend Developer
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 member">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            PICKLE, Jacob
+                        </div>
+                        <div class="panel-body">
+                            <img src="img/jake.jpg" class="img-responsive img-circle" alt="jake" />
+                        </div>
+                        <div class="panel-footer">
+                            Backend Developer
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 member">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            SU, Yanzhe Kevin
+                        </div>
+                        <div class="panel-body">
+                            <img src="img/kev.jpg" class="img-responsive img-circle" alt="kevin" />
+                        </div>
+                        <div class="panel-footer">
+                            Frontend Developer
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 member">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            ZHANG, Kao Collin
+                        </div>
+                        <div class="panel-body">
+                            <img src="img/collin.jpg" class="img-responsive img-circle" alt="collin" />
+                        </div>
+                        <div class="panel-footer">
+                            Frontend Developer
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="foot">
+            <div class="col-xs-12 foot">
+                <p>
+                    Powered by Bootstrap. This is an HKUST COMP3111H Project. &copy;2016 Offcial Sunghun Fanclub.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript of this page -->
+    <script src="js/index.js"></script>
 
 
-   </body>
+</body>
 </html>
