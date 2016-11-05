@@ -1,0 +1,54 @@
+body {
+    background: url('../img/background.png');
+    font-family: 'Lato', sans-serif;
+    color: white;
+}
+
+/*Formatting of the navbar*/
+.navbar {
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+}
+.navbar-header {
+    padding: 5px 0px 5px 0;
+}
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #fff !important;
+}
+
+/*Formatting of the headline section*/
+.headline {
+    text-align: center;
+    padding-bottom: 10px;
+}
+.headline p {
+    font-size: 1.2em;
+}
+
+/*Formatting of the form*/
+form {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 40px 25px 40px 25px;
+    border-radius: 3px;
+    margin-bottom: 80px;
+}
+.help-block {
+    color: white;
+}
+#firstRadio {
+    margin-top: 0;
+}
+#buttonDiv {
+    text-align: center;
+    margin-top: 40px;
+}
+.btn-default {
+    font-size: 1.5em;
+    font-weight: bolder;
+    width: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: 0;
+}
