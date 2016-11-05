@@ -1,32 +1,10 @@
+// variable declaration
+var navh = $(".navbar").innerHeight();
+
 $(document).ready(function(){
-
-
-    $("#btn_admin").click(function(){
-    	var val = $('#input_text').val();
-    	if ( val !== '' ) {
-    		var url = "admin.html?q=" + val;
-    		window.location.href= url ;
-    		return false;
-    	}
-    });
-
-    $("#btn_leader").click(function(){
-    	var val = $('#input_text').val();
-    	if ( val !== '' ) {
-    		var url = "team.html?q=" + val;
-    		window.location.href= url ;
-    		return false;
-    	}
-    });
-
-    $("#btn_member").click(function(){
-    	var val = $('#input_text').val();
-    	if ( val !== '' ) {
-    		var url = "member.html?q=" + val;
-    		window.location.href= url ;
-    		return false;
-    	}
-    });
-
-
+  // set margin-top of the height of navigation bar
+  // so that the navigation bar opacity will not be affected by different
+  // opacities of the headline section
+  $(".headline").css("margin-top", navh);
+  $(".connect").css("margin-top", navh);
 });
