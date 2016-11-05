@@ -38,7 +38,6 @@ function initalizeFirebase() {
   };
 
   firebase.initializeApp(config);
-
 }    
 
 //

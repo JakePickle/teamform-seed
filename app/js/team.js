@@ -29,7 +29,7 @@ angular.module('teamform-team-app', ['firebase'])
 		
 	
 
-	refPath =  eventName + "/admin";
+	refPath =  "Events/" + eventName + "/admin";
 	retrieveOnceFirebase(firebase, refPath, function(data) {	
 
 		if ( data.child("param").val() != null ) {
@@ -42,12 +42,12 @@ angular.module('teamform-team-app', ['firebase'])
 	});
 	
 	
-	refPath = eventName + "/member";	
+	refPath = "Events/" + eventName + "/participant";	
 	$scope.member = [];
 	$scope.member = $firebaseArray(firebase.database().ref(refPath));
 	
 	
-	refPath = eventName + "/team";	
+	refPath = "Events/" + eventName + "/team";	
 	$scope.team = [];
 	$scope.team = $firebaseArray(firebase.database().ref(refPath));
 	
@@ -100,7 +100,7 @@ angular.module('teamform-team-app', ['firebase'])
 				'teamMembers': $scope.param.teamMembers
 			};		
 			
-			var refPath = getURLParameter("q") + "/team/" + teamID;	
+			var refPath = "Events/" + getURLParameter("q") + "/team/" + teamID;	
 			var ref = firebase.database().ref(refPath);
 			
 			
@@ -119,7 +119,7 @@ angular.module('teamform-team-app', ['firebase'])
 			});
 			
 			
-			
+				
 			ref.set(newData, function(){			
 
 				// console.log("Success..");
@@ -139,7 +139,7 @@ angular.module('teamform-team-app', ['firebase'])
 		
 		var teamID = $.trim( $scope.param.teamName );		
 		var eventName = getURLParameter("q");
-		var refPath = eventName + "/team/" + teamID ;
+		var refPath = "Events/" + eventName + "/team/" + teamID ;
 		retrieveOnceFirebase(firebase, refPath, function(data) {	
 
 			if ( data.child("size").val() != null ) {
