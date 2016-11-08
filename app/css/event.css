@@ -1,33 +1,33 @@
 /*Formatting of general event item layout*/
-.events .row {
+.events .row, .teams .row {
     margin: 0;
     border-bottom: 1px solid white;
 }
-.events .row h3 {
+.events .row h3, .teams .row h3 {
     margin: 0;
     padding-top: 8px;
     padding-bottom: 8px;
     border-bottom: 1px solid gray;
 }
-.events .col-xs-11 p {
+.events .col-xs-11 p, .teams .col-xs-11 p {
     margin: 0;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-.events .col-xs-11 p:last-child {
+.events .col-xs-11 p:last-child, .teams .col-xs-11 p:last-child {
     padding-top: 8px;
     padding-bottom: 8px;
     border-top: 1px solid gray;
 }
-.events i {
+.events i, .teams i {
     display: inline-block;
     padding-left: 20px;
 }
-.events a{
+.events a, .teams a {
     text-decoration: none;
     color: white;
 }
-.events span{
+.events span, .teams span {
     display: inline-block;
     width: 50%;
 }
@@ -36,21 +36,21 @@ span.badge {
 }
 
 /*Formatting of different types of events*/
-.openEvent{
+.openEvent, .validTeam {
     border-left: 10px solid #417d00;
 }
-.openEvent:hover {
+.openEvent:hover, .validTeam:hover {
     background: rgba(65, 125, 0, 0.2);
 }
-.closeEvent{
+.closeEvent, .pendingTeam {
     border-left: 10px solid #fff582;
 }
-.closeEvent:hover {
+.closeEvent:hover, .pendingTeam:hover {
     background: rgba(255, 245, 130, 0.2);
 }
-.terminatedEvent{
+.terminatedEvent, .terminatedTeam {
     border-left: 10px solid #8d190d;
 }
-.terminatedEvent:hover {
+.terminatedEvent:hover, .terminatedTeam:hover {
     background: rgba(141, 25, 13, 0.2);
 }

@@ -1,178 +1,157 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="teamform-team-app">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="keywords" content="teamform, team">
-      <!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>teamform - team page</title>
-	  
-      <!-- libraries and CSS 	  
-		JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)		
-		Bootstrap: Library and CSS for bootstrap framework (v3.3.7 is used)
-		Font-awesome: More icons for the web development (v4.6.3 is used)		
-		site.css: A customized css for our web application. Not from any web framework. 
-	  -->
-	        
-      <script src="lib/jquery.min.js"></script>      
-      <script src="lib/bootstrap.min.js"></script>      
-      	  
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">     
-      <link rel="stylesheet" href="css/site.css" >
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="teamform, team">
+    <title>Teamform - Team List</title>
+
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/dashboard.css" media="screen">
+    <link rel="stylesheet" href="css/event.css" media="screen">
+
+    <link rel="icon" href="img/icon.png">
+    <!-- Customized libraries shared by pages -->
+    <script src="js/site.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <!--Navigation Bar-->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navCollapse" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Teamform</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="navCollapse">
+                <li class="visible-xs-block"><a href="#"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Profile</a></li>
+                <li class="visible-xs-block"><a href="#"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp; Teams</a></li>
+                <li class="visible-xs-block"><a href="#"><i class="fa fa-flag-checkered fa-fw" aria-hidden="true"></i>&nbsp; Events</a></li>
+                <li class="visible-xs-block"><a href="#"><i class="fa fa-search fa-fw" aria-hidden="true"></i>&nbsp; Explore</a></li>
+                <li class="visible-xs-block"><a href="#"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i>&nbsp; Messages</a></li>
+                <li><a href=""><i class="fa fa-power-off fa-fw" aria-hidden="true"></i>&nbsp; Log out</a></li>
+            </ul>
+        </nav>
 
 
-      <!-- Customized libraries shared by pages -->
-      <script src="js/site.js"></script>
-	  	  
-   </head>
-   <body>
+        <!--The Main Application View-->
+        <div class="row" id="main">
 
-    <a href="index.html"
-   <button id="btn_admin" type="button" class="btn btn-primary" >
-   <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
-   Back</button></a>
-   <br>
-
-   <div class="text-center">
-      <h1>Team Page</h1>
-      <h2 id="text_event_name"></h2>
-       <div id="team_page_controller" ng-controller="TeamCtrl">
-
-         <div class="row">
-
-            <div class="col-md-2 col-xs-2"></div>
-
-            <div class="col-md-6 col-xs-6 text-left panel">
-			
-			 
-
-
-               <!-- Controls go here.. -->
-                <form class="form-horizontal text-left">
-				
-                  <div class="form-group">
-				  
-                     <label for="inputTeamName" class="control-label">Team Name</label>
-					 <br>
-					 
-					 <div class="row">
-						 <div class="col-md-8 col-xs-8">
-							<input type="text" class="form-control" id="inputTeamName" placeholder="Enter your team name" ng-model="param.teamName">													
-						 </div>
-						
-						<div class="col-md-1 col-xs-1">
-						   <button type="button" class="btn btn-primary" ng-click="saveFunc();" >Add</button>
-						 </div>
-						 
-						 <div class="col-md-1 col-xs-1">
-							<button type="button" class="btn btn-primary" ng-click="loadFunc();" >Load</button>
-						</div>
-					</div>
-					
-										 
-					 
-                  </div>
-
-                
-				  <div class="row">
-					  <strong>Preferred Team Size: </strong> 					  
-					  <span>
-						 <span class="badge">
-						   {{param.currentTeamSize}}</span>
-						  
-						 <button><span class="glyphicon glyphicon-plus" ng-click="changeCurrentTeamSize(1);"></span></button>
-
-						  <button><span class="glyphicon glyphicon-minus" ng-click="changeCurrentTeamSize(-1);"></span></button>
-
-						  
-					   </span>
-				   </div>
-				   
-				   
-
-                  </form>
-
-
-				<div class="row">
-                  <div class="col-sm-6">
-                     <h4>Team members</h4>
-                     <!-- TODO: Show the current team member list -->
-					 
-					 <div ng-repeat="member in param.teamMembers">
-						<button type="button" class="btn" ng-click="removeMember(member);">
-							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> {{member}}
-						</button>
-					 </div>
-					 
-                  </div>
-
-                  <div class="col-sm-6">
-                     <h4>Requests received:</h4>
-
-                     <!--TODO: Show the requests -->
-					 
-					 <div ng-repeat="r in requests">
-						<button type="button" class="btn" ng-click="processRequest(r);">
-							<span class="glyphicon glyphicon-backward" aria-hidden="true"></span> {{r}}
-						</button>
-					 </div>
-					 
-                  </div>
-				</div>
-				  
-				  
-
-                  				  
-					
-                   
-                  
-
-
+            <!--The side navigation bar-->
+            <div class="col-sm-2 hidden-xs setMargin">
+                <!--TODO Link the background-image of #profilePic with the profile picture database-->
+                <div class="sideNav" id="profilePic">
+                    <a href="dashboard.html"></a>
+                </div>
+                <div class="sideNav active">
+                    <a href="team.html"><i class="fa fa-users fa-3x" aria-hidden="true"></i><br>Teams</a>
+                </div>
+                <div class="sideNav">
+                    <a href="event.html"><i class="fa fa-flag-checkered fa-3x" aria-hidden="true"></i><br>Events</a>
+                </div>
+                <div class="sideNav">
+                    <a href="#"><i class="fa fa-search fa-3x" aria-hidden="true"></i><br>Explore</a>
+                </div>
+                <div class="sideNav">
+                    <a href="#"><i class="fa fa-envelope-o fa-3x" aria-hidden="true"></i><br>Messages</a>
+                </div>
             </div>
 
+            <!--Content-->
+            <div class="col-sm-10 setMargin">
+                <!--The teamView displays the list of teams and wraps both teams and two buttons-->
+                <div class="teamView">
+                    <div class="row buttonWrapper" style="margin: 0">
+                        <div class="col-sm-6">
+                            <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Create a New Team</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Join a Team</button>
+                        </div>
+                    </div>
+                    <!--teams wraps all the team items-->
+                    <div class="teams">
+                        <!--Use <a> to wrap <div> cannot pass XHTML requirements but is valid for HTML5-->
+                        <a href="#">
+                            <div class="row validTeam">
+                                <div class="col-sm-offset-1 col-xs-11">
+                                    <h3>Event 1 / TeamName<i class="fa fa-star-o" aria-hidden="true"></i></h3>
+                                    <p>
+                                        Star sign indicates the user is the team leader (creator)<br>
+                                        Green color indicates this team satisfies the requirement of the event already (teamsize etc.).<br>
+                                        click on the link direct to the details view of the team(members, requests, invitations).
+                                        Of course for simplicity we don't have to enforce all these validation logic. I'm merely
+                                        providing an example of UI.
+                                    </p>
+                                    <p>
+                                        <span>Event Time:</span><span>Current Team Size: &nbsp;<span class="badge">0</span></span><br>
+                                        <span>Pending Invitation Number: &nbsp;<span class="badge">0</span></span><span>Pending Request Number: <span class="badge">0</span></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="row pendingTeam">
+                                <div class="col-sm-offset-1 col-xs-11">
+                                    <h3>Event 2 / TeamName<i class="fa fa-star-o" aria-hidden="true"></i></h3>
+                                    <p>
+                                        Yellow color indicates this team does not have enough members yet.<br>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                                    </p>
+                                    <p>
+                                        <span>Event Time:</span><span>Current Team Size: &nbsp;<span class="badge">0</span></span><br>
+                                        <span>Pending Invitation Number: &nbsp;<span class="badge">0</span></span><span>Pending Request Number: <span class="badge">0</span></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="row terminatedTeam">
+                                <div class="col-sm-offset-1 col-xs-11">
+                                    <h3>Event 3 / TeamName</h3>
+                                    <p>
+                                        No star sign means the user is a team member but not leader.<br>
+                                        Red color indicates this event has already been terminated.<br>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                                    </p>
+                                    <p>
+                                        <span>Event Time:</span><span>Current Team Size: &nbsp;<span class="badge">0</span></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="createTeamView">
 
+                </div>
+                <div class="joinTeamView">
 
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <div class="col-md-4 col-xs-4 text-left">
-			
-					
-			 
-					<h3>All teams:</h3>
-					<ul ng-repeat="t in team">
-						<li>
-						
-							User ID: {{t.$id}}  <br>
-							Preferred team size: <span class="badge">{{t.size}}</span> <br>
-							Current team members: {{t.teamMembers}}
-						
-						</li>
-						
-					</ul>			
-			
-			</div>
-         </div>
-
-
-       </div>
-   </div>
-
-
-   <!-- JavaScript of this page -->
-
-   <!-- Angular and Angular-route libraries (v1.5.7) -->
-   <script src="lib/angular.min.js"></script>
-   <script src="lib/angular-route.min.js"></script>        
-     
-   <!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-   <script src="lib/firebase.js"></script>     
-   <script src="lib/angularfire.min.js"></script>
-
-
-   <script src="js/team.js"></script>
-
-   </body>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+    <script src="lib/firebase.js"></script>
+    <script src="lib/angularfire.min.js"></script>
+    <!--dashboard.js formats the navigation bars to enforce consistent UI-->
+    <script src="js/dashboard.js"></script>
+    <script src="js/team.js"></script>
+</body>
 </html>
-
