@@ -94,3 +94,6 @@ form {
 .buttonWrapper button:hover {
     background: rgba(0, 0, 0, 0.5);
 }
+.col-sm-10 .col-sm-6 {
+    padding: 0;
+}

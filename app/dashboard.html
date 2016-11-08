@@ -48,21 +48,21 @@
                     <a href="dashboard.html"></a>
                 </div>
                 <div class="sideNav">
-                    <a href="#"><i class="fa fa-users fa-3x" aria-hidden="true"></i><br>Teams</a>
+                    <a href="team.html"><i class="fa fa-users fa-3x" aria-hidden="true"></i><br>Teams</a>
                 </div>
                 <div class="sideNav">
                     <a href="event.html"><i class="fa fa-flag-checkered fa-3x" aria-hidden="true"></i><br>Events</a>
                 </div>
                 <div class="sideNav">
-                    <a href="#"><i class="fa fa-search fa-3x" aria-hidden="true"></i><br>Explore</a>
+                    <a href="explore.html"><i class="fa fa-search fa-3x" aria-hidden="true"></i><br>Explore</a>
                 </div>
                 <div class="sideNav">
-                    <a href="#"><i class="fa fa-envelope-o fa-3x" aria-hidden="true"></i><br>Messages</a>
+                    <a href="message.html"><i class="fa fa-envelope-o fa-3x" aria-hidden="true"></i><br>Messages</a>
                 </div>
             </div>
             <!--Content-->
-            <!--Class .original is displayed in the dashboard profile view-->
-            <!--Class .update is displayed after clicking "Update Profile" button-->
+            <!--Class .profileView is displayed in the dashboard profile view-->
+            <!--Class .updateProfileView is displayed after clicking "updateProfileView Profile" button-->
             <div class="col-sm-10 setMargin">
                 <!--TODO: All values in the profile are dummy values! Link them to the database with AngularFire!-->
                 <!--TODO: The name attributes of the form input fields need to correspond with that in the database!-->
@@ -70,23 +70,23 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Username</label>
                         <div class="col-xs-8">
-                            <p class="form-control-static original">exampleUser</p>
-                            <input type="text" class="form-control update" name="username" aria-describedby="helpUsername" placeholder="Username" value="exampleUser">
-                            <span id="helpUsername" class="help-block update">Length limited to 5-20 characters. Only letters, digits, hyphens and underscores are allowed.</span>
+                            <p class="form-control-static profileView">exampleUser</p>
+                            <input type="text" class="form-control updateProfileView" name="username" aria-describedby="helpUsername" placeholder="Username" value="exampleUser">
+                            <span id="helpUsername" class="help-block updateProfileView">Length limited to 5-20 characters. Only letters, digits, hyphens and underscores are allowed.</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Email</label>
                         <div class="col-xs-8">
-                            <p class="form-control-static original">exampleEmail@gmail.com</p>
-                            <input type="email" class="form-control update" name="email" placeholder="Email Address" value="exampleUser@gmail.com">
+                            <p class="form-control-static profileView">exampleEmail@gmail.com</p>
+                            <input type="email" class="form-control updateProfileView" name="email" placeholder="Email Address" value="exampleUser@gmail.com">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Gender</label>
                         <div class="col-xs-8">
-                            <p class="form-control-static original">Male</p>
-                            <div class="update">
+                            <p class="form-control-static profileView">Male</p>
+                            <div class="updateProfileView">
                                 <label class="radio-inline">
                                     <input type="radio" name="gender" value="Male" checked> Male
                                 </label>
@@ -99,33 +99,33 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Birthday</label>
                         <div class="col-xs-8">
-                            <p class="form-control-static original">November 7, 2016</p>
-                            <input type="date" class="form-control update" name="birthday" value="2016-11-07">
+                            <p class="form-control-static profileView">November 7, 2016</p>
+                            <input type="date" class="form-control updateProfileView" name="birthday" value="2016-11-07">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Location</label>
                         <div class="col-xs-8">
-                            <p class="form-control-static original">Hong Kong, Hong Kong</p>
-                            <input type="text" class="form-control update" name="country" placeholder="Country" value="Hong Kong">
-                            <input type="text" class="form-control update" name="city" placeholder="City" id="cityInput" value="Hong Kong">
+                            <p class="form-control-static profileView">Hong Kong, Hong Kong</p>
+                            <input type="text" class="form-control updateProfileView" name="country" placeholder="Country" value="Hong Kong">
+                            <input type="text" class="form-control updateProfileView" name="city" placeholder="City" id="cityInput" value="Hong Kong">
 
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Languages</label>
                         <div class="col-xs-8">
-                            <p class="form-control-static original">English, Mandarin, Cantonese</p>
-                            <input type="text" class="form-control update" name="language" id="language" placeholder="Languages you speak" aria-describedby="helpLanguage" value="English,Mandarin,Cantonese">
-                            <span id="helpLanguage" class="help-block update">Use commas to separate multiple languages (e.g. English,Mandarin,Cantonese).</span>
+                            <p class="form-control-static profileView">English, Mandarin, Cantonese</p>
+                            <input type="text" class="form-control updateProfileView" name="language" id="language" placeholder="Languages you speak" aria-describedby="helpLanguage" value="English,Mandarin,Cantonese">
+                            <span id="helpLanguage" class="help-block updateProfileView">Use commas to separate multiple languages (e.g. English,Mandarin,Cantonese).</span>
 
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Education</label>
                         <div class="col-xs-8">
-                            <p class="form-control-static original">Undergraduate</p>
-                            <div id="education" class="update">
+                            <p class="form-control-static profileView">Undergraduate</p>
+                            <div id="education" class="updateProfileView">
                                 <div class="radio" id="firstRadio">
                                     <label>
                                         <input type="radio" name="education" value="associate">Associate Degree
@@ -157,32 +157,32 @@
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Skills</label>
                         <div class="col-xs-8">
-                            <p class="form-control-static original">
+                            <p class="form-control-static profileView">
                                 HTML, CSS, JavaScript, Bootstrap, jQuery, AngularJS, Firebase
                             </p>
-                            <input type="text" class="form-control update" name="skill" id="skill" placeholder="Skills you have" aria-describedby="helpSkill" value="HTML,CSS,JavaScript,Bootstrap,jQuery,AngularJS,Firebase">
-                            <span id="helpSkill" class="help-block update">Use commas to separate multiple skills (e.g. Web Programming,AngularJS,Firebase).</span>
+                            <input type="text" class="form-control updateProfileView" name="skill" id="skill" placeholder="Skills you have" aria-describedby="helpSkill" value="HTML,CSS,JavaScript,Bootstrap,jQuery,AngularJS,Firebase">
+                            <span id="helpSkill" class="help-block updateProfileView">Use commas to separate multiple skills (e.g. Web Programming,AngularJS,Firebase).</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Introduction</label>
                         <div class="col-xs-8">
-                            <p class="form-control-static original">
+                            <p class="form-control-static profileView">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </p>
-                            <textarea name="name" class="form-control update" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
-                            <span id="helpIntroduction" class="help-block update">Max 200 characters allowed.</span>
+                            <textarea name="name" class="form-control updateProfileView" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                            <span id="helpIntroduction" class="help-block updateProfileView">Max 200 characters allowed.</span>
                         </div>
                     </div>
                 </form>
                 <!--Buttons-->
-                <!--TODO: Behaviour after clicking the "Update!" button needs to be added in backend!-->
+                <!--TODO: Behaviour after clicking the "updateProfileView!" button needs to be added in backend!-->
                 <div class="buttonWrapper">
-                    <button type="button" name="button" class="original" id="toggle">Update Profile</button>
-                    <button type="button" name="button" class="update">Update!</button>
+                    <button type="button" name="button" class="profileView" id="updateProfile">updateProfileView Profile</button>
+                    <button type="button" name="button" class="updateProfileView">updateProfileView!</button>
                 </div>
             </div>
         </div>
