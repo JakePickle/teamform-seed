@@ -55,6 +55,7 @@ angular.module('teamform-index-app', ['firebase'])
     }
 
     $scope.getInfo();
+    $scope.getInfo();
     
 
     
