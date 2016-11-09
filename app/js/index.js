@@ -47,6 +47,7 @@ angular.module('teamform-index-app', ['firebase'])
         }); 
     }
 
+    $scope.getInfo();
     if (user != null) {
         name = user.displayName;
         $scope.username = user.name;
