@@ -37,7 +37,7 @@ angular.module('teamform-index-app', ['firebase'])
             user = result.user;
             if (user != null) {
                 name = user.displayName;
-                $scope.username = user.name;
+                $scope.username = user.displayName;
                 email = user.email;
                 photoUrl = user.photoURL;
                 uid = user.uid;  
