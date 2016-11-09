@@ -21,8 +21,11 @@ angular.module('teamform-index-app', ['firebase'])
         var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/plus.login');
         firebase.auth().signInWithRedirect(provider);
+    }
 
-        firebase.auth().getRedirectResult().then(function(result) {
+    $scope.getInfo = function()
+    {
+       firebase.auth().getRedirectResult().then(function(result) {
         if (result.credential) {
             // This gives you a Google Access Token. You can use it to access the Google API.
                 var token = result.credential.accessToken;
@@ -47,7 +50,7 @@ angular.module('teamform-index-app', ['firebase'])
             var errorMessage = error.message;
             var email = error.email;
             var credential = error.credential;
-        });
+        }); 
     }
 
 }]);
