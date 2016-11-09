@@ -15,7 +15,7 @@ angular.module('teamform-index-app', ['firebase'])
     initalizeFirebase();
 
     var user;
-    user.name = "";
+    var name, email, photoUrl, uid;
     $scope.username = "";
 
     $scope.authenticate = function()
@@ -35,14 +35,8 @@ angular.module('teamform-index-app', ['firebase'])
             }
             // The signed-in user info.
             user = result.user;
-            var name, email, photoUrl, uid;
 
-            if (user != null) {
-                name = user.displayName;
-                email = user.email;
-                photoUrl = user.photoURL;
-                uid = user.uid;  
-            }
+
 
         }).catch(function(error) {
             //TODO: Handel Errors
@@ -53,6 +47,14 @@ angular.module('teamform-index-app', ['firebase'])
         }); 
     }
 
-    $scope.username = user.name;
+    if (user != null) {
+        name = user.displayName;
+        $scope.username = user.name;
+        email = user.email;
+        photoUrl = user.photoURL;
+        uid = user.uid;  
+    }
+
+    
 
 }]);
