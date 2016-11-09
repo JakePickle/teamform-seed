@@ -39,7 +39,6 @@ function initalizeFirebase() {
 
   firebase.initializeApp(config);
 }
->>>>>>> b02aabf9bc56a563913898d0aa1ccd4b6e96fdc6
 
 //
 // User-defined function - Useful for retrieving an object once, without 3-way sync
