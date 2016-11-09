@@ -14,7 +14,7 @@ angular.module('teamform-index-app', ['firebase'])
 
     initalizeFirebase();
 
-    $scope.userName = "";
+    $scope.username = "";
 
     $scope.authenticate = function()
     {
