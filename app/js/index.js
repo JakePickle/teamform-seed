@@ -35,6 +35,13 @@ angular.module('teamform-index-app', ['firebase'])
             }
             // The signed-in user info.
             user = result.user;
+            if (user != null) {
+                name = user.displayName;
+                $scope.username = user.name;
+                email = user.email;
+                photoUrl = user.photoURL;
+                uid = user.uid;  
+            }
 
 
 
@@ -48,13 +55,7 @@ angular.module('teamform-index-app', ['firebase'])
     }
 
     $scope.getInfo();
-    if (user != null) {
-        name = user.displayName;
-        $scope.username = user.name;
-        email = user.email;
-        photoUrl = user.photoURL;
-        uid = user.uid;  
-    }
+    
 
     
 
