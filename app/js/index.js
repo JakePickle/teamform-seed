@@ -42,7 +42,7 @@ angular.module('teamform-index-app', ['firebase'])
                 uid = user.uid;  
             }
 
-            $scope.userName = name;
+            $scope.username = name;
 
         }).catch(function(error) {
             //TODO: Handel Errors
