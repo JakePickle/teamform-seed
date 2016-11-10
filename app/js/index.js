@@ -65,7 +65,7 @@ angular.module('teamform-index-app', ['firebase'])
                 'name': userName,
             };
             
-            var refPath = "Users/" + getURLParameter("q") + userName;  
+            var refPath = "Users/" + getURLParameter("q") + uid;  
             var ref = firebase.database().ref(refPath);
             
             ref.set(newData, function(){
@@ -73,7 +73,7 @@ angular.module('teamform-index-app', ['firebase'])
                 //alert("data pushed...");
                 
                 // Finally, go back to the front-end
-                window.location.href= "index.html";
+                window.location.href= "profile.html";
             });
 
         }
