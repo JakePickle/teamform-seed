@@ -30,7 +30,7 @@ body {
 }
 
 /*Formatting of the form*/
-form {
+section form {
     background: rgba(255, 255, 255, 0.2);
     padding: 40px 25px 40px 25px;
     border-radius: 3px;

@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="css/profile.css" media="screen">
+<!-- Form -->
+<form action="" method="post">
+    <div class="form-group">
+        <label for="username">Username *</label>
+        <input type="text" class="form-control" name="username" id="username" placeholder="Username" aria-describedby="helpUsername">
+        <span id="helpUsername" class="help-block">Length limited to 5-20 characters. Only letters, digits, hyphens and underscores are allowed.</span>
+    </div>
+    <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" class="form-control" name="email" id="email" placeholder="Email Address">
+    </div>
+    <div class="form-group">
+        <label for="gender">Gender</label>
+        <div id="gender">
+            <label class="radio-inline">
+                <input type="radio" name="gender" value="Male" checked> Male
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="gender" value="Female"> Female
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="birthday">Birthday</label>
+        <input type="date" class="form-control" name="birthday" id="birthday">
+    </div>
+    <div class="form-group">
+        <label for="language">Languages</label>
+        <input type="text" class="form-control" name="language" id="language" placeholder="Languages you speak" aria-describedby="helpLanguage">
+        <span id="helpLanguage" class="help-block">Use commas to separate multiple languages (e.g. English, Mandarin, Cantonese).</span>
+    </div>
+    <div class="form-group">
+        <label for="location">Current Location</label>
+        <div class="form-inline" id="location">
+            <div class="form-group">
+                <input type="text" class="form-control" name="country" placeholder="Country">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="city" placeholder="City">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="education">Education</label>
+        <div id="education">
+            <div class="radio" id="firstRadio">
+                <label>
+                    <input type="radio" name="education" value="highschool"> High School
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="education" value="associate">Associate Degree
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="education" value="bachelor" checked> Bachelor's Degree
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="education" value="master"> Master's Degree
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="education" value="PhD"> PhD
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="skill">Skills</label>
+        <input type="text" class="form-control" name="skill" id="skill" placeholder="Skills you have" aria-describedby="helpSkill">
+        <span id="helpSkill" class="help-block">Use commas to separate multiple skills (e.g. Web Programming,AngularJS,Firebase).</span>
+    </div>
+    <div class="form-group">
+        <label for="introduction">Brief Self-introduction</label>
+        <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction"></textarea>
+        <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
+    </div>
+    <div id="buttonDiv">
+        <button type="submit" class="btn btn-default">{{text}}</button>
+    </div>
+</form>
