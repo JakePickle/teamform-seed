@@ -49,6 +49,8 @@ angular.module('teamform-profile-app', ['firebase'])
         }
     }
 
+    $scope.loadFunc();
+
     
 
     
