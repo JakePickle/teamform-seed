@@ -3,10 +3,11 @@ var navh, sh, sideNavh, sideNavAh;
 $(window).resize(function() {
     navh = $(".navbar").innerHeight();
     sh = $(window).height();
-    sideNavh = (sh - navh) / 5;
+    var remainH = Math.max(sh - navh, 512);
+    sideNavh = remainH / 5;
     sideNavAh = $(".sideNav a:last").height();
     $(".setMargin").css("margin-top", navh);
-    $(".setMargin").css("height", sh - navh);
+    $(".setMargin").css("height", remainH);
     $(".sideNav").css("height", sideNavh);
     $("#profilePic a").css("height", sideNavh);
     $(".sideNav a").css("padding-top", (sideNavh - sideNavAh) / 2);
