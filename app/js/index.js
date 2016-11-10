@@ -53,6 +53,31 @@ angular.module('teamform-index-app', ['firebase'])
             var credential = error.credential;
         }); 
     }
+
+    $scope.saveFunc = function() {
+        $scope.getInfo();
+        
+        var userName = $.trim( $scope.username );
+        
+        if (userName !== '') {
+                                    
+            var newData = {             
+                'name': userName,
+            };
+            
+            var refPath = "Users/" + getURLParameter("q") + userName;  
+            var ref = firebase.database().ref(refPath);
+            
+            ref.set(newData, function(){
+                // complete call back
+                //alert("data pushed...");
+                
+                // Finally, go back to the front-end
+                window.location.href= "index.html";
+            });
+
+        }
+    }
     
 
     
