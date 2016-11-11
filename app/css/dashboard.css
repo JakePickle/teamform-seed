@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=latin-ext,vietnamese');
 body {
     background: url('../img/background.png');
-    font-family: 'Lato', sans-serif;
+    /* Refer to whar font Github has used */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 'Roboto', sans-serif,"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: white;
 }
 
@@ -96,4 +97,7 @@ form {
 }
 .col-sm-10 .col-sm-6 {
     padding: 0;
+}
+button a {
+    color: inherit !important;
 }
