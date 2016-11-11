@@ -16,11 +16,16 @@ $(window).trigger('resize');
 $(document).ready(function () {
     //.updateProfileView class hidden at first
     $(".updateProfileView").hide();
+    $(".searchResultView").hide();
     //Formatting with jQuery
     $(window).trigger('resize');
     //"Update Profile" button click event will toggle the view
     $("#updateProfile").click(function () {
         $(".profileView").hide();
         $(".updateProfileView").show();
+    });
+    $("#searchButton").click(function(){
+        $(".recommendationView").hide();
+        $(".searchResultView").show();
     });
 });
