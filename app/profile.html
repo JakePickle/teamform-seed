@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="teamform">
+<html lang="en" ng-app="profileEditingApp">
 
 <head>
     <meta charset="utf-8">
@@ -7,17 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="teamform, team">
     <title>Teamform - Profile Editing</title>
-    <script type="text/javascript">
-        window.location.href = "#createProfile"
-    </script>
+
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/profile.css" media="screen">
     <link rel="icon" href="img/icon.png">
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script>
+    function getQueryVariable(param) {
+        var params = window.location.search.substring(1).split("&");
+        for (var i = 0; i < params.length; i++) {
+            var pair = params[i].split("=");
+            if (pair[0] == param) return pair[1];
+        }
+        return -1; // Not found
+    }
+    angular.module('profileEditingApp', []).controller('controller1', function controller1($scope) {
+        $scope.text = (getQueryVariable("ID") == 0) ? "Let's start!" : "updateProfileView!";
+    });
+    </script>
 </head>
 
 <body>
@@ -36,13 +50,93 @@
             </p>
         </div>
     </div>
-    <section class="container" ng-view>
-    </section>
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-route.min.js"></script>
-    <script src="lib/firebase.js"></script>
-    <script src="lib/angularfire.min.js"></script>
-    <script src="js/dashboard.js"></script>
+    <!-- Form -->
+    <form action="" method="post" class="container">
+        <div class="form-group">
+            <label for="username">Username *</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Username" aria-describedby="helpUsername">
+            <span id="helpUsername" class="help-block">Length limited to 5-20 characters. Only letters, digits, hyphens and underscores are allowed.</span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email Address">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <div id="gender">
+                <label class="radio-inline">
+                        <input type="radio" name="gender" value="Male" checked> Male
+                    </label>
+                <label class="radio-inline">
+                        <input type="radio" name="gender" value="Female"> Female
+                    </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <input type="date" class="form-control" name="birthday" id="birthday">
+        </div>
+        <div class="form-group">
+            <label for="language">Languages</label>
+            <input type="text" class="form-control" name="language" id="language" placeholder="Languages you speak" aria-describedby="helpLanguage">
+            <span id="helpLanguage" class="help-block">Use commas to separate multiple languages (e.g. English, Mandarin, Cantonese).</span>
+        </div>
+        <div class="form-group">
+            <label for="location">Current Location</label>
+            <div class="form-inline" id="location">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="country" placeholder="Country">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="city" placeholder="City">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="education">Education</label>
+            <div id="education">
+                <div class="radio" id="firstRadio">
+                    <label>
+                            <input type="radio" name="education" value="highschool"> High School
+                        </label>
+                </div>
+                <div class="radio">
+                    <label>
+                            <input type="radio" name="education" value="associate">Associate Degree
+                        </label>
+                </div>
+                <div class="radio">
+                    <label>
+                            <input type="radio" name="education" value="bachelor" checked> Bachelor's Degree
+                        </label>
+                </div>
+                <div class="radio">
+                    <label>
+                            <input type="radio" name="education" value="master"> Master's Degree
+                        </label>
+                </div>
+                <div class="radio">
+                    <label>
+                            <input type="radio" name="education" value="PhD"> PhD
+                        </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="skill">Skills</label>
+            <input type="text" class="form-control" name="skill" id="skill" placeholder="Skills you have" aria-describedby="helpSkill">
+            <span id="helpSkill" class="help-block">Use commas to separate multiple skills (e.g. Web Programming,AngularJS,Firebase).</span>
+        </div>
+        <div class="form-group">
+            <label for="introduction">Brief Self-introduction</label>
+            <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction"></textarea>
+            <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
+        </div>
+        <div id="buttonDiv" ng-controller='controller1'>
+            <button type="submit" class="btn btn-default">{{text}}</button>
+            <!-- TODO when ID is not zero the button should display updateProfileView! -->
+        </div>
+    </form>
     <script src="js/index.js"></script>
 </body>
 
