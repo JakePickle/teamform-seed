@@ -1,14 +1,20 @@
-var navh, sh, sideNavh, sideNavAh;
-//Formatting with jQuery
-$(window).resize(function() {
-    navh = $(".navbar").innerHeight();
-    sh = $(window).height();//screen.availHeight;
-    sideNavh = (sh - navh) / 5;
-    sideNavAh = $(".sideNav a:last").height();
+var navh = $(".navbar").innerHeight();
+var sh = screen.availHeight;
+var sideNavh = (sh-navh)/5;
+var sideNavAh = $(".sideNav a:last").height();
+
+$(document).ready(function(){
+    //.updateProfileView class hidden at first
+    $(".updateProfileView").hide();
+    //Formatting with jQuery
     $(".setMargin").css("margin-top", navh);
-    $(".setMargin").css("height", sh - navh);
+    $(".setMargin").css("height", sh-navh);
     $(".sideNav").css("height", sideNavh);
     $("#profilePic a").css("height", sideNavh);
-    $(".sideNav a").css("padding-top", (sideNavh - sideNavAh) / 2);
+    $(".sideNav a").css("padding-top", (sideNavh-sideNavAh)/2);
+    //"Update Profile" button click event will toggle the view
+    $("#updateProfile").click(function(){
+        $(".profileView").hide();
+        $(".updateProfileView").show();
+    });
 });
-$(window).trigger('resize');
