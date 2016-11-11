@@ -92,7 +92,7 @@ form {
     border: none;
     margin-bottom: 80px;
 }
-.buttonWrapper button:hover {
+.buttonWrapper button:hover, .buttonWrapper .active {
     background: rgba(0, 0, 0, 0.5);
 }
 .col-sm-10 .col-sm-6 {
