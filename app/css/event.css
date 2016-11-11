@@ -54,3 +54,18 @@ span.badge {
 .terminatedEvent:hover, .terminatedTeam:hover {
     background: rgba(141, 25, 13, 0.2);
 }
+
+/*Formatting of the explore view is included here*/
+form {
+    padding: 25px 40px 40px 40px;
+    background: rgba(0, 0, 0, 0.2);
+}
+form .col-sm-9, form .col-sm-3 {
+    padding-top: 15px;
+}
+.searchView button, .searchView input {
+    width: 100%;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
