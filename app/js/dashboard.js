@@ -17,6 +17,7 @@ $(document).ready(function () {
     //.updateProfileView class hidden at first
     $(".updateProfileView").hide();
     $(".searchResultView").hide();
+    $(".outboxView").hide();
     //Formatting with jQuery
     $(window).trigger('resize');
     //"Update Profile" button click event will toggle the view
@@ -27,5 +28,25 @@ $(document).ready(function () {
     $("#searchButton").click(function(){
         $(".recommendationView").hide();
         $(".searchResultView").show();
+    });
+    $("#inboxButton").click(function(){
+        $("#inboxButton").attr("class", "active");
+        $("#outboxButton").attr("class", "");
+        $(".outboxView").hide();
+        $(".inboxView").show();
+    });
+    $("#outboxButton").click(function(){
+        $("#inboxButton").attr("class", "");
+        $("#outboxButton").attr("class", "active");
+        $(".inboxView").hide();
+        $(".outboxView").show();
+    });
+    $(".inboxView .messageBrief").click(function(){
+        $(".inboxView .messageBrief.active").attr("class", "messageBrief");
+        $(this).attr("class", "messageBrief active");
+    });
+    $(".outboxView .messageBrief").click(function(){
+        $(".outboxView .messageBrief.active").attr("class", "messageBrief");
+        $(this).attr("class", "messageBrief active");
     });
 });
