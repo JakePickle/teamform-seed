@@ -18,6 +18,7 @@ $(document).ready(function () {
     $(".updateProfileView").hide();
     $(".searchResultView").hide();
     $(".outboxView").hide();
+    $(".createEventView").hide();
     //Formatting with jQuery
     $(window).trigger('resize');
     //"Update Profile" button click event will toggle the view
@@ -48,5 +49,9 @@ $(document).ready(function () {
     $(".outboxView .messageBrief").click(function(){
         $(".outboxView .messageBrief.active").attr("class", "messageBrief");
         $(this).attr("class", "messageBrief active");
+    });
+    $("#createNewEvent").click(function(){
+        $(".eventView").hide();
+        $(".createEventView").show();
     });
 });
