@@ -56,11 +56,11 @@ span.badge {
 }
 
 /*Formatting of the explore view is included here*/
-form {
+.searchView form {
     padding: 25px 40px 40px 40px;
     background: rgba(0, 0, 0, 0.2);
 }
-form .col-sm-9, form .col-sm-3 {
+.searchView form .col-sm-9, .searchView form .col-sm-3 {
     padding-top: 15px;
 }
 .searchView button, .searchView input {
@@ -122,4 +122,9 @@ form .col-sm-9, form .col-sm-3 {
 .messageDetailed p:nth-child(3) {
     padding-bottom: 5px;
     border-bottom: 1px solid white;
+}
+
+/*Formatting of createEventView*/
+.createEventView .buttonWrapper {
+    margin-top: 30px;
 }

@@ -69,7 +69,7 @@
                 <!--eventView displays the event list and the create event button-->
                 <div class="eventView">
                     <div class="row buttonWrapper" style="margin: 0">
-                        <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Create a New Event</button>
+                        <button type="button" id="createNewEvent" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Create a New Event</button>
                     </div>
                     <!--events wraps all the event items-->
                     <div class="events">
@@ -177,7 +177,63 @@
 
                 <!--createEventView is toggled after the Create Event button is clicked-->
                 <div class="createEventView">
-                    <!--TODO: Add createEventView-->
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="eventName">Event Name *</label>
+                            <input type="text" class="form-control" name="eventname" id="eventName" placeholder="Event Name" aria-describedby="helpEventName">
+                            <span id="helpEventName" class="help-block">Length limited to 50 characters.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTime">Event Time*</label>
+                            <div class="form-inline" id="eventTime">
+                                <div class="form-group">
+                                    <input type="date" class="form-control" name="date">
+                                </div>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" name="time">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Event Location</label>
+                            <div class="form-inline" id="location">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="country" placeholder="Country">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="city" placeholder="City">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamNumber">Maximum Team Number</label>
+                            <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number">
+                        </div>
+                        <div class="form-group">
+                            <label for="groupSize">Team Size</label>
+                            <div class="form-inline" id="groupSize">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="keyword">Keywords</label>
+                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword">
+                            <span id="helpKeyword" class="help-block">Use commas to separate multiple keywords (e.g. hackathon,Java,CS).</span>
+                        </div>
+                        <div>
+                            <label for="introduction">Brief Introduction</label>
+                            <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction"></textarea>
+                            <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
+                        </div>
+                        <div class="buttonWrapper">
+                            <button type="button" name="button">Create Event</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
