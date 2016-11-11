@@ -6,6 +6,7 @@ var sideNavAh = $(".sideNav a:last").height();
 $(document).ready(function(){
     //.updateProfileView class hidden at first
     $(".updateProfileView").hide();
+    $(".searchResultView").hide();
     //Formatting with jQuery
     $(".setMargin").css("margin-top", navh);
     $(".setMargin").css("height", sh-navh);
@@ -16,5 +17,9 @@ $(document).ready(function(){
     $("#updateProfile").click(function(){
         $(".profileView").hide();
         $(".updateProfileView").show();
+    });
+    $("#searchButton").click(function(){
+        $(".recommendationView").hide();
+        $(".searchResultView").show();
     });
 });

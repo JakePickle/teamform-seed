@@ -7,7 +7,7 @@ body {
 
 /*formatting of navbar*/
 .navbar {
-    background: rgba(0, 0, 0, 0.4);
+    background: black;
     border: none;
     margin-bottom: 0;
 }
