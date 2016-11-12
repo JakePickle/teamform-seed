@@ -66,12 +66,17 @@
 
             <!--Content-->
             <div class="col-sm-10 setMargin">
+                <!--TODO Backend hides this button if the user is already in the event-->
+                <!--TODO The same logic will be: hide this button if teaminfo.html is directed by team.html but not explore.html-->
+                <!--This design prevents the duplication of view elements-->
                 <div class="row buttonWrapper" style="margin: 0">
-                    <button type="button" id="createNewEvent" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Join This Team</button>
+                    <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Join This Team</button>
                 </div>
+                <!--teamInfoView wraps the team information-->
                 <div class="teamInfoView">
                     <h2>exampleEvent / exampleTeam</h2>
                     <ul style="list-style-type:none">
+                        <!--team member with a star sign is the team leader-->
                         <li class="row"><div class="col-xs-3">Memebers</div><div class="col-xs-9"><ul style="list-style-type:none">
                             <li>memberA&nbsp; <i class="fa fa-star-o" aria-hidden="true"></i></li>
                             <li>memberB</li>
