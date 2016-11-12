@@ -129,7 +129,7 @@ span.badge {
     margin-top: 30px;
 }
 
-/*Formatting of eventinfo.html*/
+/*Formatting of eventinfo.html and teaminfo.html*/
 .createTeamView form {
     padding: 25px 40px 40px 40px;
     background: rgba(0, 0, 0, 0.2);
@@ -143,18 +143,21 @@ span.badge {
     background: rgba(255, 255, 255, 0.2);
     color: white;
 }
-.eventInfoView h2 {
+.eventInfoView h2, .teamInfoView h2 {
     padding-bottom: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
     margin-left: 40px;
     border-bottom: 1px solid white;
 }
-.eventInfoView li {
+.eventInfoView li, .teamInfoView li {
     padding-right: 30px;
     padding-bottom: 15px;
 }
-.eventInfoView .col-xs-3 {
+.eventInfoView .col-xs-3, .teamInfoView .col-xs-3 {
     font-size: 1.1em;
     font-weight: bold;
+}
+.teamInfoView li ul {
+    padding-left: 0;
 }
