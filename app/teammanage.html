@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="teamform, team">
-    <title>Teamform - Event Information</title>
+    <title>Teamform - Team Management</title>
 
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/dashboard.css" media="screen">
     <link rel="stylesheet" href="css/event.css" media="screen">
+
     <link rel="icon" href="img/icon.png">
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
@@ -42,6 +43,7 @@
 
         <!--The Main Application View-->
         <div class="row" id="main">
+
             <!--The side navigation bar-->
             <div class="col-sm-2 hidden-xs setMargin">
                 <!--TODO Link the background-image of #profilePic with the profile picture database-->
@@ -61,44 +63,12 @@
                     <a href="message.html"><i class="fa fa-envelope-o fa-3x" aria-hidden="true"></i><br>Messages</a>
                 </div>
             </div>
+
             <!--Content-->
             <div class="col-sm-10 setMargin">
-                <!--createTeamView wraps the create team input and button-->
-                <div class="createTeamView">
-                    <!--TODO Backend hides this form if the user is already in the event-->
-                    <!--TODO The same logic will be: hide this form if eventinfo.html is directed by event.html but not explore.html-->
-                    <!--This design prevents the duplication of view elements-->
-                    <form class="row">
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="Team Name">
-                        </div>
-                        <div class="col-sm-3">
-                            <!--click the search button will toggle the view to searchResultView-->
-                            <button class="btn btn-default" type="button" id="searchButton">Create Team</button>
-                        </div>
-                    </form>
-                </div>
-                <!--eventInfoView wraps the event information that is visible to non-administrators-->
-                <div class="eventInfoView">
-                    <h2>exampleEvent</h2>
-                    <ul style="list-style-type:none">
-                        <li class="row"><div class="col-xs-3">Status</div><div class="col-xs-9">Open</div></li>
-                        <li class="row"><div class="col-xs-3">Time</div><div class="col-xs-9">Nov 16, 2016 12:00</div></li>
-                        <li class="row"><div class="col-xs-3">Location</div><div class="col-xs-9">Hong Kong, Hong Kong</div></li>
-                        <li class="row"><div class="col-xs-3">Team Size Limit</div><div class="col-xs-9">5 to 8</div></li>
-                        <li class="row"><div class="col-xs-3">Keywords</div><div class="col-xs-9">Hackathon, Java, CS</div></li>
-                        <li class="row"><div class="col-xs-3">Introduction</div><div class="col-xs-9">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
-
     <!--dashboard.js formats the navigation bars to enforce consistent UI-->
     <script src="js/dashboard.js"></script>
 </body>
