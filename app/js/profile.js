@@ -36,7 +36,7 @@ angular.module('teamform-profile-app', ['firebase'])
         var userID = $scope.uid;
         if ( userID !== '' ) {
             
-            var refPath = "Users/" + getURLParameter("q") $scope.uid;
+            var refPath = "Users/" + getURLParameter("q") + $scope.uid;
             retrieveOnceFirebase(firebase, refPath, function(data) {
                                 
                 if ( data.child("name").val() != null ) {
