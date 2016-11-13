@@ -27,31 +27,35 @@ angular.module('teamform-index-app', ['firebase'])
 
     $scope.getInfo = function()
     {
-       firebase.auth().getRedirectResult().then(function(result) {
-        if (result.credential) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-                var token = result.credential.accessToken;
-            // ...
-            }
-            // The signed-in user info.
-            user = result.user;
-            if (user != null) {
-                name = user.displayName;
-                $scope.username = user.displayName;
-                email = user.email;
-                photoUrl = user.photoURL;
-                uid = user.uid;  
-            }
+        while( user == null)
+        {
+            firebase.auth().getRedirectResult().then(function(result) {
+            if (result.credential) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                    var token = result.credential.accessToken;
+                // ...
+                }
+                // The signed-in user info.
+                user = result.user;
+                if (user != null) {
+                    name = user.displayName;
+                    $scope.username = user.displayName;
+                    email = user.email;
+                    photoUrl = user.photoURL;
+                    uid = user.uid;  
+                }
 
 
 
-        }).catch(function(error) {
-            //TODO: Handel Errors
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            var email = error.email;
-            var credential = error.credential;
-        }); 
+            }).catch(function(error) {
+                //TODO: Handel Errors
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                var email = error.email;
+                var credential = error.credential;
+            });  
+        }
+        
     }
 
     $scope.saveFunc = function() {
