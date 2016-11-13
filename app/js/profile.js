@@ -38,7 +38,7 @@ angular.module('teamform-profile-app', ['firebase'])
         }); 
     }
 
-    $scope.loadFuncHelper = function() {
+    $scope.loadFuncHelper2 = function() {
         $scope.getUID();
         var userID = $scope.uid;
         if ( userID !== '' ) {
@@ -56,13 +56,17 @@ angular.module('teamform-profile-app', ['firebase'])
         }
     }
 
-    $scope.loadFunc = function() {
+    $scope.loadFuncHelper1 = function() {
         if($scope.uid == "")
-        {
-            $scope.authenticate();
-            $interval($scope.loadFuncHelper(), 1000, 10);
-        }
-        
+        {      
+            $timeout($scope.authenticate(), 11000);
+            $interval($scope.loadFuncHelper2(), 1000, 10);
+        }  
+    }
+
+    $scope.loadFunc = function() {
+        $interval($scope.loadFuncHelper2(), 1000, 10);
+        $setTimeout($scope.loadFuncHelper1(), 11000);
     }
 
     //$timeout($scope.loadFunc, 12000);
