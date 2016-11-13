@@ -1,4 +1,4 @@
-describe('Test site.js', function() {
+describe('test_site.js', function() {
 	
    //
    // Example: A test case of getRandomIntInclusive
