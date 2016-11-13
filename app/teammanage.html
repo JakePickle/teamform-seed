@@ -50,10 +50,10 @@
                 <div class="sideNav" id="profilePic">
                     <a href="dashboard.html"></a>
                 </div>
-                <div class="sideNav">
+                <div class="sideNav active">
                     <a href="team.html"><i class="fa fa-users fa-3x" aria-hidden="true"></i><br>Teams</a>
                 </div>
-                <div class="sideNav active">
+                <div class="sideNav">
                     <a href="event.html"><i class="fa fa-flag-checkered fa-3x" aria-hidden="true"></i><br>Events</a>
                 </div>
                 <div class="sideNav">
@@ -66,6 +66,88 @@
 
             <!--Content-->
             <div class="col-sm-10 setMargin">
+                <!--teamInfoView wraps the detailed information of the team-->
+                <div class="teamInfoView">
+                    <h2>exampleEvent / exampleTeam</h2>
+                    <ul style="list-style-type:none">
+                        <li class="row"><div class="col-xs-3">Introduction</div><div class="col-xs-9">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div></li>
+                    </ul>
+                    <!--Click the updateTeamInfo button will toggle the view to editing-->
+                    <div class="row buttonWrapper" style="margin: 0">
+                        <button type="button" id="updateTeamInfo" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Update Team Infomation</button>
+                    </div>
+                </div>
+                <!--updateTeamInfoView wraps the form to update information-->
+                <div class="updateTeamInfoView">
+                    <h2>exampleEvent / exampleTeam</h2>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">Introduction</label>
+                            <div class="col-xs-9">
+                                <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                                <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row buttonWrapper" style="margin: 0">
+                        <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Update!</button>
+                    </div>
+                </div>
+                <!--memberView wraps the existingMember, pendingRequest, and pendingInvitation-->
+                <div class="memberView">
+                    <h3>Members</h3>
+                    <div class="row">
+                        <div class="col-sm-4 existingMemberList">
+                            <h4>Existing Members</h4>
+                            <ul>
+                                <!--Click on the cross icon will remove the view-->
+                                <!--TODO click on the cross icon will remove corresponding record in the database-->
+                                <a href="#"><li class="existingMember">memberName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="existingMember">memberName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="existingMember">memberName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="existingMember">memberName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="existingMember">memberName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="existingMember">memberName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="existingMember">memberName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="existingMember">memberName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 pendingRequestList">
+                            <h4>Pending Requests</h4>
+                            <ul>
+                                <!--TODO click on the tick icon will add the corresponding user to the team-->
+                                <a href="#"><li class="pendingRequest">userName<i class="fa fa-times fa-lg" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingRequest">userName<i class="fa fa-times fa-lg" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingRequest">userName<i class="fa fa-times fa-lg" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingRequest">userName<i class="fa fa-times fa-lg" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingRequest">userName<i class="fa fa-times fa-lg" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingRequest">userName<i class="fa fa-times fa-lg" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingRequest">userName<i class="fa fa-times fa-lg" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingRequest">userName<i class="fa fa-times fa-lg" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingRequest">userName<i class="fa fa-times fa-lg" aria-hidden="true"></i><i class="fa fa-check" aria-hidden="true"></i></li></a>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 pendingInvitationList">
+                            <h4>Pending Invitations</h4>
+                            <ul>
+                                <a href="#"><li class="pendingInvitation">userName<i class="fa fa-times" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingInvitation">userName<i class="fa fa-times" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingInvitation">userName<i class="fa fa-times" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingInvitation">userName<i class="fa fa-times" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingInvitation">userName<i class="fa fa-times" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingInvitation">userName<i class="fa fa-times" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingInvitation">userName<i class="fa fa-times" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingInvitation">userName<i class="fa fa-times" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingInvitation">userName<i class="fa fa-times" aria-hidden="true"></i></li></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

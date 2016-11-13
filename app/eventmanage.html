@@ -66,6 +66,140 @@
 
             <!--Content-->
             <div class="col-sm-10 setMargin">
+                <!--eventInfoView wraps the event information-->
+                <div class="eventInfoView">
+                    <h2>exampleEvent</h2>
+                    <ul style="list-style-type:none">
+                        <li class="row"><div class="col-xs-3">Status</div><div class="col-xs-9">Open</div></li>
+                        <li class="row"><div class="col-xs-3">Time</div><div class="col-xs-9">Nov 16, 2016 12:00</div></li>
+                        <li class="row"><div class="col-xs-3">Location</div><div class="col-xs-9">Hong Kong, Hong Kong</div></li>
+                        <li class="row"><div class="col-xs-3">Max Team Number</div><div class="col-xs-9">50</div></li>
+                        <li class="row"><div class="col-xs-3">Team Size Limit</div><div class="col-xs-9">5 to 8</div></li>
+                        <li class="row"><div class="col-xs-3">Keywords</div><div class="col-xs-9">Hackathon, Java, CS</div></li>
+                        <li class="row"><div class="col-xs-3">Introduction</div><div class="col-xs-9">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div></li>
+                    </ul>
+                    <!--Click the updateEventInfo button will toggle the view to editing-->
+                    <div class="row buttonWrapper" style="margin: 0">
+                        <button type="button" id="updateEventInfo" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Update Event Infomation</button>
+                    </div>
+                </div>
+                <!--updateEventInfoView wraps the form to update information-->
+                <div class="updateEventInfoView">
+                    <h2>exampleEvent</h2>
+                    <form class="form-horizontal">
+                        <div class="form-group stand-alone-form-group">
+                            <label class="col-xs-3 control-label">Status</label>
+                            <div class="col-xs-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" id="open" value="open" checked> Open
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" id="closed" value="closed"> Closed
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="status" id="terminated" value="terminated"> Terminated
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">Time</label>
+                            <div class="form-inline col-xs-9" id="eventTime">
+                                <div class="form-group">
+                                    <input type="date" class="form-control" name="date" value="2016-11-06">
+                                </div>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" name="time" value="12:00">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">Event Location</label>
+                            <div class="form-inline col-xs-9" id="location">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="country" placeholder="Country" value="Hong Kong">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="city" placeholder="City" value="Hong Kong">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group stand-alone-form-group">
+                            <label class="col-xs-3 control-label">Maximum Team Number</label>
+                            <div class="col-xs-9">
+                                <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number" value="50">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">Team Size</label>
+                            <div class="form-inline col-xs-9" id="groupSize">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum" value="5">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum" value="8">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group stand-alone-form-group">
+                            <label class="col-xs-3 control-label">Keywords</label>
+                            <div class="col-xs-9">
+                                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" value="Hackathon,Java,CS">
+                                <span id="helpKeyword" class="help-block">Use commas to separate multiple keywords (e.g. hackathon,Java,CS).</span>
+                            </div>
+                        </div>
+                        <div class="form-group stand-alone-form-group">
+                            <label class="col-xs-3 control-label">Brief Introduction</label>
+                            <div class=" col-xs-9">
+                                <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </textarea>
+                                <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row buttonWrapper" style="margin: 0">
+                        <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Update!</button>
+                    </div>
+                </div>
+                <!--teamMemberView wraps the validTeamList and pendingTeamList-->
+                <div class="teamMemberView">
+                    <h3>Teams</h3>
+                    <div class="row">
+                        <div class="col-sm-6 validTeamMemberList">
+                            <h4>Valid Teams</h4>
+                            <ul>
+                                <!--Click on the cross icon will remove the view-->
+                                <!--TODO click on the cross icon will remove corresponding record in the database-->
+                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 pendingTeamMemberList">
+                            <h4>Pending Teams</h4>
+                            <ul>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
