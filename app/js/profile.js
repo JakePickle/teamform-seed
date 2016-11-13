@@ -65,6 +65,6 @@ angular.module('teamform-profile-app', ['firebase'])
         
     }
 
-    $interval($scope.loadFunc, 12000, 1);
+    $timeout($scope.loadFunc, 12000);
 
 }]);
