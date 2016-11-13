@@ -57,7 +57,7 @@ angular.module('teamform-index-app', ['firebase'])
     $scope.saveFunc = function() {
         while(user == null)
         {
-            $timeout($scope.getInfo();, 1000);
+            $timeout($scope.getInfo(), 1000);
         }
         
         
