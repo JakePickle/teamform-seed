@@ -60,11 +60,11 @@ angular.module('teamform-profile-app', ['firebase'])
         if($scope.uid == "")
         {
             $scope.authenticate();
-            $interval($scope.loadFuncHelper(), 1000, 5);
+            $interval($scope.loadFuncHelper(), 1000, 10);
         }
         
     }
 
-    $interval($scope.loadFunc, 5000, 2);
+    $interval($scope.loadFunc, 12000, 1);
 
 }]);
