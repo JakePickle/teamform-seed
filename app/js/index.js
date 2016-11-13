@@ -55,7 +55,7 @@ angular.module('teamform-index-app', ['firebase'])
                 var credential = error.credential;
             });
 
-            sleep(1000);  
+            sleep(30*1000);  
         }
         
     }
