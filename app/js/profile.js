@@ -1,5 +1,5 @@
 angular.module('teamform-profile-app', ['firebase'])
-.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
+.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$interval', function($scope, $firebaseObject, $firebaseArray, $interval) {
 
     initalizeFirebase();
 
