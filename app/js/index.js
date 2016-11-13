@@ -55,7 +55,7 @@ angular.module('teamform-index-app', ['firebase'])
     }
 
     $scope.saveFunc = function() {
-        $interval($scope.getInfo(), 2000, 10);
+        $setInterval($scope.getInfo(), 2000, 10);
         
         
         var userName = $.trim( $scope.username );
