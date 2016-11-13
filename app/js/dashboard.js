@@ -1,5 +1,6 @@
 var navh, sh, sideNavh, sideNavAh;
 $(window).resize(function () {
+    // Formatting with jQuery
     navh = $(".navbar").innerHeight();
     sh = $(window).height();
     var remainH = Math.max(sh - navh, 512);
@@ -14,22 +15,29 @@ $(window).resize(function () {
 $(window).trigger('resize');
 
 $(document).ready(function () {
-    //.updateProfileView class hidden at first
+    // Default hidden classes
     $(".updateProfileView").hide();
     $(".searchResultView").hide();
     $(".outboxView").hide();
     $(".createEventView").hide();
-    //Formatting with jQuery
+    $(".updateTeamInfoView").hide();
+    $(".updateEventInfoView").hide();
+
+    // Formatting with jQuery
     $(window).trigger('resize');
-    //"Update Profile" button click event will toggle the view
+
+    // click functions that toggle the view
+    // toggle the dashboard view
     $("#updateProfile").click(function () {
         $(".profileView").hide();
         $(".updateProfileView").show();
     });
+    // toggle the explore view
     $("#searchButton").click(function(){
         $(".recommendationView").hide();
         $(".searchResultView").show();
     });
+    // toggle the message view
     $("#inboxButton").click(function(){
         $("#inboxButton").attr("class", "active");
         $("#outboxButton").attr("class", "");
@@ -50,8 +58,21 @@ $(document).ready(function () {
         $(".outboxView .messageBrief.active").attr("class", "messageBrief");
         $(this).attr("class", "messageBrief active");
     });
+    // toggle the event view
     $("#createNewEvent").click(function(){
         $(".eventView").hide();
         $(".createEventView").show();
+    });
+    // toggle the team management view
+    $("#updateTeamInfo").click(function() {
+        $(".teamInfoView").hide();
+        $(".updateTeamInfoView").show();
+    });
+    $("#updateEventInfo").click(function() {
+        $(".eventInfoView").hide();
+        $(".updateEventInfoView").show();
+    });
+    $(".fa-times").click(function() {
+        $(this).parent().hide();
     });
 });
