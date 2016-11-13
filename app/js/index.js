@@ -53,7 +53,9 @@ angular.module('teamform-index-app', ['firebase'])
                 var errorMessage = error.message;
                 var email = error.email;
                 var credential = error.credential;
-            });  
+            });
+
+            sleep(1000);  
         }
         
     }
@@ -87,3 +89,12 @@ angular.module('teamform-index-app', ['firebase'])
     
 
 }]);
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
