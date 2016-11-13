@@ -41,7 +41,7 @@ angular.module('teamform-profile-app', ['firebase'])
     $scope.loadFuncHelper = function() {
         if($scope.uid == "")
         {      
-            $scope.authenticate();
+            //$scope.authenticate();
         }else{
             
             var refPath = "Users/" + getURLParameter("q") + $scope.uid;
