@@ -10,7 +10,7 @@ $(document).ready(function(){
 });
 
 angular.module('teamform-index-app', ['firebase'])
-.controller('IndexCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
+.controller('IndexCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$interval', function($scope, $firebaseObject, $firebaseArray, $interval) {
 
     initalizeFirebase();
 
@@ -55,7 +55,7 @@ angular.module('teamform-index-app', ['firebase'])
     }
 
     $scope.saveFunc = function() {
-        $setInterval($scope.getInfo(), 2000, 10);
+        $interval($scope.getInfo(), 2000, 10);
         
         
         var userName = $.trim( $scope.username );
