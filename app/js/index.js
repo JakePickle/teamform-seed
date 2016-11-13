@@ -54,9 +54,8 @@ angular.module('teamform-index-app', ['firebase'])
         });     
     }
 
-    $scope.saveFunc = function() {
-        $interval($scope.getInfo(), 2000, 10);
-        
+    $scope.saveFuncHelper = function() {
+        $scope.getInfo();
         
         var userName = $.trim( $scope.username );
         
@@ -79,7 +78,10 @@ angular.module('teamform-index-app', ['firebase'])
 
         }
     }
-    
+
+    $scope.saveFunc = function() {
+        $interval($scope.saveFuncHelper(), 2000, 10);
+    }
 
     
 

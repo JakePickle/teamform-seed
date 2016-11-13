@@ -15,9 +15,7 @@ angular.module('teamform-profile-app', ['firebase'])
 
     $scope.getUID = function()
     {
-        $scope.authenticate();
-
-       firebase.auth().getRedirectResult().then(function(result) {
+        firebase.auth().getRedirectResult().then(function(result) {
         if (result.credential) {
             // This gives you a Google Access Token. You can use it to access the Google API.
                 var token = result.credential.accessToken;
@@ -41,7 +39,8 @@ angular.module('teamform-profile-app', ['firebase'])
     }
 
     $scope.loadFunc = function() {
-        $scope.getUID();
+        $scope.authenticate();
+        $interval($scope.getUID(), 2000, 10);
         var userID = $scope.uid;
         if ( userID !== '' ) {
             
