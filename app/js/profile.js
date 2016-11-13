@@ -58,10 +58,7 @@ angular.module('teamform-profile-app', ['firebase'])
     }
 
     $scope.loadFunc = function() {
-        $interval($scope.getUID(), 1000, 10);
-        $timeout($scope.loadFuncHelper(), 11000);
+        $interval($scope.loadFuncHelper(), 1000, 10);
+        //$timeout($scope.loadFuncHelper(), 11000);
     }
-
-    //$timeout($scope.loadFunc, 12000);
-
 }]);
