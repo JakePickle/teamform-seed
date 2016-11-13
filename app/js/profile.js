@@ -39,7 +39,6 @@ angular.module('teamform-profile-app', ['firebase'])
     }
 
     $scope.loadFuncHelper = function() {
-        $scope.authenticate();
         $scope.getUID();
         var userID = $scope.uid;
         if ( userID !== '' ) {
@@ -60,6 +59,8 @@ angular.module('teamform-profile-app', ['firebase'])
     $scope.loadFunc = function() {
         $interval($scope.loadFuncHelper(), 2000, 10);
     }
+
+    $scope.authenticate();
 
     
 
