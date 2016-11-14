@@ -37,6 +37,11 @@ $(document).ready(function () {
         $(".recommendationView").hide();
         $(".searchResultView").show();
     });
+    // attach search function to #searchButton
+    var search = new Search();
+    $("#searchButton").click(function(){
+        search.fuzzySearch($("#searchBox").val());
+    });
     // toggle the message view
     $("#inboxButton").click(function(){
         $("#inboxButton").attr("class", "active");
