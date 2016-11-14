@@ -47,7 +47,7 @@ function editDistance(a, b)
 // Extrate words from a text, return an array
 // The parameter is assumed to be a string, the elements in the returned array are all in lowercase
 //
-function extractWrod(paragraph)
+function extractWord(paragraph)
 {
     // break paragraph into words
     var arr = paragraph.split(/\W+/);
