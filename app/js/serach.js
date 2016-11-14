@@ -1,3 +1,12 @@
+/*
+    version: 1.0
+    Modified date: 2016/11/14
+    Author: Cao Shuyang(Lawrence)
+    Description: The module is implemented for fuzzy search, advanced search and autocomplete.
+                 This module assumes that firebase SDK has been referred  in a webpage.
+*/
+
+
 //
 // Calculate the Edit Distance between two strings
 // Reference: https://en.wikipedia.org/wiki/Edit_distance
@@ -32,4 +41,42 @@ function editDistance(a, b)
         iter_arr = tmp;
     }
     return iter_arr[b.length];
+}
+
+//
+// Extrate words from a text, return an array
+// The parameter is assumed to be a string, the elements in the returned array are all in lowercase
+//
+function extractWrod(paragraph)
+{
+    // break paragraph into words
+    var arr = paragraph.split(/\W+/);
+    // strip every words and convert them into lowercase
+    arr.forEach(function(val) {
+        val = val.trim().toLowerCase();
+    });
+    // filter the empty string;
+    arr = arr.filter(function(val) {
+        return (val && val.length!=0);
+    });
+    arr.sort();
+    arr = uniqueArray(arr);
+    return arr;
+}
+
+//
+// Unique an array, which must be sorted before this function is invoked
+//
+function uniqueArray(arr)
+{
+    var tmp_arr = [];
+    var precedent = null;
+    for(let val of arr)
+    {
+        if(val == precedent)
+            continue;
+        precedent = val;
+        tmp_arr.push(val);
+    }
+    return tmp_arr;
 }
