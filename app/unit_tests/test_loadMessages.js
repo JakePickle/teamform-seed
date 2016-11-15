@@ -1,4 +1,4 @@
-describe('test_site.js', function() {
+describe('test_loadMessage.js', function() {
 	
    //
    // Example: A test case of getRandomIntInclusive
