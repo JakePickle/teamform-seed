@@ -77,7 +77,7 @@ Search.prototype.editDistance = function(a, b)
 Search.prototype.extractWord = function(paragraph)
 {
     // break paragraph into words
-    var arr = paragraph.split(/\W+/);
+    var arr = paragraph.split(/[^\w+|C\+\+]/);
     // strip every words and convert them into lowercase
     arr.forEach(function(val) {
         val = val.trim().toLowerCase();

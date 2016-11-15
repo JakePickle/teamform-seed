@@ -40,15 +40,15 @@
 
     <div class="container">
         <!-- Form -->
-        <form action="" method="post">
+        <form action="javascript:createNewUser()" method="GET">
             <div class="form-group">
                 <label for="username">Username *</label>
-                <input type="text" class="form-control" name="username" id="username" placeholder="Username" aria-describedby="helpUsername">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Username" aria-describedby="helpUsername" required>
                 <span id="helpUsername" class="help-block">Length limited to 5-20 characters. Only letters, digits, hyphens and underscores are allowed.</span>
             </div>
             <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email Address">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required>
             </div>
             <div class="form-group">
                 <label for="gender">Gender</label>
@@ -63,7 +63,7 @@
             </div>
             <div class="form-group">
                 <label for="birthday">Birthday</label>
-                <input type="date" class="form-control" name="birthday" id="birthday">
+                <input type="date" class="form-control" name="birthday" id="birthday" required>
             </div>
             <div class="form-group">
                 <label for="language">Languages</label>
@@ -74,10 +74,10 @@
                 <label for="location">Current Location</label>
                 <div class="form-inline" id="location">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="country" placeholder="Country">
+                        <input type="text" class="form-control" name="country" placeholder="Country" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="city" placeholder="City">
+                        <input type="text" class="form-control" name="city" placeholder="City" required>
                     </div>
                 </div>
             </div>
@@ -108,12 +108,12 @@
             </div>
             <div class="form-group">
                 <label for="skill">Skills</label>
-                <input type="text" class="form-control" name="skill" id="skill" placeholder="Skills you have" aria-describedby="helpSkill">
+                <input type="text" class="form-control" name="skill" id="skill" placeholder="Skills you have" aria-describedby="helpSkill" required>
                 <span id="helpSkill" class="help-block">Use commas to separate multiple skills (e.g. Web Programming,AngularJS,Firebase).</span>
             </div>
             <div class="form-group">
                 <label for="introduction">Brief Self-introduction</label>
-                <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction"></textarea>
+                <textarea id="introduction" name="name" class="form-control" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction"></textarea>
                 <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
             </div>
             <div id="buttonDiv">
@@ -121,7 +121,9 @@
             </div>
         </form>
     </div>
+    <script src="lib/angular.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/profile.js"></script>
 </body>
 
 </html>
