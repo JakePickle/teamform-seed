@@ -1,48 +1,68 @@
 describe('test_search.js', function() {
-	
-   //
-   // Example: A test case of getRandomIntInclusive
-   //
-   describe('getRandomIntInclusive Coverage Test', function() {
 
-	  it('value within 1 to 3', function() {
-	  	var value = getRandomIntInclusive(1, 3);
-	  	expect( value>=1 && value <= 3 ).toEqual(true);
-	  });
-
+    describe('test configure', function() {
+       it('test', function() {
+           // need further implementation
+       })
    });
 
    describe('test editDistance', function() {
        it('test', function() {
-           expect(editDistance('','a')).toEqual(1);
+           expect(Search.prototype.editDistance('','a')).toEqual(1);
        });
 
        it('test', function() {
-           expect(editDistance('b','')).toEqual(1);
+           expect(Search.prototype.editDistance('b','')).toEqual(1);
        });
 
        it('test', function() {
-           expect(editDistance('b','a')).toEqual(1);
+           expect(Search.prototype.editDistance('b','a')).toEqual(1);
        });
 
        it('test', function() {
-           expect(editDistance('aaa','aa')).toEqual(1);
+           expect(Search.prototype.editDistance('aaa','aa')).toEqual(1);
        });
    });
 
    describe('test extractWord', function() {
        it('test', function() {
-           expect(extractWord('a bc')[0]).toEqual('a');
+           expect(Search.prototype.extractWord('a bc')[0]).toEqual('a');
        });
 
        it('test', function() {
-           expect(extractWord('a bc')[1]).toEqual('bc');
+           expect(Search.prototype.extractWord('a bc')[1]).toEqual('bc');
        });
    });
 
    describe('test uniqueArray', function() {
        it('test', function() {
-           expect(uniqueArray('aaa')[0]).toEqual('a');
+           expect(Search.prototype.uniqueArray('aaa')[0]).toEqual('a');
        });
    });
+
+//    describe('test fuzzySearch', function() {
+//        it('test', function() {
+//            expect(Search.prototype.fuzzySearch('a')).toEqual('a');
+//        })
+//    });
+
+    describe('test matchSearchWords', function() {
+       it('test', function() {
+           expect(Search.prototype.matchSearchWords('a','abc')).toEqual(0);
+       })
+    });
+
+    describe('test reduceList', function() {
+       it('test', function() {
+           expect(Search.prototype.reduceList('aa')).toEqual([{Path:'a', count:2}]);
+       })
+   });
+
+//    describe('test renderSearchResult', function() {
+//        it('test', function() {
+//            expect(Search.prototype.renderSearchResult('a')).toEqual(1);
+//        })
+//    });
+
+   
 });
