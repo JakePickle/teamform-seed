@@ -18,17 +18,17 @@ function createNewUser()
     userInfo.EventOn = [];
     userInfo.EventOff = [];
     userInfo.History = [];
-    userInfo.ID = generateID();
+    //userInfo.ID = generateID();
     userInfo.Profile = null;
     userInfo.Type = "User";
-    var newNode = firebase.database().ref("Users").child(userInfo.ID);
-    newNode.set(userInfo).then(function() {
-        console.log("create new user successfully");
+    firebase.database().ref("Users").push(userInfo).then(function(userRef) {
+        var search = new Search();
+        search.indexNewUser(userInfo, userRef.toString().substring(userRef.root.toString().length));
+        console.log("create new user successfully!");
     }).catch(function(error) {
         console.log("fail to create new user");
         console.log(error);
     });
-    console.log(userInfo);
 }
 
 function groupFormValues()
