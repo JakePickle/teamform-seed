@@ -73,7 +73,7 @@ Search.prototype.editDistance = function(a, b)
 // Extrate words from a text, return an array
 // The parameter is assumed to be a string, the elements in the returned array are all in lowercase
 //
-Search.prototype.extractWrod = function(paragraph)
+Search.prototype.extractWord = function(paragraph)
 {
     // break paragraph into words
     var arr = paragraph.split(/\W+/);
@@ -114,7 +114,7 @@ Search.prototype.fuzzySearch = function(searchSentence)
 {
     // break search sentence into words
     var that = this;
-    var words = this.extractWrod(searchSentence);
+    var words = this.extractWord(searchSentence);
 
     var queryList = this.database.ref('index').orderByKey();
     queryList.once("value").then(function(snapshot) {
