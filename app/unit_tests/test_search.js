@@ -12,5 +12,37 @@ describe('test_search.js', function() {
 
    });
 
+   describe('test editDistance', function() {
+       it('test', function() {
+           expect(editDistance('','a')).toEqual(1);
+       });
 
+       it('test', function() {
+           expect(editDistance('b','')).toEqual(1);
+       });
+
+       it('test', function() {
+           expect(editDistance('b','a')).toEqual(1);
+       });
+
+       it('test', function() {
+           expect(editDistance('aaa','aa')).toEqual(1);
+       });
+   });
+
+   describe('test extractWord', function() {
+       it('test', function() {
+           expect(extractWord('a bc')[0]).toEqual('a');
+       });
+
+       it('test', function() {
+           expect(extractWord('a bc')[1]).toEqual('bc');
+       });
+   });
+
+   describe('test uniqueArray', function() {
+       it('test', function() {
+           expect(uniqueArray('aaa')[0]).toEqual('a');
+       });
+   });
 });
