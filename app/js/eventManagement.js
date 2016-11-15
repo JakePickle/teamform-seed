@@ -7,7 +7,7 @@ eventApp.controller("teamform-create-event-ctrl", function($scope, $firebaseArra
 		var ref = firebase.database().ref().child("Events");
 		var list = $firebaseArray(ref);
 		var eventID;
-		console.log("hey");
+		
 		console.log(createEventJSON($scope));
 		var json = createEventJSON($scope);
 		//JSON.parse(json);
