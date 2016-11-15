@@ -6,6 +6,32 @@
                  This module assumes that firebase SDK has been referred  in a webpage.
 */
 
+//
+// Declare the namespace for this module
+//
+function Search()
+{
+    this.configure();
+    this.initializeFirebase();
+}
+
+//
+// Initialize some firebase properties of Search
+//
+Search.prototype.initializeFirebase = function()
+{
+    this.auth = firebase.auth();
+    this.database = firebase.database();
+    this.storage = firebase.storage();
+}
+
+//
+// Configure Search arguments
+//
+Search.prototype.configure = function()
+{
+    this.diffTolerance = 3;
+}
 
 //
 // Calculate the Edit Distance between two strings
@@ -13,7 +39,7 @@
 // Instead of using a 2D matrix, this implemention use a 1D array to iterate a.length+1 times
 // This will save space, hence, save the space allocation time.
 //
-function editDistance(a, b)
+Search.prototype.editDistance = function(a, b)
 {
     if(a.length == 0) return b.length;
     if(b.length == 0) return a.length;
@@ -47,7 +73,7 @@ function editDistance(a, b)
 // Extrate words from a text, return an array
 // The parameter is assumed to be a string, the elements in the returned array are all in lowercase
 //
-function extractWord(paragraph)
+Search.prototype.extractWord = function(paragraph)
 {
     // break paragraph into words
     var arr = paragraph.split(/\W+/);
@@ -60,14 +86,14 @@ function extractWord(paragraph)
         return (val && val.length!=0);
     });
     arr.sort();
-    arr = uniqueArray(arr);
+    arr = this.uniqueArray(arr);
     return arr;
 }
 
 //
 // Unique an array, which must be sorted before this function is invoked
 //
-function uniqueArray(arr)
+Search.prototype.uniqueArray = function(arr)
 {
     var tmp_arr = [];
     var precedent = null;
@@ -79,4 +105,120 @@ function uniqueArray(arr)
         tmp_arr.push(val);
     }
     return tmp_arr;
+}
+
+//
+// Fuzzy Search
+//
+Search.prototype.fuzzySearch = function(searchSentence)
+{
+    // break search sentence into words
+    var that = this;
+    var words = this.extractWord(searchSentence);
+
+    var queryList = this.database.ref('index').orderByKey();
+    queryList.once("value").then(function(snapshot) {
+        var matchRefs = [];
+        snapshot.forEach(function(childSnapshot) {
+            var dist = that.matchSearchWords(childSnapshot.key, words);
+            if(dist < that.diffTolerance)
+            {
+                for(let item of childSnapshot.val())
+                    matchRefs.push(item);
+            }
+        });
+        var matchPaths = that.reduceList(matchRefs);
+        matchPaths.sort(function(a, b) {return b.count - a.count});
+        var LoadingData = matchPaths.map(function(value) {
+            return that.database.ref(value.Path).once('value').then(function(dataRef){return dataRef.val();});
+        });
+        Promise.all(LoadingData).then(function(data_arr) {
+            that.renderSearchResult(data_arr);
+        });
+    });
+}
+
+//
+// A helper function for fuzzySearch to determine whether JSON key matched with search words.
+// This function return the minimum distance between key and all of search words
+//
+Search.prototype.matchSearchWords = function(key, words)
+{
+    var minDistance = 100000;   // Initialize the distance to a larger enough number
+    for(let word of words)
+        minDistance = Math.min(minDistance, this.editDistance(key, word));
+    
+    return minDistance;
+}
+
+//
+// A helper function for fuzzySearch to reduce a map from word-array to a result list
+//
+Search.prototype.reduceList = function(matchRefs)
+{
+    var resultObj = {};
+    for(let path of matchRefs)
+    {
+        if(resultObj.hasOwnProperty(path))
+        {
+            resultObj[path].count += 1;
+        }else {
+            resultObj[path] = {"Path": path, "count": 1};
+        }
+    }
+    var resultList = Object.keys(resultObj).map(function(value) {return resultObj[value];});
+    return resultList;
+}
+
+//
+// Render the search results in search Result area
+//
+Search.prototype.renderSearchResult = function(resultArr)
+{
+    $(".recommendationView").hide();
+    $(".searchResultView").show();
+    $(".searchResultView").empty();
+    var parent = $(".searchResultView");
+
+    for(let result of resultArr)
+    {
+        let renderResult = null;
+        switch(result.Type)
+        {
+            case "Team": renderResult = this.renderTeamElement(result); break;
+            case "Event": renderResult = this.renderEventElement(result); break;
+            default: renderResult = null;
+        }
+        if(renderResult)
+            parent.append(renderResult);
+    }
+}
+
+//
+// Render team elements
+//
+Search.prototype.renderTeamElement = function(teamObj)
+{
+    var divEle = $("<div></div>").addClass("col-sm-offset-1 col-xs-11");
+    divEle.append($("<h3></h3>").html(teamObj.EventName + "/" + teamObj.Name));
+    divEle.append($("<p></p>").text(teamObj.Introduction).append($("<br/>")));
+    divEle.append($("<p></p>").html('<span>Event Time:</span><span>Current Team Size: &nbsp;<span class="badge">' + teamObj.Members.length +'</span></span>'));
+
+    var teamElement = divEle.wrap("<div></div>").addClass("row pendingTeam").wrap("<a></a>").attr("href", "teaminfo.html").wrap("<div></div>").addClass("teams");
+    return teamElement;
+}
+
+//
+// Render event elements
+//
+Search.prototype.renderEventElement = function(eventObj)
+{
+    var divEle = $("<div></div>").addClass("col-sm-offset-1 col-xs-11");
+    divEle.append($("<h3></h3>").html(eventObj.Name));
+    divEle.append($("<p></p>").text(eventObj.Introduction).append($("<br/>")));
+    var eventTime = new Date(eventObj.Time);
+    divEle.append($("<p></p>").html('Event Time: ' + eventTime.toLocaleDateString() + ' ' + eventTime.toLocaleTimeString() ));
+
+    var eventElement = divEle.wrap("<div></div>").addClass("row openEvent").wrap("<a></a>").attr("href", "eventinfo.html").wrap("<div></div>").addClass("events");
+    return eventElement;
 }
