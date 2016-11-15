@@ -21,7 +21,7 @@ function createNewUser()
     userInfo.ID = generateID();
     userInfo.Profile = null;
     userInfo.Type = "User";
-    var newNode = firebase.database().Ref("Users").child(userInfo.ID);
+    var newNode = firebase.database().ref("Users").child(userInfo.ID);
     newNode.set(userInfo).then(function() {
         console.log("create new user successfully");
     }).catch(function(error) {
