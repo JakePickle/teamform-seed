@@ -38,7 +38,7 @@ function initializeFirebase() {
   };
 
   firebase.initializeApp(config);
-}
+};
 
 //
 // User-defined function - Useful for retrieving an object once, without 3-way sync
