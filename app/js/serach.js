@@ -108,7 +108,7 @@ Search.prototype.uniqueArray = function(arr)
 }
 
 //
-// Update the index in database whenever database changes are to be pushed
+// Fuzzy Search
 //
 Search.prototype.fuzzySearch = function(searchSentence)
 {
@@ -118,23 +118,23 @@ Search.prototype.fuzzySearch = function(searchSentence)
 
     var queryList = this.database.ref('index').orderByKey();
     queryList.once("value").then(function(snapshot) {
-        var matchSnapshot = [];
+        var matchRefs = [];
         snapshot.forEach(function(childSnapshot) {
             var dist = that.matchSearchWords(childSnapshot.key, words);
             if(dist < that.diffTolerance)
-                matchSnapshot.push(childSnapshot.val());
+            {
+                for(let item of childSnapshot.val())
+                    matchRefs.push(item);
+            }
         });
-        var resultArr = that.reduceToList(matchSnapshot);
-        resultArr.sort(function(a, b) {
-            if(a.count != b.count)
-                return b.count - a.count;   // order by frequency from large to  small
-            if(a.Name < b.Name)             // order by name string
-                return -1;
-            if(a.Name > b.Name)
-                return 1;
-            return 0;
+        var matchPaths = that.reduceList(matchRefs);
+        matchPaths.sort(function(a, b) {return b.count - a.count});
+        var LoadingData = matchPaths.map(function(value) {
+            return that.database.ref(value.Path).once('value').then(function(dataRef){return dataRef.val();});
         });
-        that.renderSearchResult(resultArr);
+        Promise.all(LoadingData).then(function(data_arr) {
+            that.renderSearchResult(data_arr);
+        });
     });
 }
 
@@ -154,26 +154,19 @@ Search.prototype.matchSearchWords = function(key, words)
 //
 // A helper function for fuzzySearch to reduce a map from word-array to a result list
 //
-Search.prototype.reduceToList = function(snapshotList)
+Search.prototype.reduceList = function(matchRefs)
 {
     var resultObj = {};
-    for(let snapshot of snapshotList)
+    for(let path of matchRefs)
     {
-        for(let item of snapshot)
+        if(resultObj.hasOwnProperty(path))
         {
-            let id = item.ID;
-            if(resultObj.id)
-                resultObj.id.count += 1;
-            else{
-                resultObj.id = item;
-                resultObj.id.count = 1;
-            }
+            resultObj[path].count += 1;
+        }else {
+            resultObj[path] = {"Path": path, "count": 1};
         }
     }
-    var resultList = [];
-    for(let item of resultObj)
-        resultList.push(item);
-    
+    var resultList = Object.keys(resultObj).map(function(value) {return resultObj[value];});
     return resultList;
 }
 
