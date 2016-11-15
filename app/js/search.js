@@ -83,7 +83,7 @@ Search.prototype.extractWord = function(paragraph)
     var arr = paragraph.split(/[^\w+|C\+\+]/).map(function(value){
         return value.trim().toLowerCase();
     }).filter(function(val) {
-        return Boolean(val) && !(that.filterWordList.hasOwnProperty(val));
+        return Boolean(val) && (val.length>1) && !(that.filterWordList.hasOwnProperty(val));
     }).sort();
     
     return this.uniqueArray(arr);
