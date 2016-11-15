@@ -17,10 +17,22 @@
     <link rel="stylesheet" href="css/event.css" media="screen">
 
     <link rel="icon" href="img/icon.png">
+
+	<!-- AngularJS -->
+	<script src="lib/angular.min.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+
+	<!-- AngularFire -->
+	<script src="lib/angularfire.min.js"></script>
+
+
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
+    <script src="js/eventManagement.js"></script>
 </head>
-<body>
+<body ng-app="teamform-event-app">
     <div class="container-fluid">
 
         <!--Navigation Bar-->
@@ -176,21 +188,21 @@
                 </div>
 
                 <!--createEventView is toggled after the Create Event button is clicked-->
-                <div class="createEventView">
-                    <form action="" method="post">
+                <div class="createEventView" ng-controller="teamform-create-event-ctrl">
+                    <form ng-submit="createNewEvent()" method="post">
                         <div class="form-group">
                             <label for="eventName">Event Name *</label>
-                            <input type="text" class="form-control" name="eventname" id="eventName" placeholder="Event Name" aria-describedby="helpEventName">
+                            <input type="text" class="form-control" name="eventname" id="eventName" placeholder="Event Name" aria-describedby="helpEventName" ng-model="eventName">
                             <span id="helpEventName" class="help-block">Length limited to 50 characters.</span>
                         </div>
                         <div class="form-group">
                             <label for="eventTime">Event Time*</label>
                             <div class="form-inline" id="eventTime">
                                 <div class="form-group">
-                                    <input type="date" class="form-control" name="date">
+                                    <input type="date" class="form-control" name="date" ng-model="date">
                                 </div>
                                 <div class="form-group">
-                                    <input type="time" class="form-control" name="time">
+                                    <input type="time" class="form-control" name="time" ng-model="time">
                                 </div>
                             </div>
                         </div>
@@ -198,40 +210,40 @@
                             <label for="location">Event Location</label>
                             <div class="form-inline" id="location">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="country" placeholder="Country">
+                                    <input type="text" class="form-control" name="country" placeholder="Country" ng-model="country">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="city" placeholder="City">
+                                    <input type="text" class="form-control" name="city" placeholder="City" ng-model="city">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="teamNumber">Maximum Team Number</label>
-                            <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number">
+                            <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number" ng-model="maxTeamNumber">
                         </div>
                         <div class="form-group">
                             <label for="groupSize">Team Size</label>
                             <div class="form-inline" id="groupSize">
                                 <div class="form-group">
-                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum">
+                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum" ng-model="minTeamSize">
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum">
+                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum" ng-model="maxTeamSize">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="keyword">Keywords</label>
-                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword">
+                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" ng-model="keywords">
                             <span id="helpKeyword" class="help-block">Use commas to separate multiple keywords (e.g. hackathon,Java,CS).</span>
                         </div>
                         <div>
                             <label for="introduction">Brief Introduction</label>
-                            <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction"></textarea>
+                            <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction" ng-model="introduction"></textarea>
                             <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
                         </div>
                         <div class="buttonWrapper">
-                            <button type="button" name="button">Create Event</button>
+                            <button type="submit" name="button">Create Event</button>
                         </div>
                     </form>
                 </div>
