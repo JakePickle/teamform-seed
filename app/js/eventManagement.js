@@ -1,7 +1,6 @@
 initializeFirebase();
 var eventApp = angular.module("teamform-event-app", ["firebase"]);
 
-
 eventApp.controller("event-display-ctrl", function($scope, $firebaseArray) {
 	var ref = firebase.database().ref("Events");
 	$scope.events = $firebaseArray(ref);
@@ -53,7 +52,7 @@ function createEventJSON($scope) {
 
 	event["Keywords"] = getKeywords($scope.keywords);
 	event["Introduction"] = wrapJSON($scope.introduction);
-	
+
 	
 	return event;
 }
@@ -67,3 +66,16 @@ function wrapJSON(str) {
 		return str;
 	else return '"' + '"';
 }
+
+var eventManageApp = angular.module("teamform-event-manage-app", ["firebase"]);
+
+//For current testing only
+//
+var EventId = "evtID1";
+eventManageApp.controller("team-valid-team-ctrl", function($scope, $firebaseArray) {
+	var ref = firebase.database().ref("Events").child(EventId).child("Participants");
+
+	$scope.validTeams = $firebaseArray(ref);
+
+	
+});
