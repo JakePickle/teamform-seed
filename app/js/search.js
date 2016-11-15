@@ -1,9 +1,10 @@
 /*
-    version: 1.0
-    Modified date: 2016/11/14
+    version: 2.0
+    Last modified date: 2016/11/15
     Author: Cao Shuyang(Lawrence)
     Description: The module is implemented for fuzzy search, advanced search and autocomplete.
                  This module assumes that firebase SDK has been referred  in a webpage.
+                 This module assumes that jQuery has been referred in a webpage.
 */
 
 //
@@ -31,6 +32,7 @@ Search.prototype.initializeFirebase = function()
 Search.prototype.configure = function()
 {
     this.diffTolerance = 3;
+    this.filterWordList = {'a':null, 'and':null};
 }
 
 //
@@ -75,19 +77,16 @@ Search.prototype.editDistance = function(a, b)
 //
 Search.prototype.extractWord = function(paragraph)
 {
-    // break paragraph into words
-    var arr = paragraph.split(/\W+/);
-    // strip every words and convert them into lowercase
-    arr.forEach(function(val) {
-        val = val.trim().toLowerCase();
-    });
-    // filter the empty string;
-    arr = arr.filter(function(val) {
-        return (val && val.length!=0);
-    });
-    arr.sort();
-    arr = this.uniqueArray(arr);
-    return arr;
+    var that = this;
+
+    // break into words, trim words, translate into lowercase, eliminate empty string, filter with pre-defined list, sort
+    var arr = paragraph.split(/[^\w+|C\+\+]/).map(function(value){
+        return value.trim().toLowerCase();
+    }).filter(function(val) {
+        return Boolean(val) && (val.length>1) && !(that.filterWordList.hasOwnProperty(val));
+    }).sort();
+    
+    return this.uniqueArray(arr);
 }
 
 //
@@ -221,4 +220,26 @@ Search.prototype.renderEventElement = function(eventObj)
 
     var eventElement = divEle.wrap("<div></div>").addClass("row openEvent").wrap("<a></a>").attr("href", "eventinfo.html").wrap("<div></div>").addClass("events");
     return eventElement;
+}
+
+//
+// Automatically index new user
+//
+Search.prototype.indexNewUser = function(newUser, storePath)
+{
+    var content_arr = [];
+    content_arr.push(newUser.Name);
+    content_arr.push(newUser.Languages.join(','));
+    content_arr.push(newUser.Education);
+    content_arr.push(newUser.Skills.join(','));
+    content_arr.push(newUser.Country);
+    content_arr.push(newUser.City);
+    content_arr.push(newUser.Introduction);
+    
+    var word_arr = this.extractWord(content_arr.join(' , '));
+
+    var indexRef = firebase.database().ref('Index');
+    word_arr.forEach(function(value) {
+        indexRef.child(value).push(storePath);
+    });
 }
