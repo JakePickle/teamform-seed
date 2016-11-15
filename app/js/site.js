@@ -26,7 +26,7 @@ function getRandomIntInclusive(min, max) {
 // Reference: https://console.firebase.google.com
 //
 
-function initalizeFirebase() {
+function initializeFirebase() {
 
   // Initialize Firebase
   var config = {
@@ -38,7 +38,7 @@ function initalizeFirebase() {
   };
 
   firebase.initializeApp(config);
-}
+};
 
 //
 // User-defined function - Useful for retrieving an object once, without 3-way sync
