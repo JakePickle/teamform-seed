@@ -84,19 +84,40 @@
                         <button type="button" id="createNewEvent" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Create a New Event</button>
                     </div>
                     <!--events wraps all the event items-->
-                    <div class="events">
+                    <div class="events" ng-controller="event-display-ctrl">
                         <!--Use <a> to wrap <div> cannot pass XHTML requirements but is valid for HTML5-->
+                        <div ng-repeat="event in events">
+
+						<!-- Attention!!! -->
+                        <!-- Issues like different href's and different status unsettled-->
                         <a href="eventmanage.html">
+                            <div class="row {{event.Status}}Event">
+                                <div class="col-sm-offset-1 col-xs-11">
+                                    <h3>{{event.Name}}<i class="fa fa-star-o" aria-hidden="true"></i></h3>
+                                    <p>
+                                       {{event.Introduction}}
+
+                                    </p>
+                                    <p>
+                                        <span>Event Time: {{event.Time.Time}}</span><span>Current Group Number: &nbsp;<span class="badge">{{(event.Participants)?event.Participants.length:0}}</span></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                        <!--
+                         <a href="eventmanage.html">
                             <div class="row openEvent">
                                 <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>Event 1<i class="fa fa-star-o" aria-hidden="true"></i></h3>
+                                    <h3><i class="fa fa-star-o" aria-hidden="true"></i></h3>
                                     <p>
                                         Star sign indicates the user is the administrator of the event.<br>
                                         Green color indicates this event is still open.<br>
                                         click on the link direct to the details view of the event(groups, attributes).
+                                        
                                     </p>
                                     <p>
-                                        <span>Event Time:</span><span>Current Group Number: &nbsp;<span class="badge">0</span></span>
+                                        <span>Event Time:</span><span>Current Group Number: &nbsp;<span class="badge">30</span></span>
                                     </p>
                                 </div>
                             </div>
@@ -183,7 +204,7 @@
                                     </p>
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
 

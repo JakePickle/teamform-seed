@@ -2,6 +2,12 @@ initializeFirebase();
 var eventApp = angular.module("teamform-event-app", ["firebase"]);
 
 
+eventApp.controller("event-display-ctrl", function($scope, $firebaseArray) {
+	var ref = firebase.database().ref("Events");
+	$scope.events = $firebaseArray(ref);
+	
+});
+
 eventApp.controller("teamform-create-event-ctrl", function($scope, $firebaseArray) {
 	$scope.createNewEvent = function() {
 		var ref = firebase.database().ref().child("Events");
@@ -12,31 +18,7 @@ eventApp.controller("teamform-create-event-ctrl", function($scope, $firebaseArra
 		var json = createEventJSON($scope);
 		//JSON.parse(json);
 		//console.log(json.Name);
-		list.$add(json/*json{
-		  
-		  	//Admins: {
-		  		//ID:
-		  		//Introduction:
-		  	
-		  	//},
-		  	//Keywords: {
-
-		  	//},
-		  	
-		  	Location: {
-		  		Country: $scope.country,
-		  		City: $scope.city
-		  	},
-		  	Name: $scope.eventName,
-		  	Status: "open",
-		  	Time: {
-		  		Date: $scope.date,
-		  		Time: $scope.time
-		  	},
-		  	Type: "Event"
-		  
-		  
-		}*/).then(function(ref) {
+		list.$add(json).then(function(ref) {
   		var eventID = ref.key;
   		console.log("added record with id " + eventID);
   		//list.$indexFor(id); // returns location in the array 
@@ -46,24 +28,7 @@ eventApp.controller("teamform-create-event-ctrl", function($scope, $firebaseArra
 }); 
 
 function createEventJSON($scope) {
-	/*var event = "{";
 
-	//Indispensable information
-	event = addField(event, "Name", $scope.eventName);
-	var time = "{";
-	time = addField(time, "Date", $scope.Date);
-	time = addField(time, "Time", $scope.time);
-	time += "}";
-	event = addField(event, "Time", time );
-	event = addField(event, "Type", "Event");
-
-
-	//Optional information
-	var location = "{";
-	location = addField(location, "Country", $scope.country);
-	location = addField(location, "City", $scope.city);
-	location +="}"
-	location = addField(event, "Location", location);*/
 
 	var event = {};
 	event["Name"] = wrapJSON($scope.eventName);
@@ -88,6 +53,7 @@ function createEventJSON($scope) {
 
 	event["Keywords"] = getKeywords($scope.keywords);
 	event["Introduction"] = wrapJSON($scope.introduction);
+	
 	
 	return event;
 }
