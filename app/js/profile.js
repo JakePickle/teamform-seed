@@ -58,6 +58,7 @@ function generateID()
     return Math.floor(Math.random() * ID_scale).toString();
 }
 
+/*
 //
 // This function is used to auto complete form for debug when page is loaded
 //
@@ -85,3 +86,4 @@ $(document).ready(function() {
     }
     autoFillForm();
 });
+*/
