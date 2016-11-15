@@ -17,10 +17,21 @@
     <link rel="stylesheet" href="css/event.css" media="screen">
 
     <link rel="icon" href="img/icon.png">
+    <!-- AngularJS -->
+    <script src="lib/angular.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="lib/angularfire.min.js"></script>
+
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
+    <script src="js/eventManagement.js"></script>
+
 </head>
-<body>
+<body ng-app="teamform-event-manage-app">
     <div class="container-fluid">
 
         <!--Navigation Bar-->
@@ -171,9 +182,14 @@
                     <div class="row">
                         <div class="col-sm-6 validTeamMemberList">
                             <h4>Valid Teams</h4>
-                            <ul>
+                            <ul ng-controller="team-valid-team-ctrl">
                                 <!--Click on the cross icon will remove the view-->
                                 <!--TODO click on the cross icon will remove corresponding record in the database-->
+                                <a href="#" ng-repeat="team in validTeams">
+                                    <li class="validTeamMember">{{team.Name}}<i class="fa fa-times fa-lg" aria-hidden="true"></i></li>
+                                </a>
+                                
+                                <!--
                                 <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
                                 <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
                                 <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
@@ -181,7 +197,7 @@
                                 <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
                                 <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
                                 <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
-                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="validTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a> -->
                             </ul>
                         </div>
                         <div class="col-sm-6 pendingTeamMemberList">
