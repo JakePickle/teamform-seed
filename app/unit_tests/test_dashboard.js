@@ -1,4 +1,4 @@
-describe('test_index.js', function() {
+describe('test_dashboard.js', function() {
 	
    //
    // Example: A test case of getRandomIntInclusive
@@ -9,9 +9,8 @@ describe('test_index.js', function() {
 	  	var value = getRandomIntInclusive(1, 3);
 	  	expect( value>=1 && value <= 3 ).toEqual(true);
 	  });
-   });
 
-   // JQuery statements in the given sample code will not be tested.
+   });
 
 
 });
