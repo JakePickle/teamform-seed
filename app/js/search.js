@@ -1,9 +1,10 @@
 /*
-    version: 1.0
-    Modified date: 2016/11/14
+    version: 2.0
+    Last modified date: 2016/11/15
     Author: Cao Shuyang(Lawrence)
     Description: The module is implemented for fuzzy search, advanced search and autocomplete.
                  This module assumes that firebase SDK has been referred  in a webpage.
+                 This module assumes that jQuery has been referred in a webpage.
 */
 
 //
