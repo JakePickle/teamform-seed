@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="teamform-index-app">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,6 +23,13 @@
     <link rel="icon" href="img/icon.png">
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
+    <!-- Angular and Angular-route libraries (v1.5.7) -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>        
+         
+    <!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+    <script src="lib/firebase.js"></script>     
+    <script src="lib/angularfire.min.js"></script>
 </head>
 
 <!-- TODO: add bootstrap scrollspy to body -->
@@ -67,8 +74,10 @@
             <div class="col-md-4 noPaddingColumn">
                 <div class="connect">
                     <div class="buttonBlock">
-                        <button type="button" name="button" class="connectButton" id="google"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Connect with Google</button>
-                        <button type="button" name="button" class="connectButton" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
+                        <div id="index_page_controller" ng-controller="IndexCtrl">
+                            <button type="button" name="button" class="connectButton" id="google" ng-click="authenticate();"><i class="fa fa-google fa-lg" aria-hidden="true" ></i>Connect with Google</button>
+                            <button type="button" name="button" class="connectButton" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
+                        </div>
                     </div>
                 </div>
             </div>
