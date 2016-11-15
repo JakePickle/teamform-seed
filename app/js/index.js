@@ -12,7 +12,7 @@ $(document).ready(function(){
 angular.module('teamform-index-app', ['firebase'])
 .controller('IndexCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$interval', function($scope, $firebaseObject, $firebaseArray, $interval) {
 
-    //initalizeFirebase();
+    initalizeFirebase();
 
     $scope.authenticate = function()
     {
