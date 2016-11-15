@@ -1,56 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="teamform, team">
-    <title>Teamform - Explore</title>
-
+    <title>Teamform - Messages</title>
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/dashboard.css" media="screen">
     <link rel="stylesheet" href="css/event.css" media="screen">
-
     <link rel="icon" href="img/icon.png">
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
 
-<!-- AngularJS -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
 
-<!-- AngularFire -->
-<script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
-    
-
-<!-- AngularJS 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-
-<!-- Firebase 
-    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-
-<!-- AngularFire 
-    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script> -->
+    <!-- Angular and Angular-route libraries (v1.5.7) -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+    <!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+    <script src="lib/firebase.js"></script>
+    <script src="lib/angularfire.min.js"></script>
 
     <script src="js/loadMessages.js"></script>
-
-
-
 </head>
+
 <body>
     <div class="container-fluid">
-
         <!--Navigation Bar-->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navCollapse" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navCollapse" aria-expanded="false"
+                    aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">Teamform</a>
@@ -64,10 +50,8 @@
                 <li><a href="#"><i class="fa fa-power-off fa-fw" aria-hidden="true"></i>&nbsp; Log out</a></li>
             </ul>
         </nav>
-
         <!--The Main Application View-->
         <div class="row" id="main">
-
             <!--The side navigation bar-->
             <div class="col-sm-2 hidden-xs setMargin">
                 <!--TODO Link the background-image of #profilePic with the profile picture database-->
@@ -87,7 +71,6 @@
                     <a href="message.html"><i class="fa fa-envelope-o fa-3x" aria-hidden="true"></i><br>Messages</a>
                 </div>
             </div>
-
             <!--Content-->
             <div class="col-sm-10 setMargin" ng-app="teamform-messages-app">
                 <!--buttonWrapper wraps the inbox and outbox toggle buttons-->
@@ -100,10 +83,8 @@
                     </div>
                 </div>
                 <!--inboxView is displayed by default; it contains the inbox messages-->
-                <div class="row inboxView" >
+                <div class="row inboxView">
                     <div class="col-md-4" ng-controller="teamform-messages-ctrl">
-
-
                         <a href="#" ng-repeat="message in inbox">
                             <!--messageBrief is a brief version of the message-->
                             <!-- !!! The "active" class tag to be modified later -->
@@ -120,7 +101,6 @@
                                 </p>
                             </div>
                         </a>
-
                         <!--
                         <a href=#"">
                             <div class="messageBrief">
@@ -195,13 +175,14 @@
                             </p>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                                culpa qui officia deserunt mollit anim id est laborum.<br>                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </p>
                         </div>
                     </div>
@@ -217,13 +198,12 @@
                                 </p>
                                 <p>
                                     {{message.To}}
-                                 </p>
+                                </p>
                                 <p>
                                     {{message.Content}}
                                 </p>
                             </div>
                         </a>
-
                         <!--
                         <a href="#">
                             <div class="messageBrief">
@@ -292,13 +272,14 @@
                             </p>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                                culpa qui officia deserunt mollit anim id est laborum.<br>                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </p>
                         </div>
                     </div>
@@ -309,4 +290,5 @@
     <!--dashboard.js formats the navigation bars to enforce consistent UI-->
     <script src="js/dashboard.js"></script>
 </body>
+
 </html>
