@@ -115,15 +115,16 @@ Search.prototype.fuzzySearch = function(searchSentence)
     var that = this;
     var words = this.extractWord(searchSentence);
 
-    var queryList = this.database.ref('index').orderByKey();
+    var queryList = this.database.ref('Index').orderByKey();
     queryList.once("value").then(function(snapshot) {
         var matchRefs = [];
         snapshot.forEach(function(childSnapshot) {
             var dist = that.matchSearchWords(childSnapshot.key, words);
             if(dist < that.diffTolerance)
             {
-                for(let item of childSnapshot.val())
-                    matchRefs.push(item);
+                var obj = childSnapshot.val();
+                for(let item in obj)
+                    matchRefs.push(obj[item]);
             }
         });
         var matchPaths = that.reduceList(matchRefs);
@@ -132,6 +133,8 @@ Search.prototype.fuzzySearch = function(searchSentence)
             return that.database.ref(value.Path).once('value').then(function(dataRef){return dataRef.val();});
         });
         Promise.all(LoadingData).then(function(data_arr) {
+            console.log("render data");
+            console.log(data_arr);
             that.renderSearchResult(data_arr);
         });
     });
@@ -186,6 +189,7 @@ Search.prototype.renderSearchResult = function(resultArr)
         {
             case "Team": renderResult = this.renderTeamElement(result); break;
             case "Event": renderResult = this.renderEventElement(result); break;
+            case "User": renderResult = this.renderUserElement(result); break;
             default: renderResult = null;
         }
         if(renderResult)
@@ -203,7 +207,7 @@ Search.prototype.renderTeamElement = function(teamObj)
     divEle.append($("<p></p>").text(teamObj.Introduction).append($("<br/>")));
     divEle.append($("<p></p>").html('<span>Event Time:</span><span>Current Team Size: &nbsp;<span class="badge">' + teamObj.Members.length +'</span></span>'));
 
-    var teamElement = divEle.wrap("<div></div>").addClass("row pendingTeam").wrap("<a></a>").attr("href", "teaminfo.html").wrap("<div></div>").addClass("teams");
+    var teamElement = divEle.wrap("<div></div>").parent().addClass("row pendingTeam").wrap("<a></a>").parent().attr("href", "teaminfo.html").wrap("<div></div>").parent().addClass("teams");
     return teamElement;
 }
 
@@ -218,8 +222,22 @@ Search.prototype.renderEventElement = function(eventObj)
     var eventTime = new Date(eventObj.Time);
     divEle.append($("<p></p>").html('Event Time: ' + eventTime.toLocaleDateString() + ' ' + eventTime.toLocaleTimeString() ));
 
-    var eventElement = divEle.wrap("<div></div>").addClass("row openEvent").wrap("<a></a>").attr("href", "eventinfo.html").wrap("<div></div>").addClass("events");
+    var eventElement = divEle.wrap("<div></div>").parent().addClass("row openEvent").wrap("<a></a>").parent().attr("href", "eventinfo.html").wrap("<div></div>").parent().addClass("events");
     return eventElement;
+}
+
+//
+// Render user elements
+//
+Search.prototype.renderUserElement = function(userObj)
+{
+    var divEle = $("<div></div>").addClass("col-sm-offset-1 col-xs-11");
+    divEle.append($("<h3></h3>").html(userObj.Name));
+    divEle.append($("<p></p>").text(userObj.Introduction).append($("<br/>")));
+    divEle.append($("<p></p>").html('<span>Skills: ' + userObj.Skills.join(', ') + '</span>'));
+
+    var userElement = divEle.wrap("<div></div>").parent().addClass("row pendingTeam").wrap("<a></a>").parent().attr("href", "#").wrap("<div></div>").parent().addClass("teams");
+    return userElement;
 }
 
 //
