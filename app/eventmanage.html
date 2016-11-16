@@ -202,7 +202,13 @@
                         </div>
                         <div class="col-sm-6 pendingTeamMemberList">
                             <h4>Pending Teams</h4>
-                            <ul>
+                             <ul ng-controller="team-pending-team-ctrl">
+                                <!--Click on the cross icon will remove the view-->
+                                <!--TODO click on the cross icon will remove corresponding record in the database-->
+                                <a href="#" ng-repeat="team in pendingTeams">
+                                    <li class="pendingTeamMember">{{team.Name}}<i class="fa fa-times fa-lg" aria-hidden="true"></i></li>
+                                </a>
+                                <!--
                                 <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
                                 <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
                                 <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
@@ -211,7 +217,7 @@
                                 <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
                                 <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
                                 <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
-                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a>
+                                <a href="#"><li class="pendingTeamMember">teamName<i class="fa fa-times fa-lg" aria-hidden="true"></i></li></a> -->
                             </ul>
                         </div>
                     </div>
