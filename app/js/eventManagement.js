@@ -79,3 +79,19 @@ eventManageApp.controller("team-valid-team-ctrl", function($scope, $firebaseArra
 
 	
 });
+
+eventManageApp.controller("team-pending-team-ctrl", function($scope, $firebaseArray) {
+	var ref = firebase.database().ref("Events").child(EventId).child("WaitingParticipants");
+
+	$scope.pendingTeams = $firebaseArray(ref);
+
+	
+});
+
+
+
+
+
+
+
+
