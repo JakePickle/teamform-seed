@@ -127,16 +127,15 @@ Search.prototype.extractWord = function(paragraph)
 //
 Search.prototype.fuzzySearch = function(searchSentence)
 {
-    // break search sentence into words
     var that = this;
-    var words = this.extractWord(searchSentence);
+    
+	firebase.database().ref('Index').orderByKey().once("value").then(function(snapshot) {
+		// break search sentence into words
+		var words = that.extractWord(searchSentence);
 
-    var queryList = this.database.ref('Index').orderByKey();
-    queryList.once("value").then(function(snapshot) {
         var matchRefs = [];
         snapshot.forEach(function(childSnapshot) {
-            var dist = that.matchSearchWords(childSnapshot.key, words);
-            if(dist < that.diffTolerance)
+            if(that.matchSearchWords(childSnapshot.key, words))
             {
                 var obj = childSnapshot.val();
                 for(let item in obj)
@@ -148,7 +147,6 @@ Search.prototype.fuzzySearch = function(searchSentence)
         });
 		Promise.all(LoadingData).then(function(data_arr) {
             console.log("render data");
-            console.log(data_arr);
             that.renderSearchResult(data_arr);
         });
     });
@@ -161,10 +159,14 @@ Search.prototype.fuzzySearch = function(searchSentence)
 Search.prototype.matchSearchWords = function(key, words)
 {
     var minDistance = 100000;   // Initialize the distance to a larger enough number
-    for(let word of words)
-        minDistance = Math.min(minDistance, this.editDistance(key, word));
+	for(let word of words)
+	{
+		if(word.length>3 && key.includes(word))
+			return true;
+		minDistance = Math.min(minDistance, this.editDistance(key, word));
+	}
     
-    return minDistance;
+    return minDistance < this.diffTolerance;
 }
 
 //
