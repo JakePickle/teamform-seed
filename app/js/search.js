@@ -240,11 +240,19 @@ Search.prototype.renderUserElement = function(userObj)
     return userElement;
 }
 
+
+Search.prototype.extracDatabasePath = function(Ref)
+{
+	return Ref.toString().substring(Ref.root.toString().length);
+}
+
 //
 // Automatically index new user
 //
-Search.prototype.indexNewUser = function(newUser, storePath)
+Search.prototype.indexNewUser = function(newUser, userRef)
 {
+	var storePath = this.extracDatabasePath(userRef);
+
     var content_arr = [];
     content_arr.push(newUser.Name);
     content_arr.push(newUser.Languages.join(','));
@@ -261,3 +269,29 @@ Search.prototype.indexNewUser = function(newUser, storePath)
         indexRef.child(value).push(storePath);
     });
 }
+
+Search.prototype.indexNewEvent = function(newEvent, eventRef)
+{
+	var storePath = this.extracDatabasePath(eventRef);
+
+	var content_arr = [];
+	content_arr.push(newEvent.Name);
+	content_arr.push(newEvent.Location.Country);
+	content_arr.push(newEvent.Location.City);
+	content_arr.push(newEvent.Keywords.join(', '));
+	content_arr.push(newEvent.Introduction);
+
+	var word_arr = this.extractWord(content_arr.join(' , '));
+
+	var indexRef = firebase.database().ref("Index");
+	word_arr.forEach(function(value) {
+		indexRef.child(value).push(storePath);
+	})
+}
+
+
+// attach search function to #searchButton
+var search = new Search();
+$("#searchButton").click(function(){
+	search.fuzzySearch($("#searchBox").val());
+});

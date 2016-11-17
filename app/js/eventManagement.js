@@ -12,59 +12,38 @@ eventApp.controller("teamform-create-event-ctrl", function($scope, $firebaseArra
 		var ref = firebase.database().ref().child("Events");
 		var list = $firebaseArray(ref);
 		var eventID;
-		
-		console.log(createEventJSON($scope));
-		var json = createEventJSON($scope);
-		//JSON.parse(json);
-		//console.log(json.Name);
-		list.$add(json).then(function(ref) {
-  		var eventID = ref.key;
-  		console.log("added record with id " + eventID);
-  		//list.$indexFor(id); // returns location in the array 
+
+		var eventObj = {};
+		eventObj.Type = "Event";
+		eventObj.Name = $scope.eventName;
+		eventObj.Time = combineDateTime($scope.date, $scope.time).getTime();
+		eventObj.Location = {
+			"Country": $scope.country,
+			"City": $scope.city
+		}
+		eventObj.Status = "open";
+		eventObj.Requirements = {
+			"maxTeamNumber": $scope.maxTeamNumber,
+			"maxTeamSize": $scope.maxTeamSize,
+			"minTeamSize": $scope.minTeamSize
+		};
+		eventObj.Keywords = search.extractWord($scope.keywords);
+		eventObj.Introduction = $scope.introduction;
+
+		list.$add(eventObj).then(function(eventRef) {
+			search.indexNewEvent(eventObj, eventRef);
   		});
 	};
 
 }); 
 
-function createEventJSON($scope) {
-
-
-	var event = {};
-	event["Name"] = wrapJSON($scope.eventName);
-	var time = {};
-	time["Date"] = wrapJSON($scope.date.toString());
-	time["Time"] = wrapJSON($scope.time.toString());
-	event["Time"] = time;
-	event["Type"] = wrapJSON("Event");
-
-	var location = {};
-	location["Country"] = wrapJSON($scope.country);
-	location["City"] = wrapJSON($scope.city);
-	event["Location"] = location;
-
-	event["Status"] = "open";
-
-	var requirements = {};
-	requirements["maxTeamNumber"] = wrapJSON($scope.maxTeamNumber);
-	requirements["maxTeamSize"] = wrapJSON($scope.maxTeamSize);
-	requirements["minTeamSize"] = wrapJSON($scope.minTeamSize);
-	event["Requirements"] = requirements;
-
-	event["Keywords"] = getKeywords($scope.keywords);
-	event["Introduction"] = wrapJSON($scope.introduction);
-
-	
-	return event;
-}
-
-function getKeywords(str) {
-	return str.split(",");
-}
-
-function wrapJSON(str) {
-	if(str)
-		return str;
-	else return '"' + '"';
+function combineDateTime(date, time) {
+	var year = date.getFullYear();
+	var month = date.getMonth();
+	var day = date.getDate();
+	var hour = time.getHours();
+	var minute = time.getMinutes();
+	return new Date(year, month, day, hour, minute);
 }
 
 var eventManageApp = angular.module("teamform-event-manage-app", ["firebase"]);
