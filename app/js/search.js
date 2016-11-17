@@ -6,6 +6,42 @@
                  This module assumes that firebase SDK has been referred  in a webpage.
                  This module assumes that jQuery has been referred in a webpage.
 */
+//
+// Extend array method, unique an array, which must be sorted before this function is invoked
+//
+Array.prototype.uniqueArray = function()
+{
+	var new_arr = [];
+	var precedent = null;
+	for(let val of this)
+	{
+		if(val == precedent)
+			continue;
+		precedent = val;
+		new_arr.push(val);
+	}
+
+	return new_arr;
+}
+
+//
+// Extend array method, unique an array and count repeating number of every unique element in the array
+// The array must be sorted first
+//
+Array.prototype.reduceAndCount = function()
+{
+	var uniqueObj = {};
+	for(let ele of this)
+	{
+		let str = ele.toString();
+		if(uniqueObj.hasOwnProperty(str))
+			uniqueObj[str].count += 1;
+		else
+			uniqueObj[str] = {"Element": ele, "count":1};
+	}
+	return Object.keys(uniqueObj).map(function(value) {return uniqueObj[value];})
+}
+
 
 //
 // Declare the namespace for this module
@@ -79,31 +115,11 @@ Search.prototype.extractWord = function(paragraph)
 {
     var that = this;
 
-    // break into words, trim words, translate into lowercase, eliminate empty string, filter with pre-defined list, sort
-    var arr = paragraph.split(/[^\w+|C\+\+]/).map(function(value){
+	return paragraph.split(/[^\w+|C\+\+]/).map(function(value){
         return value.trim().toLowerCase();
     }).filter(function(val) {
         return Boolean(val) && (val.length>1) && !(that.filterWordList.hasOwnProperty(val));
-    }).sort();
-    
-    return this.uniqueArray(arr);
-}
-
-//
-// Unique an array, which must be sorted before this function is invoked
-//
-Search.prototype.uniqueArray = function(arr)
-{
-    var tmp_arr = [];
-    var precedent = null;
-    for(let val of arr)
-    {
-        if(val == precedent)
-            continue;
-        precedent = val;
-        tmp_arr.push(val);
-    }
-    return tmp_arr;
+    }).sort().uniqueArray()
 }
 
 //
@@ -127,12 +143,10 @@ Search.prototype.fuzzySearch = function(searchSentence)
                     matchRefs.push(obj[item]);
             }
         });
-        var matchPaths = that.reduceList(matchRefs);
-        matchPaths.sort(function(a, b) {return b.count - a.count});
-        var LoadingData = matchPaths.map(function(value) {
-            return that.database.ref(value.Path).once('value').then(function(dataRef){return dataRef.val();});
+		var LoadingData = matchRefs.reduceAndCount().sort(function(a, b) {return b.count - a.count}).map(function(value) {
+            return that.database.ref(value.Element).once('value').then(function(dataRef){return dataRef.val();});
         });
-        Promise.all(LoadingData).then(function(data_arr) {
+		Promise.all(LoadingData).then(function(data_arr) {
             console.log("render data");
             console.log(data_arr);
             that.renderSearchResult(data_arr);
