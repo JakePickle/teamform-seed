@@ -41,7 +41,8 @@ angular.module('teamform-index-app', ['firebase'])
                 email = user.email;
                 photoUrl = user.photoURL;
                 uid = user.uid;
-                document.cookie = "uid="+uid;  
+                document.cookie = "uid="+uid;
+                document.cookie = "test=test";  
             }
 
 
