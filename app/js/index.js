@@ -40,7 +40,8 @@ angular.module('teamform-index-app', ['firebase'])
                 $scope.username = user.displayName;
                 email = user.email;
                 photoUrl = user.photoURL;
-                uid = user.uid;  
+                uid = user.uid;
+                document.cookie = "uid="+uid;  
             }
 
 
