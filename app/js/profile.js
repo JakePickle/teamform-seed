@@ -23,7 +23,7 @@ function createNewUser()
     userInfo.Type = "User";
     firebase.database().ref("Users").push(userInfo).then(function(userRef) {
         var search = new Search();
-        search.indexNewUser(userInfo, userRef.toString().substring(userRef.root.toString().length));
+        search.indexNewUser(userInfo, userRef);
         console.log("create new user successfully!");
     }).catch(function(error) {
         console.log("fail to create new user");

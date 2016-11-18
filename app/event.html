@@ -213,17 +213,17 @@
                     <form ng-submit="createNewEvent()" method="post">
                         <div class="form-group">
                             <label for="eventName">Event Name *</label>
-                            <input type="text" class="form-control" name="eventname" id="eventName" placeholder="Event Name" aria-describedby="helpEventName" ng-model="eventName">
+                            <input type="text" class="form-control" name="eventname" id="eventName" placeholder="Event Name" aria-describedby="helpEventName" ng-model="eventName" required>
                             <span id="helpEventName" class="help-block">Length limited to 50 characters.</span>
                         </div>
                         <div class="form-group">
                             <label for="eventTime">Event Time*</label>
                             <div class="form-inline" id="eventTime">
                                 <div class="form-group">
-                                    <input type="date" class="form-control" name="date" ng-model="date">
+                                    <input type="date" class="form-control" name="date" ng-model="date" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="time" class="form-control" name="time" ng-model="time">
+                                    <input type="time" class="form-control" name="time" ng-model="time" required>
                                 </div>
                             </div>
                         </div>
@@ -231,36 +231,36 @@
                             <label for="location">Event Location</label>
                             <div class="form-inline" id="location">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="country" placeholder="Country" ng-model="country">
+                                    <input type="text" class="form-control" name="country" placeholder="Country" ng-model="country" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="city" placeholder="City" ng-model="city">
+                                    <input type="text" class="form-control" name="city" placeholder="City" ng-model="city" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="teamNumber">Maximum Team Number</label>
-                            <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number" ng-model="maxTeamNumber">
+                            <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number" ng-model="maxTeamNumber" required>
                         </div>
                         <div class="form-group">
                             <label for="groupSize">Team Size</label>
                             <div class="form-inline" id="groupSize">
                                 <div class="form-group">
-                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum" ng-model="minTeamSize">
+                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum" ng-model="minTeamSize" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum" ng-model="maxTeamSize">
+                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum" ng-model="maxTeamSize" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="keyword">Keywords</label>
-                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" ng-model="keywords">
+                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" ng-model="keywords" required>
                             <span id="helpKeyword" class="help-block">Use commas to separate multiple keywords (e.g. hackathon,Java,CS).</span>
                         </div>
                         <div>
                             <label for="introduction">Brief Introduction</label>
-                            <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction" ng-model="introduction"></textarea>
+                            <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction" ng-model="introduction" required></textarea>
                             <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
                         </div>
                         <div class="buttonWrapper">
@@ -273,5 +273,6 @@
     </div>
     <!--dashboard.js formats the navigation bars to enforce consistent UI-->
     <script src="js/dashboard.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html>

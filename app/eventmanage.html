@@ -121,10 +121,10 @@
                             <label class="col-xs-3 control-label">Time</label>
                             <div class="form-inline col-xs-9" id="eventTime">
                                 <div class="form-group">
-                                    <input type="date" class="form-control" name="date" value="2016-11-06">
+                                    <input type="date" class="form-control" name="date" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="time" class="form-control" name="time" value="12:00">
+                                    <input type="time" class="form-control" name="time" required>
                                 </div>
                             </div>
                         </div>
@@ -132,10 +132,10 @@
                             <label class="col-xs-3 control-label">Event Location</label>
                             <div class="form-inline col-xs-9" id="location">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="country" placeholder="Country" value="Hong Kong">
+                                    <input type="text" class="form-control" name="country" placeholder="Country" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="city" placeholder="City" value="Hong Kong">
+                                    <input type="text" class="form-control" name="city" placeholder="City" required>
                                 </div>
                             </div>
                         </div>
@@ -159,14 +159,14 @@
                         <div class="form-group stand-alone-form-group">
                             <label class="col-xs-3 control-label">Keywords</label>
                             <div class="col-xs-9">
-                                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" value="Hackathon,Java,CS">
+                                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" required>
                                 <span id="helpKeyword" class="help-block">Use commas to separate multiple keywords (e.g. hackathon,Java,CS).</span>
                             </div>
                         </div>
                         <div class="form-group stand-alone-form-group">
                             <label class="col-xs-3 control-label">Brief Introduction</label>
                             <div class=" col-xs-9">
-                                <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction" required>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                 </textarea>
                                 <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
                             </div>
