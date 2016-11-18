@@ -62,6 +62,7 @@ angular.module('teamform-profile-app', ['firebase'])
         //$interval($scope.loadFuncHelper(), 2000, 10);
         //$timeout($scope.loadFuncHelper(), 11000);
         $scope.uid = getCookie(uid);
+        $scope.loadFuncHelper();
     }
 
     function getCookie(cname) { //Copied from w3schools.com
