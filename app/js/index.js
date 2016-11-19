@@ -57,8 +57,7 @@ angular.module('teamform-index-app', ['firebase'])
         });     
     }
 
-    $scope.saveFuncHelper = function() {
-        //$scope.getInfo();
+    $scope.saveFunc = function() {
         
         var userName = $.trim( $scope.username );
         var Email = $.trim( $scope.email );
@@ -80,21 +79,16 @@ angular.module('teamform-index-app', ['firebase'])
                 //alert("data pushed...");
                 
                 // Finally, go back to the front-end
-                window.location.href= "profile.html";//This doesn't work sometimes a little
+                window.location.href= "profile.html";
             });
 
         }
     }
 
-    $scope.saveFunc = function() {
-        //$interval($scope.getInfo(), 1000, 4);
-        $timeout($scope.saveFuncHelper(), 5000);
-    }
-
     if(getCookie("authAttempt")!="")
     {
         $interval($scope.getInfo(), 1000, 4);
-        $timeout($scope.saveFuncHelper(), 5000);
+        $interval($scope.saveFunc(), 5000, 2);
     }
 
 }]);
