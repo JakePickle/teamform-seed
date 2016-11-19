@@ -15,8 +15,10 @@ angular.module('teamform-index-app', ['firebase'])
     initalizeFirebase();
 
     var user;
-    var name, email, photoUrl, uid;
     $scope.username = "";
+    $scope.email = "";
+    $scope.photoUrl = "";
+    $scope.uid = "";
 
     $scope.authenticate = function()
     {
@@ -36,12 +38,14 @@ angular.module('teamform-index-app', ['firebase'])
             // The signed-in user info.
             user = result.user;
             if (user != null) {
-                name = user.displayName;
                 $scope.username = user.displayName;
-                email = user.email;
-                photoUrl = user.photoURL;
-                uid = user.uid;
-                document.cookie = "uid="+uid;
+                $scope.email = user.email;
+                $scope.photoUrl = user.photoURL;
+                $scope.uid = user.uid;
+                document.cookie = "uid="+user.uid;
+                document.cookie = "email="+user.email;
+                document.cookie = "username="+user.displayName;
+                document.cookie = "photoUrl="+user.photoUrl;
             }
 
 
