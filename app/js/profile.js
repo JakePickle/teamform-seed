@@ -81,7 +81,7 @@ angular.module('teamform-profile-app', ['firebase'])
         var refPath = "Users/" + getURLParameter("q") + $scope.uid;  
         var ref = firebase.database().ref(refPath);
         
-        ref.set(newData, function(){
+        ref.set(userInfo, function(){
             var search = new Search();
             search.indexNewUser(userInfo, userRef);
             console.log("create new user successfully!");
