@@ -54,11 +54,8 @@ angular.module('teamform-index-app', ['firebase'])
             var errorMessage = error.message;
             var email = error.email;
             var credential = error.credential;
-        });     
-    }
+        }); 
 
-    $scope.saveFunc = function() {
-        
         var userName = $.trim( $scope.username );
         var Email = $.trim( $scope.email );
         var PhotoUrl = $.trim( $scope.photoUrl );
@@ -82,13 +79,18 @@ angular.module('teamform-index-app', ['firebase'])
                 window.location.href= "profile.html";
             });
 
-        }
+        }    
+    }
+
+    $scope.saveFunc = function() {
+        
+        
     }
 
     if(getCookie("authAttempt")!="")
     {
         $interval($scope.getInfo(), 1000, 4);
-        $scope.saveFunc();
+        //$scope.saveFunc();
     }
 
 }]);
