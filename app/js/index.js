@@ -91,7 +91,7 @@ angular.module('teamform-index-app', ['firebase'])
 
     $scope.saveFunc = function() {
         $interval($scope.saveFuncHelper(), 1000, 4);
-        $timeout($scope.goToProfileCreation(), 5000);
+        //$timeout($scope.goToProfileCreation(), 5000);
     }
 
 }]);
