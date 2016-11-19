@@ -1,7 +1,7 @@
-/*Formatting of general event item layout*/
-.events .row, .teams .row {
+/*Formatting of event & team view*/
+.events .row, .teams .row{
     margin: 0;
-    border-bottom: 1px solid white;
+    border-top: 1px solid white;
 }
 .events .row h3, .teams .row h3 {
     margin: 0;
@@ -23,7 +23,7 @@
     display: inline-block;
     padding-left: 20px;
 }
-.events a, .teams a {
+.events a, .teams a{
     text-decoration: none;
     color: white;
 }
@@ -35,7 +35,7 @@ span.badge {
     display: inline;
 }
 
-/*Formatting of different types of events*/
+/*Formatting of different types of events & teams*/
 .openEvent, .validTeam {
     border-left: 10px solid #417d00;
 }
@@ -53,4 +53,178 @@ span.badge {
 }
 .terminatedEvent:hover, .terminatedTeam:hover {
     background: rgba(141, 25, 13, 0.2);
+}
+
+/*Formatting of the explore view*/
+.searchView form {
+    padding: 25px 40px 40px 40px;
+    background: rgba(0, 0, 0, 0.2);
+}
+.searchView form .col-sm-9, .searchView form .col-sm-3 {
+    padding-top: 15px;
+}
+.searchView button, .searchView input {
+    width: 100%;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+/*Formatting of the message view*/
+.inboxView, .outboxView {
+     margin: 0;
+ }
+.inboxView .col-md-4, .inboxView .col-md-8, .outboxView .col-md-4, .outboxView .col-md-8 {
+    padding: 0;
+}
+.inboxView a, .outboxView a {
+    text-decoration: none;
+    color: white;
+}
+.messageBrief {
+    padding-left: 12px;
+    padding-right: 5px;
+    border-left: 5px solid white;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+}
+.messageBrief:hover, .messageBrief.active {
+    background: rgba(0, 0, 0, 0.2);
+    border-left: 5px solid #2d73e1;
+}
+.messageBrief h4 {
+    margin-bottom: 5px;
+    margin-top: 0;
+    padding-top: 15px;
+}
+.messageBrief i{
+    color: red;
+}
+.messageBrief p:first-of-type {
+    margin-bottom: 5px;
+    border-bottom: 1px solid gray;
+}
+.messageBrief p:last-of-type {
+    margin: 0;
+    padding-bottom: 10px;
+}
+.messageDetailed {
+    border-top: 1px solid white;
+    padding: 30px 20px 30px 20px;
+}
+.messageDetailed h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.messageDetailed p:first-of-type {
+    margin-bottom: 5px;
+}
+.messageDetailed p:nth-child(3) {
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
+
+/*Formatting of createEvent view*/
+.createEventView .buttonWrapper {
+    margin-top: 30px;
+}
+
+/*Formatting of eventinfo and teaminfo view*/
+.createTeamView form {
+    padding: 25px 40px 40px 40px;
+    background: rgba(0, 0, 0, 0.2);
+}
+.createTeamView form .col-sm-9, .createTeamView form .col-sm-3 {
+    padding-top: 15px;
+}
+.createTeamView button, .createTeamView input {
+    width: 100%;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+.eventInfoView h2, .teamInfoView h2, .updateTeamInfoView h2, .updateEventInfoView h2 {
+    padding-bottom: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    border-bottom: 1px solid white;
+}
+.eventInfoView li, .teamInfoView li {
+    padding-right: 30px;
+    padding-bottom: 15px;
+}
+.eventInfoView .col-xs-3, .teamInfoView .col-xs-3 {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.teamInfoView li ul {
+    padding-left: 0;
+}
+
+/*Formatting of teammanage & eventmanage view*/
+.updateTeamInfoView .control-label, .updateEventInfoView .control-label {
+    padding-top: 0;
+    text-align: left;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.updateTeamInfoView .form-group, .updateEventInfoView .form-group {
+    margin: 0;
+}
+.updateEventInfoView .form-group .form-group, .updateEventInfoView .stand-alone-form-group {
+    padding-bottom: 15px;
+}
+
+.updateTeamInfoView form, .updateEventInfoView form {
+    padding-top: 0;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+}
+.memberView .row, .teamMemberView .row {
+    margin: 0;
+}
+.memberView .col-sm-4, .teamMemberView .col-sm-6 {
+    padding-left: 0;
+    padding-right: 0;
+}
+.memberView ul, .teamMemberView ul {
+    list-style-type: none;
+}
+.memberView h3, .teamMemberView h3 {
+    margin-left: 40px;
+}
+.memberView h4, .teamMemberView h4 {
+    padding-left: 40px;
+    padding-top: 10px;
+    margin: 0;
+    padding-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-right: 1px solid white;
+}
+.memberView a, .teamMemberView a {
+    text-decoration: none;
+    color: white;
+}
+.memberView ul, .teamMemberView ul {
+    padding-left: 0;
+}
+.memberView li, .teamMemberView li {
+    padding-left: 40px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid gray;
+    clear: both;
+}
+.memberView i, .teamMemberView i {
+    display: inline-block;
+    margin-right: 15px;
+    margin-left: 15px;
+    float: right;
+}
+.existingMember:hover, .validTeamMember:hover {
+    background: rgba(65, 125, 0, 0.2);
+}
+.pendingRequest:hover, .pendingInvitation:hover, .pendingTeamMember:hover {
+    background: rgba(255, 245, 130, 0.2);
 }

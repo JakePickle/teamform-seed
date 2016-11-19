@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="teamform, team">
-    <title>Teamform - Dashboard</title>
+    <title>Teamform - Event List</title>
 
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
@@ -17,10 +17,22 @@
     <link rel="stylesheet" href="css/event.css" media="screen">
 
     <link rel="icon" href="img/icon.png">
+
+	<!-- AngularJS -->
+	<script src="lib/angular.min.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+
+	<!-- AngularFire -->
+	<script src="lib/angularfire.min.js"></script>
+
+
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
+    <script src="js/eventManagement.js"></script>
 </head>
-<body>
+<body ng-app="teamform-event-app">
     <div class="container-fluid">
 
         <!--Navigation Bar-->
@@ -32,12 +44,12 @@
                 <a class="navbar-brand" href="#">Teamform</a>
             </div>
             <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="navCollapse">
-                <li class="visible-xs-block"><a href="#"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Profile</a></li>
-                <li class="visible-xs-block"><a href="#"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp; Teams</a></li>
-                <li class="visible-xs-block"><a href="#"><i class="fa fa-flag-checkered fa-fw" aria-hidden="true"></i>&nbsp; Events</a></li>
-                <li class="visible-xs-block"><a href="#"><i class="fa fa-search fa-fw" aria-hidden="true"></i>&nbsp; Explore</a></li>
-                <li class="visible-xs-block"><a href="#"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i>&nbsp; Messages</a></li>
-                <li><a href=""><i class="fa fa-power-off fa-fw" aria-hidden="true"></i>&nbsp; Log out</a></li>
+                <li class="visible-xs-block"><a href="dashboard.html"><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp; Profile</a></li>
+                <li class="visible-xs-block"><a href="team.html"><i class="fa fa-users fa-fw" aria-hidden="true"></i>&nbsp; Teams</a></li>
+                <li class="visible-xs-block"><a href="event.html"><i class="fa fa-flag-checkered fa-fw" aria-hidden="true"></i>&nbsp; Events</a></li>
+                <li class="visible-xs-block"><a href="explore.html"><i class="fa fa-search fa-fw" aria-hidden="true"></i>&nbsp; Explore</a></li>
+                <li class="visible-xs-block"><a href="message.html"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i>&nbsp; Messages</a></li>
+                <li><a href="#"><i class="fa fa-power-off fa-fw" aria-hidden="true"></i>&nbsp; Log out</a></li>
             </ul>
         </nav>
 
@@ -69,27 +81,48 @@
                 <!--eventView displays the event list and the create event button-->
                 <div class="eventView">
                     <div class="row buttonWrapper" style="margin: 0">
-                        <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Create a New Event</button>
+                        <button type="button" id="createNewEvent" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Create a New Event</button>
                     </div>
                     <!--events wraps all the event items-->
-                    <div class="events">
+                    <div class="events" ng-controller="event-display-ctrl">
                         <!--Use <a> to wrap <div> cannot pass XHTML requirements but is valid for HTML5-->
-                        <a href="#">
-                            <div class="row openEvent">
+                        <div ng-repeat="event in events">
+
+						<!-- Attention!!! -->
+                        <!-- Issues like different href's and different status unsettled-->
+                        <a href="eventmanage.html">
+                            <div class="row {{event.Status}}Event">
                                 <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>Event 1<i class="fa fa-star-o" aria-hidden="true"></i></h3>
+                                    <h3>{{event.Name}}<i class="fa fa-star-o" aria-hidden="true"></i></h3>
                                     <p>
-                                        Star sign indicates the user is the administrator of the event.<br>
-                                        Green color indicates this event is still open.<br>
-                                        click on the link direct to the details view of the event(groups, attributes).
+                                       {{event.Introduction}}
+
                                     </p>
                                     <p>
-                                        <span>Event Time:</span><span>Current Group Number: &nbsp;<span class="badge">0</span></span>
+                                        <span>Event Time: {{event.Time.Time}}</span><span>Current Group Number: &nbsp;<span class="badge">{{(event.Participants)?event.Participants.length:0}}</span></span>
                                     </p>
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
+                        </div>
+                        <!--
+                         <a href="eventmanage.html">
+                            <div class="row openEvent">
+                                <div class="col-sm-offset-1 col-xs-11">
+                                    <h3><i class="fa fa-star-o" aria-hidden="true"></i></h3>
+                                    <p>
+                                        Star sign indicates the user is the administrator of the event.<br>
+                                        Green color indicates this event is still open.<br>
+                                        click on the link direct to the details view of the event(groups, attributes).
+                                        
+                                    </p>
+                                    <p>
+                                        <span>Event Time:</span><span>Current Group Number: &nbsp;<span class="badge">30</span></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="eventmanage.html">
                             <div class="row closeEvent">
                                 <div class="col-sm-offset-1 col-xs-11">
                                     <h3>Event 2 <i class="fa fa-star-o" aria-hidden="true"></i></h3>
@@ -106,7 +139,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="eventmanage.html">
                             <div class="row terminatedEvent">
                                 <div class="col-sm-offset-1 col-xs-11">
                                     <h3>Event 3 <i class="fa fa-star-o" aria-hidden="true"></i></h3>
@@ -123,7 +156,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="eventinfo.html">
                             <div class="row openEvent">
                                 <div class="col-sm-offset-1 col-xs-11">
                                     <h3>Event 4 / TeamName <i class="fa fa-user-o" aria-hidden="true"></i></h3>
@@ -140,7 +173,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="eventinfo.html">
                             <div class="row closeEvent">
                                 <div class="col-sm-offset-1 col-xs-11">
                                     <h3>Event 5 / TeamName <i class="fa fa-user-o" aria-hidden="true"></i></h3>
@@ -156,7 +189,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="#">
+                        <a href="eventinfo.html">
                             <div class="row openEvent">
                                 <div class="col-sm-offset-1 col-xs-11">
                                     <h3>Event 6 / TeamName <i class="fa fa-user-o" aria-hidden="true"></i></h3>
@@ -171,18 +204,75 @@
                                     </p>
                                 </div>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
 
                 <!--createEventView is toggled after the Create Event button is clicked-->
-                <div class="createEventView">
-                    <!--TODO: Add createEventView-->
+                <div class="createEventView" ng-controller="teamform-create-event-ctrl">
+                    <form ng-submit="createNewEvent()" method="post">
+                        <div class="form-group">
+                            <label for="eventName">Event Name *</label>
+                            <input type="text" class="form-control" name="eventname" id="eventName" placeholder="Event Name" aria-describedby="helpEventName" ng-model="eventName" required>
+                            <span id="helpEventName" class="help-block">Length limited to 50 characters.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventTime">Event Time*</label>
+                            <div class="form-inline" id="eventTime">
+                                <div class="form-group">
+                                    <input type="date" class="form-control" name="date" ng-model="date" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" name="time" ng-model="time" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Event Location</label>
+                            <div class="form-inline" id="location">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="country" placeholder="Country" ng-model="country" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="city" placeholder="City" ng-model="city" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="teamNumber">Maximum Team Number</label>
+                            <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number" ng-model="maxTeamNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="groupSize">Team Size</label>
+                            <div class="form-inline" id="groupSize">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum" ng-model="minTeamSize" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum" ng-model="maxTeamSize" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="keyword">Keywords</label>
+                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" ng-model="keywords" required>
+                            <span id="helpKeyword" class="help-block">Use commas to separate multiple keywords (e.g. hackathon,Java,CS).</span>
+                        </div>
+                        <div>
+                            <label for="introduction">Brief Introduction</label>
+                            <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction" ng-model="introduction" required></textarea>
+                            <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
+                        </div>
+                        <div class="buttonWrapper">
+                            <button type="submit" name="button">Create Event</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <!--dashboard.js formats the navigation bars to enforce consistent UI-->
     <script src="js/dashboard.js"></script>
+    <script src="js/search.js"></script>
 </body>
 </html>

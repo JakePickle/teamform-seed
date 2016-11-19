@@ -32,7 +32,7 @@ module.exports = function(config) {
 	port: 8080,
 	colors: true,
     browsers: ['Chrome'],
-	singleRun: true,
+	singleRun: false,
     plugins: [
       'karma-chrome-launcher',      
       'karma-jasmine',

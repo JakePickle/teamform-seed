@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="teamform, team">
-    <title>Teamform - Team List</title>
+    <title>Teamform - Explore</title>
 
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
@@ -41,7 +41,6 @@
             </ul>
         </nav>
 
-
         <!--The Main Application View-->
         <div class="row" id="main">
 
@@ -51,13 +50,13 @@
                 <div class="sideNav" id="profilePic">
                     <a href="dashboard.html"></a>
                 </div>
-                <div class="sideNav active">
+                <div class="sideNav">
                     <a href="team.html"><i class="fa fa-users fa-3x" aria-hidden="true"></i><br>Teams</a>
                 </div>
                 <div class="sideNav">
                     <a href="event.html"><i class="fa fa-flag-checkered fa-3x" aria-hidden="true"></i><br>Events</a>
                 </div>
-                <div class="sideNav">
+                <div class="sideNav active">
                     <a href="explore.html"><i class="fa fa-search fa-3x" aria-hidden="true"></i><br>Explore</a>
                 </div>
                 <div class="sideNav">
@@ -67,62 +66,63 @@
 
             <!--Content-->
             <div class="col-sm-10 setMargin">
-                <!--The teamView displays the list of teams and wraps both teams and two buttons-->
-                <div class="teamView">
-                    <div class="row buttonWrapper" style="margin: 0">
-                        <div class="col-sm-6">
-                            <button type="button" onclick="location.href='explore.html'" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Create a New Team</button>
+                <!--searchView wraps the search input and search button-->
+                <div class="searchView">
+                    <form class="row">
+                        <div class="col-sm-9">
+                            <input type="search" class="form-control" placeholder="Search" id="searchBox">
                         </div>
-                        <div class="col-sm-6">
-                            <button type="button" onclick="location.href='explore.html'" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Join a Team</button>
+                        <div class="col-sm-3">
+                            <!--click the search button will toggle the view to searchResultView-->
+                            <button class="btn btn-default" type="button" id="searchButton"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search!</button>
                         </div>
-                    </div>
-                    <!--teams wraps all the team items-->
-                    <div class="teams">
+                    </form>
+                </div>
+                <!--recommendationView is displayed by default-->
+                <div class="recommendationView">
+                    <!--events hold the recommended events-->
+                    <div class="events">
                         <!--Use <a> to wrap <div> cannot pass XHTML requirements but is valid for HTML5-->
-                        <a href="teammanage.html">
-                            <div class="row validTeam">
+                        <a href="eventinfo.html">
+                            <div class="row openEvent">
                                 <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>Event 1 / TeamName<i class="fa fa-star-o" aria-hidden="true"></i></h3>
+                                    <h3>Event 1</h3>
                                     <p>
-                                        Star sign indicates the user is the team leader (creator)<br>
-                                        Green color indicates this team satisfies the requirement of the event already (teamsize etc.).<br>
-                                        click on the link direct to the details view of the team(members, requests, invitations).
-                                        Of course for simplicity we don't have to enforce all these validation logic. I'm merely
-                                        providing an example of UI.
-                                    </p>
-                                    <p>
-                                        <span>Event Time:</span><span>Current Team Size: &nbsp;<span class="badge">0</span></span><br>
-                                        <span>Pending Invitation Number: &nbsp;<span class="badge">0</span></span><span>Pending Request Number: <span class="badge">0</span></span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="teammanage.html">
-                            <div class="row pendingTeam">
-                                <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>Event 2 / TeamName<i class="fa fa-star-o" aria-hidden="true"></i></h3>
-                                    <p>
-                                        Yellow color indicates this team does not have enough members yet.<br>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
                                     </p>
                                     <p>
-                                        <span>Event Time:</span><span>Current Team Size: &nbsp;<span class="badge">0</span></span><br>
-                                        <span>Pending Invitation Number: &nbsp;<span class="badge">0</span></span><span>Pending Request Number: <span class="badge">0</span></span>
+                                        Event Time:
                                     </p>
                                 </div>
                             </div>
                         </a>
+                        <a href="eventinfo.html">
+                            <div class="row openEvent">
+                                <div class="col-sm-offset-1 col-xs-11">
+                                    <h3>Event 2</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                                    </p>
+                                    <p>
+                                        Event Time:
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!--teams hold the recommended teams-->
+                    <div class="teams">
                         <a href="teaminfo.html">
-                            <div class="row terminatedTeam">
+                            <div class="row pendingTeam">
                                 <div class="col-sm-offset-1 col-xs-11">
                                     <h3>Event 3 / TeamName</h3>
                                     <p>
-                                        No star sign means the user is a team member but not leader.<br>
-                                        Red color indicates this event has already been terminated.<br>
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                                         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -136,22 +136,71 @@
                         </a>
                     </div>
                 </div>
-                <div class="createTeamView">
-
-                </div>
-                <div class="joinTeamView">
-
+                <!--searchResultView is displayed after the search function is performed-->
+                <div class="searchResultView">
+                    <!--events hold the events in the search result-->
+                    <div class="events">
+                        <a href="eventinfo.html">
+                            <div class="row openEvent">
+                                <div class="col-sm-offset-1 col-xs-11">
+                                    <h3>Event 4</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                                    </p>
+                                    <p>
+                                        Event Time:
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!--teams hold the teams in the search result-->
+                    <div class="teams">
+                        <a href="teaminfo.html">
+                            <div class="row pendingTeam">
+                                <div class="col-sm-offset-1 col-xs-11">
+                                    <h3>Event 5 / TeamName</h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
+                                    </p>
+                                    <p>
+                                        <span>Event Time:</span><span>Current Team Size: &nbsp;<span class="badge">0</span></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-route.min.js"></script>
-    <script src="lib/firebase.js"></script>
-    <script src="lib/angularfire.min.js"></script>
     <!--dashboard.js formats the navigation bars to enforce consistent UI-->
+    <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCGA1xMB_cjAf1pEKyROtcMkLjtTbpjxis",
+            authDomain: "comp3111hproj.firebaseapp.com",
+            databaseURL: "https://comp3111hproj.firebaseio.com",
+            storageBucket: "comp3111hproj.appspot.com",
+            messagingSenderId: "622320647090"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script src="js/dashboard.js"></script>
-    <script src="js/team.js"></script>
+	<script src="js/search.js"></script>
+    <!--
+    <script>
+        $(document).ready(function() {
+            $("#searchBox").val("english");
+        });
+    </script>
+    --> 
 </body>
 </html>

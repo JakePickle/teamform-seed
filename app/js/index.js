@@ -89,6 +89,4 @@ angular.module('teamform-index-app', ['firebase'])
         $interval($scope.saveFuncHelper(), 2000, 10);
     }
 
-    
-
 }]);
