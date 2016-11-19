@@ -12,7 +12,7 @@ $(document).ready(function(){
 angular.module('teamform-index-app', ['firebase'])
 .controller('IndexCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$interval', '$timeout', function($scope, $firebaseObject, $firebaseArray, $interval, $timeout) {
 
-    initalizeFirebase();
+    initializeFirebase();
 
     var user;
     $scope.username = "";
