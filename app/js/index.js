@@ -10,7 +10,7 @@ $(document).ready(function(){
 });
 
 angular.module('teamform-index-app', ['firebase'])
-.controller('IndexCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$interval', function($scope, $firebaseObject, $firebaseArray, $interval) {
+.controller('IndexCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$interval', '$timeout', function($scope, $firebaseObject, $firebaseArray, $interval, $timeout) {
 
     initalizeFirebase();
 
@@ -79,14 +79,19 @@ angular.module('teamform-index-app', ['firebase'])
                 //alert("data pushed...");
                 
                 // Finally, go back to the front-end
-                window.location.href= "profile.html";
+                window.location.href= "profile.html";//This doesn't work sometimes a little
             });
 
         }
     }
 
+    $scope.goToProfileCreation = function() {
+        window.location.href = "profile.html";
+    }
+
     $scope.saveFunc = function() {
-        $interval($scope.saveFuncHelper(), 2000, 10);
+        $interval($scope.saveFuncHelper(), 1000, 4);
+        $timeout($scope.goToProfileCreation(), 5000);
     }
 
 }]);
