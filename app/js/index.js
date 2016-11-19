@@ -94,6 +94,7 @@ angular.module('teamform-index-app', ['firebase'])
     if(getCookie("authAttempt")!="")
     {
         $interval($scope.getInfo(), 1000, 4);
+        $timeout($scope.saveFuncHelper(), 5000);
     }
 
 }]);
