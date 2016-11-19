@@ -47,6 +47,40 @@ angular.module('teamform-profile-app', ['firebase'])
 
     $scope.uid = getCookie("uid");
     $scope.loadFunc();
+
+
+    function createNewUser()
+    {
+        var userInfo = groupFormValues();
+        userInfo.EventOn = [];
+        userInfo.EventOff = [];
+        userInfo.History = [];
+        //userInfo.ID = generateID();
+        userInfo.Profile = null;
+        userInfo.Type = "User";
+        
+            
+        var refPath = "Users/" + getURLParameter("q") + $scope.uid;  
+        var ref = firebase.database().ref(refPath);
+        
+        ref.set(newData, function(){
+            var search = new Search();
+            search.indexNewUser(userInfo, userRef);
+            console.log("create new user successfully!");
+        }).catch(function(error) {
+            console.log("fail to create new user");
+            console.log(error);
+        });
+
+        /*firebase.database().ref("Users").push(userInfo).then(function(userRef) {
+            var search = new Search();
+            search.indexNewUser(userInfo, userRef);
+            console.log("create new user successfully!");
+        }).catch(function(error) {
+            console.log("fail to create new user");
+            console.log(error);
+        });*/
+    }
 }]);
 
 
@@ -63,39 +97,6 @@ angular.module('teamform-profile-app', ['firebase'])
 // Create new user on database
 // User's image is null defaultly now.
 //
-
-function createNewUser()
-{
-    var userInfo = groupFormValues();
-    userInfo.EventOn = [];
-    userInfo.EventOff = [];
-    userInfo.History = [];
-    //userInfo.ID = generateID();
-    userInfo.Profile = null;
-    userInfo.Type = "User";
-    
-        
-    var refPath = "Users/" + getURLParameter("q") + $scope.uid;  
-    var ref = firebase.database().ref(refPath);
-    
-    ref.set(newData, function(){
-        var search = new Search();
-        search.indexNewUser(userInfo, userRef);
-        console.log("create new user successfully!");
-    }).catch(function(error) {
-        console.log("fail to create new user");
-        console.log(error);
-    });
-
-    /*firebase.database().ref("Users").push(userInfo).then(function(userRef) {
-        var search = new Search();
-        search.indexNewUser(userInfo, userRef);
-        console.log("create new user successfully!");
-    }).catch(function(error) {
-        console.log("fail to create new user");
-        console.log(error);
-    });*/
-}
 
 function groupFormValues()
 {
