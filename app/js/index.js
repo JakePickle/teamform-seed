@@ -57,7 +57,7 @@ angular.module('teamform-index-app', ['firebase'])
     }
 
     $scope.saveFuncHelper = function() {
-        $scope.getInfo();
+        //$scope.getInfo();
         
         var userName = $.trim( $scope.username );
         var Email = $.trim( $scope.email );
@@ -85,13 +85,9 @@ angular.module('teamform-index-app', ['firebase'])
         }
     }
 
-    $scope.goToProfileCreation = function() {
-        window.location.href = "profile.html";
-    }
-
     $scope.saveFunc = function() {
-        $interval($scope.saveFuncHelper(), 1000, 4);
-        //$timeout($scope.goToProfileCreation(), 5000);
+        $interval($scope.getInfo(), 1000, 4);
+        $timeout($scope.saveFuncHelper(), 5000);
     }
 
 }]);
