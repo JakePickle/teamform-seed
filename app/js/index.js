@@ -71,7 +71,7 @@ angular.module('teamform-index-app', ['firebase'])
                 'photoUrl': PhotoUrl
             };
             
-            var refPath = "Users/" + getURLParameter("q") + uid;  
+            var refPath = "Users/" + getURLParameter("q") + $scope.uid;  
             var ref = firebase.database().ref(refPath);
             
             ref.set(newData, function(){
