@@ -63,7 +63,3 @@ function getCookie(cname) { //Copied from w3schools.com
   }
   return "";
 }
-
-function sleep(ms) { //Copied from stackoverflow
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
