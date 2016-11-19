@@ -73,7 +73,12 @@ function createNewUser()
     //userInfo.ID = generateID();
     userInfo.Profile = null;
     userInfo.Type = "User";
-    firebase.database().ref("Users").push(userInfo).then(function(userRef) {
+    
+        
+    var refPath = "Users/" + getURLParameter("q") + $scope.uid;  
+    var ref = firebase.database().ref(refPath);
+    
+    ref.set(newData, function(){
         var search = new Search();
         search.indexNewUser(userInfo, userRef);
         console.log("create new user successfully!");
@@ -81,6 +86,15 @@ function createNewUser()
         console.log("fail to create new user");
         console.log(error);
     });
+
+    /*firebase.database().ref("Users").push(userInfo).then(function(userRef) {
+        var search = new Search();
+        search.indexNewUser(userInfo, userRef);
+        console.log("create new user successfully!");
+    }).catch(function(error) {
+        console.log("fail to create new user");
+        console.log(error);
+    });*/
 }
 
 function groupFormValues()
