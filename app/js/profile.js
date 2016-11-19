@@ -49,7 +49,25 @@ angular.module('teamform-profile-app', ['firebase'])
     $scope.loadFunc();
 
 
-    function createNewUser()
+    /*
+    version: 1.0
+    Last modified date: 2016/11/15
+    Author: Cao Shuyang(Lawrence)
+    Description: The module is implemented for register.
+                 This module assumes that firebase SDK has been referred  in a webpage.
+                 This module assumes that jQuery has been referred in a webpage.
+    */
+
+    //
+    // Create new user on database
+    // User's image is null defaultly now.
+    //
+
+
+
+
+
+    $scope.createNewUser = function()
     {
         var userInfo = groupFormValues();
         userInfo.EventOn = [];
@@ -81,40 +99,25 @@ angular.module('teamform-profile-app', ['firebase'])
             console.log(error);
         });*/
     }
+
+    function groupFormValues()
+    {
+        var form = {};
+        
+        form.Name = $('#username').val();
+        form.Email = $('#email').val();
+        form.Gender = $('input[name=gender]:checked').val();
+        form.Birthday = new Date($('#birthday').val()).getTime();
+        form.Languages = $('#language').val().split(/\W+/).filter(Boolean);
+        form.Country = $('input[name=country]').val();
+        form.City = $('input[name=city]').val();
+        form.Education = $('input[name=education]:checked').val();
+        form.Skills = $('#skill').val().split(/[^\w+|C\+\+]/).filter(Boolean);
+        form.Introduction = $('#introduction').val();
+        
+        return form;
+    }
 }]);
-
-
-/*
-    version: 1.0
-    Last modified date: 2016/11/15
-    Author: Cao Shuyang(Lawrence)
-    Description: The module is implemented for register.
-                 This module assumes that firebase SDK has been referred  in a webpage.
-                 This module assumes that jQuery has been referred in a webpage.
-*/
-
-//
-// Create new user on database
-// User's image is null defaultly now.
-//
-
-function groupFormValues()
-{
-    var form = {};
-    
-    form.Name = $('#username').val();
-    form.Email = $('#email').val();
-    form.Gender = $('input[name=gender]:checked').val();
-    form.Birthday = new Date($('#birthday').val()).getTime();
-    form.Languages = $('#language').val().split(/\W+/).filter(Boolean);
-    form.Country = $('input[name=country]').val();
-    form.City = $('input[name=city]').val();
-    form.Education = $('input[name=education]:checked').val();
-    form.Skills = $('#skill').val().split(/[^\w+|C\+\+]/).filter(Boolean);
-    form.Introduction = $('#introduction').val();
-    
-    return form;
-}
 
 //
 // Generate unique ID for new users, new events, new teams

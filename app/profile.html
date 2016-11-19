@@ -48,7 +48,7 @@
     <div class="container">
         <div id="profile_page_controller" ng-controller="ProfileCtrl">
             <!-- Form -->
-            <form action="javascript:createNewUser()" method="GET">
+            <form ng-submit="createNewUser()">
                 <div class="form-group">
                     <label for="username">Username *</label>
                     <input type="text" class="form-control" name="username" id="username" placeholder="Username" aria-describedby="helpUsername" ng-model="username" required>
