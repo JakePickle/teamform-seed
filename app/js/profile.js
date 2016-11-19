@@ -70,6 +70,7 @@ angular.module('teamform-profile-app', ['firebase'])
             var search = new Search();
             search.indexNewUser(userInfo, ref);
             console.log("create new user successfully!");
+            window.location.href= "dashboard.html";
         }).catch(function(error) {
             console.log("fail to create new user");
             console.log(error);
