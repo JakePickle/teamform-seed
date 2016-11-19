@@ -5,6 +5,7 @@ angular.module('teamform-profile-app', ['firebase'])
 
     $scope.uid = "";
     $scope.username = "";
+    $scope.email = "";
 
     $scope.loadFunc = function() {
         if($scope.uid != "")
@@ -17,6 +18,13 @@ angular.module('teamform-profile-app', ['firebase'])
                 } else {
                     $scope.username = "";
                 }
+
+                if ( data.child("email").val() != null ) {
+                    $scope.email = data.child("email").val();
+                } else {
+                    $scope.email = "";
+                }
+
                 $scope.$apply();
             });
         }  
