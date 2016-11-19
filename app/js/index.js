@@ -43,9 +43,6 @@ angular.module('teamform-index-app', ['firebase'])
                 $scope.photoUrl = user.photoURL;
                 $scope.uid = user.uid;
                 document.cookie = "uid="+user.uid;
-                document.cookie = "email="+user.email;
-                document.cookie = "username="+user.displayName;
-                document.cookie = "photoUrl="+user.photoUrl;
             }
 
 
@@ -63,11 +60,15 @@ angular.module('teamform-index-app', ['firebase'])
         $scope.getInfo();
         
         var userName = $.trim( $scope.username );
+        var Email = $.trim( $scope.email );
+        var PhotoUrl = $.trim( $scope.photoUrl );
         
         if (userName !== '') {
                                     
             var newData = {             
                 'name': userName,
+                'email': Email,
+                'photoUrl': PhotoUrl
             };
             
             var refPath = "Users/" + getURLParameter("q") + uid;  
