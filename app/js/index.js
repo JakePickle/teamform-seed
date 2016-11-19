@@ -24,6 +24,7 @@ angular.module('teamform-index-app', ['firebase'])
     {
         var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/plus.login');
+        document.cookie = "authAttempt=1";
         firebase.auth().signInWithRedirect(provider);
     }
 
@@ -86,8 +87,13 @@ angular.module('teamform-index-app', ['firebase'])
     }
 
     $scope.saveFunc = function() {
-        $interval($scope.getInfo(), 1000, 4);
+        //$interval($scope.getInfo(), 1000, 4);
         $timeout($scope.saveFuncHelper(), 5000);
+    }
+
+    if(getCookie("authAttempt")!="")
+    {
+        $interval($scope.getInfo(), 1000, 4);
     }
 
 }]);
