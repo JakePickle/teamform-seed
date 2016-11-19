@@ -1,7 +1,7 @@
 angular.module('teamform-profile-app', ['firebase'])
 .controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
 
-    initalizeFirebase();
+    initializeFirebase();
 
     $scope.uid = "";
     $scope.username = "";
