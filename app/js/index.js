@@ -7,6 +7,17 @@ $(document).ready(function(){
   // opacities of the headline section
   $(".headline").css("margin-top", navh);
   $(".connect").css("margin-top", navh);
+  $(".navbar a").on('click', function(event) {
+    if (this.hash !== "") {
+      event.preventDefault();
+      var hash = this.hash;
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function() {
+        window.location.hash = hash;
+      });
+    }
+  });
 });
 
 angular.module('teamform-index-app', ['firebase'])
@@ -56,30 +67,30 @@ angular.module('teamform-index-app', ['firebase'])
             var errorMessage = error.message;
             var email = error.email;
             var credential = error.credential;
-        });     
+        });
     }
 
     $scope.saveFunc = function() {
-        
+
         var userName = $.trim( $scope.username );
         var Email = $.trim( $scope.email );
         var PhotoUrl = $.trim( $scope.photoUrl );
-        
+
         if (userName !== '') {
-                                    
-            var newData = {             
+
+            var newData = {
                 'name': userName,
                 'email': Email,
                 'photoUrl': PhotoUrl
             };
-            
-            var refPath = "Users/" + getURLParameter("q") + $scope.uid;  
+
+            var refPath = "Users/" + getURLParameter("q") + $scope.uid;
             var ref = firebase.database().ref(refPath);
-            
+
             ref.set(newData, function(){
                 // complete call back
                 //alert("data pushed...");
-                
+
                 // Finally, go back to the front-end
                 window.location.href= "profile.html";
             });
