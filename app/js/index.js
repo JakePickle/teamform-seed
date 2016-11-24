@@ -7,6 +7,7 @@ $(document).ready(function(){
   // opacities of the headline section
   $(".headline").css("margin-top", navh);
   $(".connect").css("margin-top", navh);
+  $(".mobileView .connect").css("margin-top", 0);
   $(".navbar a").on('click', function(event) {
     if (this.hash !== "") {
       event.preventDefault();

@@ -31,7 +31,7 @@ body {
 .navbar-default .navbar-nav>.active {
     background: rgba(0, 0, 0, 0.6);
 }
-.navbar-default .navbar-nav>.active>a {
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     background: rgba(0, 0, 0, 0);
 }
 /*formatting of carousel*/
@@ -73,10 +73,17 @@ all devices, they are kept in <div> elements as background*/
     font-weight: bolder;
     background: rgba(0, 0, 0, 0.6);
 }
+.mobileView .headline {
+    height: auto;
+    padding-bottom: 65px;
+}
 .headline h1{
     padding-top: 35vh;
     margin: 0;
     font-size: 3.2em;
+}
+.mobileView .headline h1 {
+    padding-top: 65px;
 }
 .headline p {
     font-size: 1.4em;
@@ -88,8 +95,15 @@ all devices, they are kept in <div> elements as background*/
     box-sizing: border-box;
     height: 100vh;
 }
+.mobileView .connect {
+    height: auto;
+}
 .buttonBlock {
     padding-top: 35vh;
+}
+.mobileView .buttonBlock {
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 .connectButton {
     display: block;
@@ -103,6 +117,10 @@ all devices, they are kept in <div> elements as background*/
     border-radius: 3px;
     border-width: 2px;
     color: white;
+}
+
+.mobileView .connectButton {
+    width: 80%;
 }
 i {
     display: inline-block;
