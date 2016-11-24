@@ -64,7 +64,7 @@
         </nav>
 
         <!--headline section-->
-        <div class="row">
+        <div class="row hidden-xs">
             <div class="col-md-8 noPaddingColumn">
                 <div class="headline">
                     <h1>Team forming has never been easier.</h1>
@@ -83,6 +83,20 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row hidden-sm hidden-md hidden-lg mobileView">
+            <div class="col-xs-12 noPaddingColumn">
+            <div class="headline">
+                <h1>Team forming has never been easier.</h1>
+                <p>Team up for your favorite event, today.</p>
+            </div>
+            <div class="buttonBlock">
+                <div id="index_page_controller" ng-controller="IndexCtrl">
+                    <button type="button" name="button" class="connectButton" id="google" ng-click="authenticate();"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Connect with Google</button>
+                    <button type="button" name="button" class="connectButton" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
+                </div>
+            </div>
+        </div>
         </div>
 
         <!--tutorial section-->
