@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="teamform, team">
     <title>Teamform - A real-time online team forming app</title>
-    
+
     <!--
-        Required script tag for Ionic app. Will be a 404 during development only. 
+        Required script tag for Ionic app. Will be a 404 during development only.
         Reference: http://stackoverflow.com/questions/25961013/how-to-convert-an-existing-angularjs-web-app-to-a-cordova-app
     -->
     <script src="cordova.js"></script>
@@ -25,16 +25,16 @@
     <script src="js/site.js"></script>
     <!-- Angular and Angular-route libraries (v1.5.7) -->
     <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-route.min.js"></script>        
-         
+    <script src="lib/angular-route.min.js"></script>
+
     <!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-    <script src="lib/firebase.js"></script>     
+    <script src="lib/firebase.js"></script>
     <script src="lib/angularfire.min.js"></script>
 </head>
 
 <!-- TODO: add bootstrap scrollspy to body -->
 <!--data-spy="scroll" data-target=".navbar" data-offset="30"-->
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="30">
     <!--background carousel-->
     <div class="carousel slide" data-ride="carousel" data-interval="4000">
         <div class="carousel-inner" role="listbox">
@@ -75,8 +75,10 @@
                 <div class="connect">
                     <div class="buttonBlock">
                         <div id="index_page_controller" ng-controller="IndexCtrl">
-                            <button type="button" name="button" class="connectButton" id="google" ng-click="authenticate();"><i class="fa fa-google fa-lg" aria-hidden="true" ></i>Connect with Google</button>
-                            <!--<button type="button" name="button" class="connectButton" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>-->
+
+                            <button type="button" name="button" class="connectButton" id="google" ng-click="authenticate();"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Connect with Google</button>
+
+                            <button type="button" name="button" class="connectButton" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
                         </div>
                     </div>
                 </div>
@@ -212,7 +214,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!--footer-->
         <div class="row" id="footer">
             <div class="col-xs-12" id="footerCol">

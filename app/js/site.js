@@ -48,3 +48,18 @@ function initializeFirebase() {
 function retrieveOnceFirebase(firebase, refPath, callbackFunc) {
 	firebase.database().ref(refPath).once("value").then(callbackFunc);
 }
+
+function getCookie(cname) { //Copied from w3schools.com
+  var name = cname + "=";
+  var ca = document.cookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}

@@ -28,7 +28,12 @@ body {
     font-weight: bold;
     color: #fff !important;
 }
-
+.navbar-default .navbar-nav>.active {
+    background: rgba(0, 0, 0, 0.6);
+}
+.navbar-default .navbar-nav>.active>a {
+    background: rgba(0, 0, 0, 0);
+}
 /*formatting of carousel*/
 .carousel {
     position: fixed;
