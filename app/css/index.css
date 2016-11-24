@@ -31,7 +31,7 @@ body {
 .navbar-default .navbar-nav>.active {
     background: rgba(0, 0, 0, 0.6);
 }
-.navbar-default .navbar-nav>.active>a {
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
     background: rgba(0, 0, 0, 0);
 }
 /*formatting of carousel*/
