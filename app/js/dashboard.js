@@ -102,62 +102,62 @@ angular.module('teamform-dashboard-app', ['firebase'])
             var refPath = "Users/" + getURLParameter("q") + uid;
             retrieveOnceFirebase(firebase, refPath, function(data) {
                                 
-                if ( data.child("name").val() != null ) {
-                    $scope.username = data.child("name").val();
+                if ( data.child("Name").val() != null ) {
+                    $scope.username = data.child("Name").val();
                 } else {
                     $scope.username = "";
                 }
 
-                if ( data.child("email").val() != null ) {
-                    $scope.email = data.child("email").val();
+                if ( data.child("Email").val() != null ) {
+                    $scope.email = data.child("Email").val();
                 } else {
                     $scope.email = "";
                 }
 
-                if ( data.child("gender").val() != null ) {
-                    $scope.gender = data.child("gender").val();
+                if ( data.child("Gender").val() != null ) {
+                    $scope.gender = data.child("Gender").val();
                 } else {
                     $scope.gender = "";
                 }
 
-                if ( data.child("birthday").val() != null ) {
-                    $scope.birthday = data.child("birthday").val();
+                if ( data.child("Birthday").val() != null ) {
+                    $scope.birthday = data.child("Birthday").val();
                 } else {
                     $scope.birthday = "";
                 }
 
-                if ( data.child("languages").val() != null ) {
-                    $scope.languages = data.child("languages").val();
+                if ( data.child("Languages").val() != null ) {
+                    $scope.languages = data.child("Languages").val();
                 } else {
                     $scope.languages = "";
                 }
 
-                if ( data.child("country").val() != null ) {
-                    $scope.country = data.child("country").val();
+                if ( data.child("Country").val() != null ) {
+                    $scope.country = data.child("Country").val();
                 } else {
                     $scope.country = "";
                 }
 
-                if ( data.child("city").val() != null ) {
-                    $scope.city = data.child("city").val();
+                if ( data.child("City").val() != null ) {
+                    $scope.city = data.child("City").val();
                 } else {
                     $scope.city = "";
                 }
 
-                if ( data.child("education").val() != null ) {
-                    $scope.education = data.child("education").val();
+                if ( data.child("Education").val() != null ) {
+                    $scope.education = data.child("Education").val();
                 } else {
                     $scope.education = "";
                 }
 
-                if ( data.child("skills").val() != null ) {
-                    $scope.skills = data.child("skills").val();
+                if ( data.child("Skills").val() != null ) {
+                    $scope.skills = data.child("Skills").val();
                 } else {
                     $scope.skills = "";
                 }
 
-                if ( data.child("introduction").val() != null ) {
-                    $scope.introduction = data.child("introduction").val();
+                if ( data.child("Introduction").val() != null ) {
+                    $scope.introduction = data.child("Introduction").val();
                 } else {
                     $scope.introduction = "";
                 }
