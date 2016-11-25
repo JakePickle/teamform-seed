@@ -179,7 +179,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
         userInfo.Skills = $scope.skills;
         userInfo.Introduction = $scope.introduction;
         userInfo.Gender = $scope.gender;
-        userInfo.Education = $scope.Education;
+        userInfo.Education = $scope.education;
 
 
             
