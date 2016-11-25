@@ -1,5 +1,6 @@
-angular.module('teamform-profile-app', ['firebase'])
-.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
+var profileApp = angular.module('teamform-profile-app', ['firebase']);
+
+profileApp.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
 
     initializeFirebase();
 
@@ -12,7 +13,7 @@ angular.module('teamform-profile-app', ['firebase'])
         {
             var refPath = "Users/" + getURLParameter("q") + $scope.uid;
             retrieveOnceFirebase(firebase, refPath, function(data) {
-                                
+
                 if ( data.child("name").val() != null ) {
                     $scope.username = data.child("name").val();
                 } else {
@@ -27,7 +28,7 @@ angular.module('teamform-profile-app', ['firebase'])
 
                 $scope.$apply();
             });
-        }  
+        }
     }
 
     $scope.uid = getCookie("uid");
@@ -61,11 +62,11 @@ angular.module('teamform-profile-app', ['firebase'])
         //userInfo.ID = generateID();
         userInfo.Profile = null;
         userInfo.Type = "User";
-        
-            
-        var refPath = "Users/" + getURLParameter("q") + $scope.uid;  
+
+
+        var refPath = "Users/" + getURLParameter("q") + $scope.uid;
         var ref = firebase.database().ref(refPath);
-        
+
         ref.set(userInfo, function(){
             var search = new Search();
             search.indexNewUser(userInfo, ref);
@@ -89,7 +90,7 @@ angular.module('teamform-profile-app', ['firebase'])
     function groupFormValues()
     {
         var form = {};
-        
+
         form.Name = $('#username').val();
         form.Email = $('#email').val();
         form.Gender = $('input[name=gender]:checked').val();
@@ -100,10 +101,63 @@ angular.module('teamform-profile-app', ['firebase'])
         form.Education = $('input[name=education]:checked').val();
         form.Skills = $('#skill').val().split(/[^\w+|C\+\+]/).filter(Boolean);
         form.Introduction = $('#introduction').val();
-        
+
         return form;
     }
 }]);
+
+// Frontend Validation Functions
+// validate username
+profileApp.directive('usernameDirective', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) {
+            function usernameValidation(value) {
+                if (value.length >= 5 && value.length <= 20 && /^[a-zA-Z0-9-_]*$/.test(value)) {
+                    mCtrl.$setValidity('charE', true);
+                } else {
+                    mCtrl.$setValidity('charE', false);
+                }
+                return value;
+            }
+            mCtrl.$parsers.push(usernameValidation);
+        }
+    };
+});
+// validate city
+profileApp.directive('cityDirective', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) {
+            function cityValidation(value) {
+                if (value.length > 1 && /^[a-zA-Z ]*$/.test(value)) {
+                    mCtrl.$setValidity('charE', true);
+                } else {
+                    mCtrl.$setValidity('charE', false);
+                }
+                return value;
+            }
+            mCtrl.$parsers.push(cityValidation);
+        }
+    };
+});
+// validate introduction
+profileApp.directive('introductionDirective', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) {
+            function introductionValidation(value) {
+                if (value.length <= 200) {
+                    mCtrl.$setValidity('charE', true);
+                } else {
+                    mCtrl.$setValidity('charE', false);
+                }
+                return value;
+            }
+            mCtrl.$parsers.push(introductionValidation);
+        }
+    };
+});
 
 //
 // Generate unique ID for new users, new events, new teams
@@ -133,9 +187,9 @@ $(document).ready(function() {
         $('#language').val('Chinese, English');
         $('input[name=country]').val('China');
         $('input[name=city]').val('Beijing');
-        
+
         //$('input[name=education]:checked').val();
-        
+
         $('#skill').val('Java,C,C++');
 
         $('#introduction').val('A test and dumb introduction');

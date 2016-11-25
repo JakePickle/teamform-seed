@@ -1,3 +1,4 @@
+<!-- event.html frontend code completed-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,20 +19,19 @@
 
     <link rel="icon" href="img/icon.png">
 
-	<!-- AngularJS -->
-	<script src="lib/angular.min.js"></script>
+    <!-- AngularJS -->
+    <script src="lib/angular.min.js"></script>
 
-	<!-- Firebase -->
-	<script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
 
-	<!-- AngularFire -->
-	<script src="lib/angularfire.min.js"></script>
-
+    <!-- AngularFire -->
+    <script src="lib/angularfire.min.js"></script>
 
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
-    <script src="js/eventManagement.js"></script>
 </head>
+
 <body ng-app="teamform-event-app">
     <div class="container-fluid">
 
@@ -58,7 +58,6 @@
 
             <!--The side navigation bar-->
             <div class="col-sm-2 hidden-xs setMargin">
-                <!--TODO Link the background-image of #profilePic with the profile picture database-->
                 <div class="sideNav" id="profilePic">
                     <a href="dashboard.html"></a>
                 </div>
@@ -85,194 +84,360 @@
                     </div>
                     <!--events wraps all the event items-->
                     <div class="events" ng-controller="event-display-ctrl">
-                        <!--Use <a> to wrap <div> cannot pass XHTML requirements but is valid for HTML5-->
                         <div ng-repeat="event in events">
-
-						<!-- Attention!!! -->
-                        <!-- Issues like different href's and different status unsettled-->
-                        <a href="eventmanage.html">
-                            <div class="row {{event.Status}}Event">
-                                <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>{{event.Name}}<i class="fa fa-star-o" aria-hidden="true"></i></h3>
-                                    <p>
-                                       {{event.Introduction}}
-
-                                    </p>
-                                    <p>
-                                        <span>Event Time: {{event.Time.Time}}</span><span>Current Group Number: &nbsp;<span class="badge">{{(event.Participants)?event.Participants.length:0}}</span></span>
-                                    </p>
+                            <!-- TODO: add backend code to determine the href and the status of every event link -->
+                            <a href="eventmanage.html">
+                                <div class="row {{event.Status}}Event">
+                                    <div class="col-sm-offset-1 col-xs-11">
+                                        <!-- TODO: whether the star icon is displayed depends on whether the user is the administrator! -->
+                                        <!-- TODO: if the user is only a participant, his team name better be displayed also -->
+                                        <h3>{{event.Name}}<i class="fa fa-star-o" aria-hidden="true"></i></h3>
+                                        <p>
+                                            {{event.Introduction}}
+                                        </p>
+                                        <p>
+                                            <!--TODO: parse eventTime to readable form!-->
+                                            <span>Event Time: {{event.Time.Time}}</span><span>Current Group Number: &nbsp;<span class="badge">{{(event.Participants)?event.Participants.length:0}}</span></span>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
                         </div>
-                        <!--
-                         <a href="eventmanage.html">
-                            <div class="row openEvent">
-                                <div class="col-sm-offset-1 col-xs-11">
-                                    <h3><i class="fa fa-star-o" aria-hidden="true"></i></h3>
-                                    <p>
-                                        Star sign indicates the user is the administrator of the event.<br>
-                                        Green color indicates this event is still open.<br>
-                                        click on the link direct to the details view of the event(groups, attributes).
-                                        
-                                    </p>
-                                    <p>
-                                        <span>Event Time:</span><span>Current Group Number: &nbsp;<span class="badge">30</span></span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="eventmanage.html">
-                            <div class="row closeEvent">
-                                <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>Event 2 <i class="fa fa-star-o" aria-hidden="true"></i></h3>
-                                    <p>
-                                        Yellow color indicates this event is closed.<br>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                                    </p>
-                                    <p>
-                                        <span>Event Time:</span><span>Current Group Number: &nbsp;<span class="badge">30</span></span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="eventmanage.html">
-                            <div class="row terminatedEvent">
-                                <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>Event 3 <i class="fa fa-star-o" aria-hidden="true"></i></h3>
-                                    <p>
-                                        Red color indicates this event is terminated.<br>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                                    </p>
-                                    <p>
-                                        <span>Event Time:</span><span>Current Group Number: &nbsp;<span class="badge">100</span></span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="eventinfo.html">
-                            <div class="row openEvent">
-                                <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>Event 4 / TeamName <i class="fa fa-user-o" aria-hidden="true"></i></h3>
-                                    <p>
-                                        If the user is a participant of an event, his team name will be displayed after the slash.<br>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                                    </p>
-                                    <p>
-                                        Event Time:
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="eventinfo.html">
-                            <div class="row closeEvent">
-                                <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>Event 5 / TeamName <i class="fa fa-user-o" aria-hidden="true"></i></h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                                    </p>
-                                    <p>
-                                        Event Time:
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="eventinfo.html">
-                            <div class="row openEvent">
-                                <div class="col-sm-offset-1 col-xs-11">
-                                    <h3>Event 6 / TeamName <i class="fa fa-user-o" aria-hidden="true"></i></h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                                    </p>
-                                    <p>
-                                        Event Time:
-                                    </p>
-                                </div>
-                            </div>
-                        </a> -->
                     </div>
                 </div>
 
                 <!--createEventView is toggled after the Create Event button is clicked-->
                 <div class="createEventView" ng-controller="teamform-create-event-ctrl">
-                    <form ng-submit="createNewEvent()" method="post">
+                    <!-- Form -->
+                    <!-- NOTE: For all form fields, to enforce consistency, PLEASE make the values of name, id, and ng-model attributes the SAME-->
+                    <form name="eventForm" ng-submit="createNewEvent()" method="post">
                         <div class="form-group">
                             <label for="eventName">Event Name *</label>
-                            <input type="text" class="form-control" name="eventname" id="eventName" placeholder="Event Name" aria-describedby="helpEventName" ng-model="eventName" required>
-                            <span id="helpEventName" class="help-block">Length limited to 50 characters.</span>
+                            <!-- name=id=ng-model=eventName -->
+                            <input type="text" name="eventName" id="eventName" ng-model="eventName" class="form-control" placeholder="Event Name" aria-describedby="helpEventName" eventname-directive required>
+                            <p ng-show="eventForm.eventName.$touched && eventForm.eventName.$invalid" class="errorMessage">Invalid event name!</p>
+                            <span id="helpEventName" class="help-block">Length limited to 5-50 characters. Only letters, digits, spaces, hyphens and underscores are allowed.</span>
                         </div>
                         <div class="form-group">
-                            <label for="eventTime">Event Time*</label>
+                            <label for="eventTime">Event Time *</label>
+                            <!-- possible validation: eventTime > today; not implemented unless time allows -->
                             <div class="form-inline" id="eventTime">
                                 <div class="form-group">
-                                    <input type="date" class="form-control" name="date" ng-model="date" required>
+                                    <input type="date" name="date" ng-model="date" class="form-control" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="time" class="form-control" name="time" ng-model="time" required>
+                                    <input type="time" name="time" ng-model="time" class="form-control" required>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="location">Event Location</label>
+                            <label for="location">Event Location *</label>
                             <div class="form-inline" id="location">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="country" placeholder="Country" ng-model="country" required>
+                                    <select name="country" class="form-control" required>
+                                        <option value="AFG">Afghanistan</option>
+                                        <option value="ALA">Åland Islands</option>
+                                        <option value="ALB">Albania</option>
+                                        <option value="DZA">Algeria</option>
+                                        <option value="ASM">American Samoa</option>
+                                        <option value="AND">Andorra</option>
+                                        <option value="AGO">Angola</option>
+                                        <option value="AIA">Anguilla</option>
+                                        <option value="ATA">Antarctica</option>
+                                        <option value="ATG">Antigua and Barbuda</option>
+                                        <option value="ARG">Argentina</option>
+                                        <option value="ARM">Armenia</option>
+                                        <option value="ABW">Aruba</option>
+                                        <option value="AUS">Australia</option>
+                                        <option value="AUT">Austria</option>
+                                        <option value="AZE">Azerbaijan</option>
+                                        <option value="BHS">Bahamas</option>
+                                        <option value="BHR">Bahrain</option>
+                                        <option value="BGD">Bangladesh</option>
+                                        <option value="BRB">Barbados</option>
+                                        <option value="BLR">Belarus</option>
+                                        <option value="BEL">Belgium</option>
+                                        <option value="BLZ">Belize</option>
+                                        <option value="BEN">Benin</option>
+                                        <option value="BMU">Bermuda</option>
+                                        <option value="BTN">Bhutan</option>
+                                        <option value="BOL">Bolivia, Plurinational State of</option>
+                                        <option value="BES">Bonaire, Sint Eustatius and Saba</option>
+                                        <option value="BIH">Bosnia and Herzegovina</option>
+                                        <option value="BWA">Botswana</option>
+                                        <option value="BVT">Bouvet Island</option>
+                                        <option value="BRA">Brazil</option>
+                                        <option value="IOT">British Indian Ocean Territory</option>
+                                        <option value="BRN">Brunei Darussalam</option>
+                                        <option value="BGR">Bulgaria</option>
+                                        <option value="BFA">Burkina Faso</option>
+                                        <option value="BDI">Burundi</option>
+                                        <option value="KHM">Cambodia</option>
+                                        <option value="CMR">Cameroon</option>
+                                        <option value="CAN">Canada</option>
+                                        <option value="CPV">Cape Verde</option>
+                                        <option value="CYM">Cayman Islands</option>
+                                        <option value="CAF">Central African Republic</option>
+                                        <option value="TCD">Chad</option>
+                                        <option value="CHL">Chile</option>
+                                        <option value="CHN">China</option>
+                                        <option value="CXR">Christmas Island</option>
+                                        <option value="CCK">Cocos (Keeling) Islands</option>
+                                        <option value="COL">Colombia</option>
+                                        <option value="COM">Comoros</option>
+                                        <option value="COG">Congo</option>
+                                        <option value="COD">Congo, the Democratic Republic of the</option>
+                                        <option value="COK">Cook Islands</option>
+                                        <option value="CRI">Costa Rica</option>
+                                        <option value="CIV">Côte d'Ivoire</option>
+                                        <option value="HRV">Croatia</option>
+                                        <option value="CUB">Cuba</option>
+                                        <option value="CUW">Curaçao</option>
+                                        <option value="CYP">Cyprus</option>
+                                        <option value="CZE">Czech Republic</option>
+                                        <option value="DNK">Denmark</option>
+                                        <option value="DJI">Djibouti</option>
+                                        <option value="DMA">Dominica</option>
+                                        <option value="DOM">Dominican Republic</option>
+                                        <option value="ECU">Ecuador</option>
+                                        <option value="EGY">Egypt</option>
+                                        <option value="SLV">El Salvador</option>
+                                        <option value="GNQ">Equatorial Guinea</option>
+                                        <option value="ERI">Eritrea</option>
+                                        <option value="EST">Estonia</option>
+                                        <option value="ETH">Ethiopia</option>
+                                        <option value="FLK">Falkland Islands (Malvinas)</option>
+                                        <option value="FRO">Faroe Islands</option>
+                                        <option value="FJI">Fiji</option>
+                                        <option value="FIN">Finland</option>
+                                        <option value="FRA">France</option>
+                                        <option value="GUF">French Guiana</option>
+                                        <option value="PYF">French Polynesia</option>
+                                        <option value="ATF">French Southern Territories</option>
+                                        <option value="GAB">Gabon</option>
+                                        <option value="GMB">Gambia</option>
+                                        <option value="GEO">Georgia</option>
+                                        <option value="DEU">Germany</option>
+                                        <option value="GHA">Ghana</option>
+                                        <option value="GIB">Gibraltar</option>
+                                        <option value="GRC">Greece</option>
+                                        <option value="GRL">Greenland</option>
+                                        <option value="GRD">Grenada</option>
+                                        <option value="GLP">Guadeloupe</option>
+                                        <option value="GUM">Guam</option>
+                                        <option value="GTM">Guatemala</option>
+                                        <option value="GGY">Guernsey</option>
+                                        <option value="GIN">Guinea</option>
+                                        <option value="GNB">Guinea-Bissau</option>
+                                        <option value="GUY">Guyana</option>
+                                        <option value="HTI">Haiti</option>
+                                        <option value="HMD">Heard Island and McDonald Islands</option>
+                                        <option value="VAT">Holy See (Vatican City State)</option>
+                                        <option value="HND">Honduras</option>
+                                        <option value="HKG" selected>Hong Kong</option>
+                                        <option value="HUN">Hungary</option>
+                                        <option value="ISL">Iceland</option>
+                                        <option value="IND">India</option>
+                                        <option value="IDN">Indonesia</option>
+                                        <option value="IRN">Iran, Islamic Republic of</option>
+                                        <option value="IRQ">Iraq</option>
+                                        <option value="IRL">Ireland</option>
+                                        <option value="IMN">Isle of Man</option>
+                                        <option value="ISR">Israel</option>
+                                        <option value="ITA">Italy</option>
+                                        <option value="JAM">Jamaica</option>
+                                        <option value="JPN">Japan</option>
+                                        <option value="JEY">Jersey</option>
+                                        <option value="JOR">Jordan</option>
+                                        <option value="KAZ">Kazakhstan</option>
+                                        <option value="KEN">Kenya</option>
+                                        <option value="KIR">Kiribati</option>
+                                        <option value="PRK">Korea, Democratic People's Republic of</option>
+                                        <option value="KOR">Korea, Republic of</option>
+                                        <option value="KWT">Kuwait</option>
+                                        <option value="KGZ">Kyrgyzstan</option>
+                                        <option value="LAO">Lao People's Democratic Republic</option>
+                                        <option value="LVA">Latvia</option>
+                                        <option value="LBN">Lebanon</option>
+                                        <option value="LSO">Lesotho</option>
+                                        <option value="LBR">Liberia</option>
+                                        <option value="LBY">Libya</option>
+                                        <option value="LIE">Liechtenstein</option>
+                                        <option value="LTU">Lithuania</option>
+                                        <option value="LUX">Luxembourg</option>
+                                        <option value="MAC">Macao</option>
+                                        <option value="MKD">Macedonia, the former Yugoslav Republic of</option>
+                                        <option value="MDG">Madagascar</option>
+                                        <option value="MWI">Malawi</option>
+                                        <option value="MYS">Malaysia</option>
+                                        <option value="MDV">Maldives</option>
+                                        <option value="MLI">Mali</option>
+                                        <option value="MLT">Malta</option>
+                                        <option value="MHL">Marshall Islands</option>
+                                        <option value="MTQ">Martinique</option>
+                                        <option value="MRT">Mauritania</option>
+                                        <option value="MUS">Mauritius</option>
+                                        <option value="MYT">Mayotte</option>
+                                        <option value="MEX">Mexico</option>
+                                        <option value="FSM">Micronesia, Federated States of</option>
+                                        <option value="MDA">Moldova, Republic of</option>
+                                        <option value="MCO">Monaco</option>
+                                        <option value="MNG">Mongolia</option>
+                                        <option value="MNE">Montenegro</option>
+                                        <option value="MSR">Montserrat</option>
+                                        <option value="MAR">Morocco</option>
+                                        <option value="MOZ">Mozambique</option>
+                                        <option value="MMR">Myanmar</option>
+                                        <option value="NAM">Namibia</option>
+                                        <option value="NRU">Nauru</option>
+                                        <option value="NPL">Nepal</option>
+                                        <option value="NLD">Netherlands</option>
+                                        <option value="NCL">New Caledonia</option>
+                                        <option value="NZL">New Zealand</option>
+                                        <option value="NIC">Nicaragua</option>
+                                        <option value="NER">Niger</option>
+                                        <option value="NGA">Nigeria</option>
+                                        <option value="NIU">Niue</option>
+                                        <option value="NFK">Norfolk Island</option>
+                                        <option value="MNP">Northern Mariana Islands</option>
+                                        <option value="NOR">Norway</option>
+                                        <option value="OMN">Oman</option>
+                                        <option value="PAK">Pakistan</option>
+                                        <option value="PLW">Palau</option>
+                                        <option value="PSE">Palestinian Territory, Occupied</option>
+                                        <option value="PAN">Panama</option>
+                                        <option value="PNG">Papua New Guinea</option>
+                                        <option value="PRY">Paraguay</option>
+                                        <option value="PER">Peru</option>
+                                        <option value="PHL">Philippines</option>
+                                        <option value="PCN">Pitcairn</option>
+                                        <option value="POL">Poland</option>
+                                        <option value="PRT">Portugal</option>
+                                        <option value="PRI">Puerto Rico</option>
+                                        <option value="QAT">Qatar</option>
+                                        <option value="REU">Réunion</option>
+                                        <option value="ROU">Romania</option>
+                                        <option value="RUS">Russian Federation</option>
+                                        <option value="RWA">Rwanda</option>
+                                        <option value="BLM">Saint Barthélemy</option>
+                                        <option value="SHN">Saint Helena, Ascension and Tristan da Cunha</option>
+                                        <option value="KNA">Saint Kitts and Nevis</option>
+                                        <option value="LCA">Saint Lucia</option>
+                                        <option value="MAF">Saint Martin (French part)</option>
+                                        <option value="SPM">Saint Pierre and Miquelon</option>
+                                        <option value="VCT">Saint Vincent and the Grenadines</option>
+                                        <option value="WSM">Samoa</option>
+                                        <option value="SMR">San Marino</option>
+                                        <option value="STP">Sao Tome and Principe</option>
+                                        <option value="SAU">Saudi Arabia</option>
+                                        <option value="SEN">Senegal</option>
+                                        <option value="SRB">Serbia</option>
+                                        <option value="SYC">Seychelles</option>
+                                        <option value="SLE">Sierra Leone</option>
+                                        <option value="SGP">Singapore</option>
+                                        <option value="SXM">Sint Maarten (Dutch part)</option>
+                                        <option value="SVK">Slovakia</option>
+                                        <option value="SVN">Slovenia</option>
+                                        <option value="SLB">Solomon Islands</option>
+                                        <option value="SOM">Somalia</option>
+                                        <option value="ZAF">South Africa</option>
+                                        <option value="SGS">South Georgia and the South Sandwich Islands</option>
+                                        <option value="SSD">South Sudan</option>
+                                        <option value="ESP">Spain</option>
+                                        <option value="LKA">Sri Lanka</option>
+                                        <option value="SDN">Sudan</option>
+                                        <option value="SUR">Suriname</option>
+                                        <option value="SJM">Svalbard and Jan Mayen</option>
+                                        <option value="SWZ">Swaziland</option>
+                                        <option value="SWE">Sweden</option>
+                                        <option value="CHE">Switzerland</option>
+                                        <option value="SYR">Syrian Arab Republic</option>
+                                        <option value="TWN">Taiwan, Province of China</option>
+                                        <option value="TJK">Tajikistan</option>
+                                        <option value="TZA">Tanzania, United Republic of</option>
+                                        <option value="THA">Thailand</option>
+                                        <option value="TLS">Timor-Leste</option>
+                                        <option value="TGO">Togo</option>
+                                        <option value="TKL">Tokelau</option>
+                                        <option value="TON">Tonga</option>
+                                        <option value="TTO">Trinidad and Tobago</option>
+                                        <option value="TUN">Tunisia</option>
+                                        <option value="TUR">Turkey</option>
+                                        <option value="TKM">Turkmenistan</option>
+                                        <option value="TCA">Turks and Caicos Islands</option>
+                                        <option value="TUV">Tuvalu</option>
+                                        <option value="UGA">Uganda</option>
+                                        <option value="UKR">Ukraine</option>
+                                        <option value="ARE">United Arab Emirates</option>
+                                        <option value="GBR">United Kingdom</option>
+                                        <option value="USA">United States</option>
+                                        <option value="UMI">United States Minor Outlying Islands</option>
+                                        <option value="URY">Uruguay</option>
+                                        <option value="UZB">Uzbekistan</option>
+                                        <option value="VUT">Vanuatu</option>
+                                        <option value="VEN">Venezuela, Bolivarian Republic of</option>
+                                        <option value="VNM">Viet Nam</option>
+                                        <option value="VGB">Virgin Islands, British</option>
+                                        <option value="VIR">Virgin Islands, U.S.</option>
+                                        <option value="WLF">Wallis and Futuna</option>
+                                        <option value="ESH">Western Sahara</option>
+                                        <option value="YEM">Yemen</option>
+                                        <option value="ZMB">Zambia</option>
+                                        <option value="ZWE">Zimbabwe</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="city" placeholder="City" ng-model="city" required>
+                                    <!--name=id=ng-model=city-->
+                                    <input type="text" name="city" ng-model="city" placeholder="City" class="form-control" city-directive required>
                                 </div>
+                                <p ng-show="eventForm.city.$touched && eventForm.city.$invalid" class="errorMessage">The city name is invalid!</p>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="teamNumber">Maximum Team Number</label>
-                            <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number" ng-model="maxTeamNumber" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="groupSize">Team Size</label>
-                            <div class="form-inline" id="groupSize">
-                                <div class="form-group">
-                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum" ng-model="minTeamSize" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum" ng-model="maxTeamSize" required>
-                                </div>
+                            <div class="form-group">
+                                <label for="maxTeamNumber">Maximum Team Number</label>
+                                <!-- name=id=ng-model=maxTeamNumber -->
+                                <input type="number" name="maxTeamNumber" id="maxTeamNumber" ng-model="maxTeamNumber" ng-min="1" class="form-control" placeholder="Max Team Number" required>
+                                <p ng-show="eventForm.maxTeamNumber.$touched && eventForm.maxTeamNumber.$invalid" class="errorMessage">The maximum team number needs to be positive!</p>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="keyword">Keywords</label>
-                            <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" ng-model="keywords" required>
-                            <span id="helpKeyword" class="help-block">Use commas to separate multiple keywords (e.g. hackathon,Java,CS).</span>
-                        </div>
-                        <div>
-                            <label for="introduction">Brief Introduction</label>
-                            <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction" ng-model="introduction" required></textarea>
-                            <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
-                        </div>
-                        <div class="buttonWrapper">
-                            <button type="submit" name="button">Create Event</button>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <label for="teamSize">Team Size *</label>
+                                <div class="form-inline" id="teamSize">
+                                    <div class="form-group">
+                                        <!-- name=id=ng-model=minTeamSize -->
+                                        <input type="number" name="minTeamSize" id="minTeamSize" ng-model="minTeamSize" ng-min="1" class="form-control" placeholder="Minimum" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- name=id=ng-model=maxTeamSize -->
+                                        <input type="number" name="maxTeamSize" ng-model="maxTeamSize" placeholder="Maximum" class="form-control" max-directive required>
+                                    </div>
+                                </div>
+                                <p ng-show="eventForm.minTeamSize.$touched && eventForm.minTeamSize.$invalid" class="errorMessage">The minimum team size needs to be positive!</p>
+                                <p ng-show="eventForm.minTeamSize.$touched && eventForm.maxTeamSize.$touched && eventForm.maxTeamSize.$invalid" class="errorMessage">The maximum team size needs to be no smaller than minimum!</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="keyword">Keywords</label>
+                                <!-- keywords is optional -->
+                                <input type="text" name="keyword" id="keyword" ng-model="keywords" class="form-control" placeholder="Keywords" aria-describedby="helpKeyword">
+                                <span id="helpKeyword" class="help-block">Use commas to separate multiple keywords (e.g. hackathon,Java,CS).</span>
+                            </div>
+                            <div>
+                                <label for="introduction">Brief Introduction</label>
+                                <!-- introduction is optional but validated -->
+                                <!-- name=id=ng-model=introduction -->
+                                <textarea name="introduction" ng-model="introduction" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction" introduction-directive></textarea>
+                                <p ng-show="eventForm.introduction.$touched && eventForm.introduction.$invalid" class="errorMessage">This introduction is too long!</p>
+                                <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
+                            </div>
+                            <div class="buttonWrapper">
+                                <button type="submit" ng-disabled="eventForm.eventname.$invalid || eventForm.date.$invalid || eventForm.time.$invalid || eventForm.maxTeamNumber.$invalid || eventForm.minTeamSize.$invalid || eventForm.maxTeamSize.$invalid || eventForm.city.$invalid || eventForm.introduction.$invalid" class="btn btn-default">Create Event</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--dashboard.js formats the navigation bars to enforce consistent UI-->
-    <script src="js/dashboard.js"></script>
-    <script src="js/search.js"></script>
-</body>
-</html>
+        <!--dashboard.js formats the navigation bars to enforce consistent UI-->
+        <script src="js/dashboard.js"></script>
+        <script src="js/search.js"></script>
+        <script src="js/eventManagement.js"></script>
+    </body>
+    </html>
