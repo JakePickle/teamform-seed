@@ -170,16 +170,16 @@ angular.module('teamform-dashboard-app', ['firebase'])
     $scope.UpdateUser = function()
     {
         var userInfo;
-        userInfo.Name = username;
-        userInfo.Email = email;
-        userInfo.Gender = gender;
-        userInfo.Birthday = birthday;
-        userInfo.Languages = languages;
-        userInfo.Country = country;
-        userInfo.City = city;
-        userInfo.Education = education;
-        userInfo.Skills = skills;
-        userInfo.Introduction = introduction;
+        userInfo.Name = $scope.username;
+        userInfo.Email = $scope.email;
+        userInfo.Gender = $scope.gender;
+        userInfo.Birthday = $scope.birthday;
+        userInfo.Languages = $scope.languages;
+        userInfo.Country = $scope.country;
+        userInfo.City = $scope.city;
+        userInfo.Education = $scope.education;
+        userInfo.Skills = $scope.skills;
+        userInfo.Introduction = $scope.introduction;
             
         var refPath = "Users/" + getURLParameter("q") + $scope.uid;  
         var ref = firebase.database().ref(refPath);
