@@ -177,7 +177,7 @@
                             <p class="form-control-static profileView">
                                 {{ introduction }}
                             </p>
-                            <textarea name="name" class="form-control updateProfileView" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction">{{ introduction }}</textarea>
+                            <textarea name="name" class="form-control updateProfileView" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction" ng-model="introduction"></textarea>
                             <span id="helpIntroduction" class="help-block updateProfileView">Max 200 characters allowed.</span>
                         </div>
                     </div>
