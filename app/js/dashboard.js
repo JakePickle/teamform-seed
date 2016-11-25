@@ -82,13 +82,14 @@ angular.module('teamform-dashboard-app', ['firebase'])
 .controller('DashboardCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
 
     initializeFirebase();
+    uid = getCookie("uid");
 
     //////////////////////////////////////////////////////////////SCOPE FUNCTIONS
 
     $scope.loadFunc = function() {
-        if($scope.uid != "")
+        if(uid != "")
         {
-            var refPath = "Users/" + getURLParameter("q") + $scope.uid;
+            var refPath = "Users/" + getURLParameter("q") + uid;
             retrieveOnceFirebase(firebase, refPath, function(data) {
                                 
                 if ( data.child("name").val() != null ) {
@@ -181,8 +182,6 @@ angular.module('teamform-dashboard-app', ['firebase'])
     }
 
     //////////////////////////////////////////////////END FUNCTIONS
-
-    uid = getCookie("uid");
 
     $scope.username;
     $scope.email;
