@@ -169,7 +169,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
     $scope.UpdateUser = function()
     {
-        var userInfo;
+        var userInfo = {};
         userInfo.Name = $scope.username;
         userInfo.Email = $scope.email;
         userInfo.Gender = $scope.gender;
