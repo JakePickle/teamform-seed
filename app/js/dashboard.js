@@ -181,7 +181,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
         userInfo.Skills = $scope.skills;
         userInfo.Introduction = $scope.introduction;
             
-        var refPath = "Users/" + getURLParameter("q") + $scope.uid;  
+        var refPath = "Users/" + getURLParameter("q") + uid;  
         var ref = firebase.database().ref(refPath);
         
         ref.set(userInfo, function(){
