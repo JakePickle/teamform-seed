@@ -136,6 +136,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
                     var temp = "";
                     temp += $scope.languagesRaw;
                     temp = temp.replace("[","");
+                    temp = temp.replace(",",", ");
                     $scope.languages = temp.replace("\"","");
                 } else {
                     $scope.languages = "";
@@ -164,6 +165,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
                     var temp = "";
                     temp += $scope.skillsRaw;
                     temp = temp.replace("[","");
+                    temp = temp.replace(",",", ");
                     $scope.skills = temp.replace("\"","");
                 } else {
                     $scope.skills = "";
