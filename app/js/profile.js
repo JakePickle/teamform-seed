@@ -107,12 +107,13 @@ profileApp.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArr
 }]);
 
 // Frontend Validation Functions
+// validate username
 profileApp.directive('usernameDirective', function() {
     return {
         require: 'ngModel',
         link: function(scope, element, attr, mCtrl) {
             function usernameValidation(value) {
-                if (value.length >= 4 && value.length <= 20 && /^[a-zA-Z0-9-_]*$/.test(value)) {
+                if (value.length >= 5 && value.length <= 20 && /^[a-zA-Z0-9-_]*$/.test(value)) {
                     mCtrl.$setValidity('charE', true);
                 } else {
                     mCtrl.$setValidity('charE', false);
@@ -123,6 +124,7 @@ profileApp.directive('usernameDirective', function() {
         }
     };
 });
+// validate city
 profileApp.directive('cityDirective', function() {
     return {
         require: 'ngModel',
@@ -139,6 +141,7 @@ profileApp.directive('cityDirective', function() {
         }
     };
 });
+// validate introduction
 profileApp.directive('introductionDirective', function() {
     return {
         require: 'ngModel',

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- profile.html frontend completed-->
 <html lang="en" ng-app="teamform-profile-app">
 
 <head>
@@ -33,7 +33,7 @@
         <!-- Navigation Bar -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Teamform</a>
+                <a class="navbar-brand" href="index.html">Teamform</a>
             </div>
         </nav>
         <!-- Headline -->
@@ -48,15 +48,18 @@
     <div class="container">
         <div id="profile_page_controller" ng-controller="ProfileCtrl">
             <!-- Form -->
-            <form name="profileForm" ng-submit="createNewUser()">
+            <!-- NOTE: For all form fields, to enforce consistency, PLEASE make the values of name, id, and ng-model attributes the SAME-->
+            <form name="profileForm" ng-submit="createNewUser()" method="post">
                 <div class="form-group">
                     <label for="username">Username *</label>
+                    <!-- name=id=ng-model="username" -->
                     <input type="text" name="username" id="username" ng-model="username" class="form-control" placeholder="Username" aria-describedby="helpUsername" username-directive required>
                     <p ng-show="profileForm.username.$touched && profileForm.username.$invalid" class="errorMessage">The username is invalid!</p>
                     <span id="helpUsername" class="help-block">Length limited to 5-20 characters. Only letters, digits, hyphens and underscores are allowed.</span>
                 </div>
                 <div class="form-group">
                     <label for="email">Email *</label>
+                    <!-- name=id=ng-model="email" -->
                     <input type="email" name="email" id="email" ng-model="email" class="form-control" placeholder="Email Address" required>
                     <p ng-show="profileForm.email.$touched && profileForm.email.$invalid" class="errorMessage">The Email address is invalid!</p>
                 </div>
@@ -71,10 +74,10 @@
                         </label>
                     </div>
                 </div>
-                <!--It's decided not to add front-end validation for birthday-->
+                <!-- Possible birthday validation: value < today; not implemented unless time allows-->
                 <div class="form-group">
                     <label for="birthday">Birthday</label>
-                    <input type="date" class="form-control" name="birthday" id="birthday" required>
+                    <input type="date" name="birthday" id="birthday" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="location">Current Location *</label>
@@ -333,14 +336,15 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="city" ng-model="city" placeholder="City" class="form-control" city-directive required>
+                            <!-- name=id=ng-model="city" -->
+                            <input type="text" name="city" id="city" ng-model="city" placeholder="City" class="form-control" city-directive required>
                         </div>
                     </div>
                     <p ng-show="profileForm.city.$touched && profileForm.city.$invalid" class="errorMessage">The city name is invalid!</p>
                 </div>
                 <div class="form-group">
                     <label for="language">Languages *</label>
-                    <select multiple id="language" name="language" class="form-control" aria-describedby="helpUsername" required>
+                    <select multiple name="language" id="language" class="form-control" aria-describedby="helpLanguage" required>
                         <option value="Afrikanns">Afrikanns</option>
                         <option value="Albanian">Albanian</option>
                         <option value="Arabic">Arabic</option>
@@ -414,39 +418,40 @@
                         <option value="Welsh">Welsh</option>
                         <option value="Xhosa">Xhosa</option>
                     </select>
-                    <span id="helpLanguage" class="help-block">Windows users: hold down the control (ctrl) button to select multiple options.<br>
-                        Mac users: Hold down the command button to select multiple options.</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="education">Education *</label>
-                        <select class="form-control" name="education" id="education" required>
-                            <option value="associate">Associate's Degree</option>
-                            <option value="bachlor" selected>Bachlor's Degree</option>
-                            <option value="master">Master's Degree</option>
-                            <option value="phd">PhD</option>
-                            <option value="others">Others</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="skill">Skills</label>
-                        <input type="text" class="form-control" name="skill" id="skill" placeholder="Skills you have" aria-describedby="helpSkill" required>
-                        <span id="helpSkill" class="help-block">Use commas to separate multiple skills (e.g. Web Programming,AngularJS,Firebase).</span>
-                    </div>
-                    <div class="form-group">
-                        <label for="introduction">Brief Self-introduction</label>
-                        <textarea id="introduction" name="introduction" ng-model="introduction" class="form-control" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction" introduction-directive></textarea>
-                        <p ng-show="profileForm.introduction.$touched && profileForm.introduction.$invalid" class="errorMessage">This introduction is too long!</p>
-                        <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
-                    </div>
-                    <div id="buttonDiv">
-                        <button type="submit" class="btn btn-default" ng-disabled="profileForm.username.$invalid || profileForm.email.$invalid || profileForm.city.$invalid || profileForm.introduction.$invalid">Let's start!</button>
-                    </div>
-                </form>
-            </div>
+                    <span id="helpLanguage" class="help-block">Windows users: hold down the control (ctrl) button to select multiple options.<br>Mac users: hold down the command button to select multiple options.</span>
+                </div>
+                <div class="form-group">
+                    <label for="education">Education *</label>
+                    <select name="education" id="education" class="form-control" required>
+                        <option value="associate">Associate's Degree</option>
+                        <option value="bachlor" selected>Bachlor's Degree</option>
+                        <option value="master">Master's Degree</option>
+                        <option value="phd">PhD</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="skill">Skills</label>
+                    <!-- Skills is optional -->
+                    <input type="text" name="skill" id="skill" class="form-control" placeholder="Skills you have" aria-describedby="helpSkill">
+                    <span id="helpSkill" class="help-block">Use commas to separate multiple skills (e.g. Web Programming,AngularJS,Firebase).</span>
+                </div>
+                <div class="form-group">
+                    <label for="introduction">Brief Self-introduction</label>
+                    <!-- Introduction is optional but will be validated-->
+                    <!-- name=id=ng-model=introduction -->
+                    <textarea name="introduction" id="introduction" ng-model="introduction" class="form-control" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction" introduction-directive></textarea>
+                    <p ng-show="profileForm.introduction.$touched && profileForm.introduction.$invalid" class="errorMessage">This introduction is too long!</p>
+                    <span id="helpIntroduction" class="help-block">Maximum 200 characters allowed.</span>
+                </div>
+                <div id="buttonDiv">
+                    <button type="submit" class="btn btn-default" ng-disabled="profileForm.username.$invalid || profileForm.email.$invalid || profileForm.city.$invalid || profileForm.introduction.$invalid">Let's start!</button>
+                </div>
+            </form>
         </div>
-        <script src="js/index.js"></script>
-        <script src="js/search.js"></script>
-        <script src="js/profile.js"></script>
-    </body>
-
-    </html>
+    </div>
+    <script src="js/index.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
