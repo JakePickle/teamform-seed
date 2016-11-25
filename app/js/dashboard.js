@@ -77,3 +77,13 @@ $(document).ready(function () {
         $(this).parent().hide();
     });
 });
+
+angular.module('teamform-dashboard-app', ['firebase'])
+.controller('DashboardCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
+
+    initializeFirebase();
+
+
+
+}]);
+
