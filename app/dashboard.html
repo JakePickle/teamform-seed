@@ -98,7 +98,7 @@
                             <p class="form-control-static profileView">{{ gender }}</p>
                             <div class="updateProfileView">
                                 <label class="radio-inline">
-                                    <input type="radio" name="gender" value="Male" checked> Male
+                                    <input type="radio" name="gender" value="Male" ng-model="male" checked> Male
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="gender" value="Female"> Female
@@ -139,17 +139,17 @@
                             <div id="education" class="updateProfileView">
                                 <div class="radio" id="firstRadio">
                                     <label>
-                                        <input type="radio" name="education" value="associate">Associate Degree
+                                        <input type="radio" name="education" value="associate" ng-model="ass">Associate Degree
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="education" value="bachelor" checked> Bachelor's Degree
+                                        <input type="radio" name="education" value="bachelor" ng-model="bac" checked> Bachelor's Degree
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="education" value="master"> Master's Degree
+                                        <input type="radio" name="education" value="master" ng-model="mas"> Master's Degree
                                     </label>
                                 </div>
                                 <div class="radio">

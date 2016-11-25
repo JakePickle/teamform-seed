@@ -84,6 +84,12 @@ angular.module('teamform-dashboard-app', ['firebase'])
     initializeFirebase();
     uid = getCookie("uid");
 
+    $scope.male;
+
+    $scope.ass;
+    $scope.bac;
+    $scope.mas;
+
     $scope.username;
     $scope.email;
     $scope.photoUrl;
@@ -172,14 +178,27 @@ angular.module('teamform-dashboard-app', ['firebase'])
         var userInfo = {};
         userInfo.Name = $scope.username;
         userInfo.Email = $scope.email;
-        userInfo.Gender = $scope.gender;
         userInfo.Birthday = $scope.birthday;
         userInfo.Languages = $scope.languages;
         userInfo.Country = $scope.country;
         userInfo.City = $scope.city;
-        userInfo.Education = $scope.education;
         userInfo.Skills = $scope.skills;
         userInfo.Introduction = $scope.introduction;
+
+        if($scope.male)
+            userInfo.Gender = "Male";
+        else
+            userInfo.Gender = "Female";
+
+        if($scope.ass)
+            userInfo.Education = "Associate Degree"
+        else if($scope.bac)
+            userInfo.Education = "Bachelor's Degree"
+        else if($scope.mas)
+            userInfo.Education = "Master's Degree"
+        else
+            userInfo.Education = "PhD";
+
             
         var refPath = "Users/" + getURLParameter("q") + uid;  
         var ref = firebase.database().ref(refPath);
