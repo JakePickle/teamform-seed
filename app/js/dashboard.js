@@ -164,7 +164,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
                     var temp = "";
                     temp += $scope.skillsRaw;
                     temp = temp.replace("[","");
-                    $scope.languages = temp.replace("\"","");
+                    $scope.skills = temp.replace("\"","");
                 } else {
                     $scope.skills = "";
                 }
