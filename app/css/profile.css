@@ -39,8 +39,24 @@ form {
 .help-block {
     color: white;
 }
+input.ng-invalid.ng-touched {
+    background-color: pink;
+}
+textarea.ng-invalid.ng-touched {
+    background-color: pink;
+}
+.errorMessage {
+    color: pink;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
 #firstRadio {
     margin-top: 0;
+}
+#language {
+    width: 60%;
 }
 #buttonDiv {
     text-align: center;
