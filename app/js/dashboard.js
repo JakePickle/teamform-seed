@@ -83,20 +83,6 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
     initializeFirebase();
 
-    uid = getCookie("uid");
-
-    $scope.username;
-    $scope.email;
-    $scope.photoUrl;
-    $scope.gender;
-    $scope.birthday;
-    $scope.languages;
-    $scope.education;
-    $scope.skills
-    $scope.intoduction;
-
-    $scope.loadFunc();
-
     $scope.loadFunc = function() {
         if($scope.uid != "")
         {
@@ -167,6 +153,20 @@ angular.module('teamform-dashboard-app', ['firebase'])
             });
         }  
     }
+
+    uid = getCookie("uid");
+
+    $scope.username;
+    $scope.email;
+    $scope.photoUrl;
+    $scope.gender;
+    $scope.birthday;
+    $scope.languages;
+    $scope.education;
+    $scope.skills
+    $scope.intoduction;
+
+    $scope.loadFunc();
 
 
 }]);
