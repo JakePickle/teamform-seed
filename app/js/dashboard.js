@@ -89,6 +89,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
     $scope.photoUrl;
     $scope.gender;
     $scope.birthday;
+    $scope.birthdayString;
     $scope.languages;
     $scope.education;
     $scope.skills
@@ -122,6 +123,8 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
                 if ( data.child("Birthday").val() != null ) {
                     $scope.birthday = data.child("Birthday").val();
+                    birthDate = new Date($scope.birthday);
+                    $scope.birthdayString = birthDate.toDateString();
                 } else {
                     $scope.birthday = "";
                 }
