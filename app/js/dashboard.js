@@ -37,7 +37,7 @@ $(document).ready(function () {
         $(".recommendationView").hide();
         $(".searchResultView").show();
     });
-    
+
     // toggle the message view
     $("#inboxButton").click(function(){
         $("#inboxButton").attr("class", "active");

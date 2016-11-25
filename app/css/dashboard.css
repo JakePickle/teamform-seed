@@ -83,7 +83,7 @@ form {
 .buttonWrapper button {
     display: inline-block;
     background: rgba(0, 0, 0, 0.3);
-    width: 40%;
+    width: 65%;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 1.2em;
@@ -98,6 +98,6 @@ form {
 .col-sm-10 .col-sm-6 {
     padding: 0;
 }
-button a {
-    color: inherit !important;
+.btn-default, .btn-default:hover {
+    color: #fff;
 }
