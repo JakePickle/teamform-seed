@@ -133,7 +133,8 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
                 if ( data.child("Languages").val() != null ) {
                     $scope.languagesRaw = data.child("Languages").val();
-                    var temp = $scope.languagesRaw;
+                    var temp = "";
+                    temp += $scope.languagesRaw;
                     temp = temp.replace("[","");
                     $scope.languages = temp.replace("\"","");
                 } else {
@@ -160,7 +161,8 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
                 if ( data.child("Skills").val() != null ) {
                     $scope.skillsRaw = data.child("Skills").val();
-                    var temp = $scope.skillsRaw;
+                    var temp = "";
+                    temp += $scope.skillsRaw;
                     temp = temp.replace("[","");
                     $scope.languages = temp.replace("\"","");
                 } else {
