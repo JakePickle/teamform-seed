@@ -83,6 +83,90 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
     initializeFirebase();
 
+    uid = getCookie("uid");
+
+    $scope.username;
+    $scope.email;
+    $scope.photoUrl;
+    $scope.gender;
+    $scope.birthday;
+    $scope.languages;
+    $scope.education;
+    $scope.skills
+    $scope.intoduction;
+
+    $scope.loadFunc();
+
+    $scope.loadFunc = function() {
+        if($scope.uid != "")
+        {
+            var refPath = "Users/" + getURLParameter("q") + $scope.uid;
+            retrieveOnceFirebase(firebase, refPath, function(data) {
+                                
+                if ( data.child("name").val() != null ) {
+                    $scope.username = data.child("name").val();
+                } else {
+                    $scope.username = "";
+                }
+
+                if ( data.child("email").val() != null ) {
+                    $scope.email = data.child("email").val();
+                } else {
+                    $scope.email = "";
+                }
+
+                if ( data.child("gender").val() != null ) {
+                    $scope.gender = data.child("gender").val();
+                } else {
+                    $scope.gender = "";
+                }
+
+                if ( data.child("birthday").val() != null ) {
+                    $scope.birthday = data.child("birthday").val();
+                } else {
+                    $scope.birthday = "";
+                }
+
+                if ( data.child("languages").val() != null ) {
+                    $scope.languages = data.child("languages").val();
+                } else {
+                    $scope.languages = "";
+                }
+
+                if ( data.child("country").val() != null ) {
+                    $scope.country = data.child("country").val();
+                } else {
+                    $scope.country = "";
+                }
+
+                if ( data.child("city").val() != null ) {
+                    $scope.city = data.child("city").val();
+                } else {
+                    $scope.city = "";
+                }
+
+                if ( data.child("education").val() != null ) {
+                    $scope.education = data.child("education").val();
+                } else {
+                    $scope.education = "";
+                }
+
+                if ( data.child("skills").val() != null ) {
+                    $scope.skills = data.child("skills").val();
+                } else {
+                    $scope.skills = "";
+                }
+
+                if ( data.child("introduction").val() != null ) {
+                    $scope.introduction = data.child("introduction").val();
+                } else {
+                    $scope.introduction = "";
+                }
+
+                $scope.$apply();
+            });
+        }  
+    }
 
 
 }]);
