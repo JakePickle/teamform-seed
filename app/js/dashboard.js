@@ -93,7 +93,9 @@ angular.module('teamform-dashboard-app', ['firebase'])
     $scope.languages;
     $scope.education;
     $scope.skills
+    $scope.skillsRaw;
     $scope.intoduction;
+    $scope.intoductionRaw;
 
     //////////////////////////////////////////////////////////////SCOPE FUNCTIONS
 
@@ -130,7 +132,9 @@ angular.module('teamform-dashboard-app', ['firebase'])
                 }
 
                 if ( data.child("Languages").val() != null ) {
-                    $scope.languages = data.child("Languages").val();
+                    $scope.languagesRaw = data.child("Languages").val();
+                    $scope.languages = $scope.languagesRaw.replace("[","");
+                    $scope.languages = $scope.languages.replace("\"","")
                 } else {
                     $scope.languages = "";
                 }
@@ -154,7 +158,9 @@ angular.module('teamform-dashboard-app', ['firebase'])
                 }
 
                 if ( data.child("Skills").val() != null ) {
-                    $scope.skills = data.child("Skills").val();
+                    $scope.skillsRaw = data.child("Skills").val();
+                    $scope.skills = $scope.skillsRaw.replace("[","");
+                    $scope.skills = $scope.skills.replace("\"","");
                 } else {
                     $scope.skills = "";
                 }
@@ -179,7 +185,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
         birthDate = new Date($scope.birthdayString);
         $scope.birthday = birthDate.UTC();
         userInfo.Birthday = $scope.birthday;
-        
+
         userInfo.Languages = $scope.languages;
         userInfo.Country = $scope.country;
         userInfo.City = $scope.city;

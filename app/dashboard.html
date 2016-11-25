@@ -127,7 +127,7 @@
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">{{ languages }}</p>
                             <input type="text" class="form-control updateProfileView" name="language" id="language" placeholder="Languages you speak"
-                                aria-describedby="helpLanguage" ng-model="languages">
+                                aria-describedby="helpLanguage" ng-model="languagesRaw">
                             <span id="helpLanguage" class="help-block updateProfileView">Use commas to separate multiple languages (e.g. English, Mandarin, Cantonese).</span>
 
                         </div>
@@ -167,7 +167,7 @@
                                 {{ skills }}
                             </p>
                             <input type="text" class="form-control updateProfileView" name="skill" id="skill" placeholder="Skills you have" aria-describedby="helpSkill"
-                                ng-model="skills">
+                                ng-model="skillsRaw">
                             <span id="helpSkill" class="help-block updateProfileView">Use commas to separate multiple skills (e.g. Web Programming,AngularJS,Firebase).</span>
                         </div>
                     </div>
