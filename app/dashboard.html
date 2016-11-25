@@ -74,8 +74,7 @@
                         <label class="col-xs-4 control-label">Username</label>
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">exampleUser</p>
-                            <input type="text" class="form-control updateProfileView" name="username" aria-describedby="helpUsername" placeholder="Username"
-                                value="exampleUser">
+                            <input type="text" class="form-control updateProfileView" name="username" aria-describedby="helpUsername" placeholder="Username" ng-model="username">
                             <span id="helpUsername" class="help-block updateProfileView">Length limited to 5-20 characters. Only letters, digits, hyphens and underscores are allowed.</span>
                         </div>
                     </div>
@@ -83,7 +82,7 @@
                         <label class="col-xs-4 control-label">Email</label>
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">exampleEmail@gmail.com</p>
-                            <input type="email" class="form-control updateProfileView" name="email" placeholder="Email Address" value="exampleUser@gmail.com">
+                            <input type="email" class="form-control updateProfileView" name="email" placeholder="Email Address" ng-model="email">
                         </div>
                     </div>
                     <div class="form-group">
@@ -104,15 +103,15 @@
                         <label class="col-xs-4 control-label">Birthday</label>
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">November 7, 2016</p>
-                            <input type="date" class="form-control updateProfileView" name="birthday" value="2016-11-07">
+                            <input type="date" class="form-control updateProfileView" name="birthday" ng-model="birthday">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Location</label>
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">Hong Kong, Hong Kong</p>
-                            <input type="text" class="form-control updateProfileView" name="country" placeholder="Country" value="Hong Kong">
-                            <input type="text" class="form-control updateProfileView" name="city" placeholder="City" id="cityInput" value="Hong Kong">
+                            <input type="text" class="form-control updateProfileView" name="country" placeholder="Country" ng-model="country">
+                            <input type="text" class="form-control updateProfileView" name="city" placeholder="City" id="cityInput" ng-model="city">
 
                         </div>
                     </div>
@@ -121,7 +120,7 @@
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">English, Mandarin, Cantonese</p>
                             <input type="text" class="form-control updateProfileView" name="language" id="language" placeholder="Languages you speak"
-                                aria-describedby="helpLanguage" value="English, Mandarin, Cantonese">
+                                aria-describedby="helpLanguage" ng-model="languages">
                             <span id="helpLanguage" class="help-block updateProfileView">Use commas to separate multiple languages (e.g. English, Mandarin, Cantonese).</span>
 
                         </div>
@@ -161,7 +160,7 @@
                                 HTML, CSS, JavaScript, Bootstrap, jQuery, AngularJS, Firebase
                             </p>
                             <input type="text" class="form-control updateProfileView" name="skill" id="skill" placeholder="Skills you have" aria-describedby="helpSkill"
-                                value="HTML,CSS,JavaScript,Bootstrap,jQuery,AngularJS,Firebase">
+                                ng-model="skills">
                             <span id="helpSkill" class="help-block updateProfileView">Use commas to separate multiple skills (e.g. Web Programming,AngularJS,Firebase).</span>
                         </div>
                     </div>
