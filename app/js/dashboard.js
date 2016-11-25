@@ -84,14 +84,6 @@ angular.module('teamform-dashboard-app', ['firebase'])
     initializeFirebase();
     uid = getCookie("uid");
 
-    $scope.male;
-    $scope.female;
-
-    $scope.ass;
-    $scope.bac;
-    $scope.mas;
-    $scope.phd;
-
     $scope.username;
     $scope.email;
     $scope.photoUrl;
@@ -124,10 +116,6 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
                 if ( data.child("Gender").val() != null ) {
                     $scope.gender = data.child("Gender").val();
-                    if($scope.gender = "Male")
-                        $scope.male = true;
-                    else
-                        $scope.female = true;
                 } else {
                     $scope.gender = "";
                 }
@@ -158,14 +146,6 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
                 if ( data.child("Education").val() != null ) {
                     $scope.education = data.child("Education").val();
-                    if($scope.education = "Associate Degree")
-                        $scope.ass = true;
-                    else if($scope.education = "Bachelor's Degree")
-                        $scope.bac = true;
-                    else if($scope.education = "Master's Degree")
-                        $scope.mas = true;
-                    else
-                        $scope.phd = true;
                 } else {
                     $scope.education = "";
                 }
@@ -198,20 +178,9 @@ angular.module('teamform-dashboard-app', ['firebase'])
         userInfo.City = $scope.city;
         userInfo.Skills = $scope.skills;
         userInfo.Introduction = $scope.introduction;
+        userInfo.Gender = $scope.gender;
+        userInfo.Education = $scope.Education;
 
-        if($scope.male)
-            userInfo.Gender = "Male";
-        else
-            userInfo.Gender = "Female";
-
-        if($scope.ass)
-            userInfo.Education = "Associate Degree"
-        else if($scope.bac)
-            userInfo.Education = "Bachelor's Degree"
-        else if($scope.mas)
-            userInfo.Education = "Master's Degree"
-        else
-            userInfo.Education = "PhD";
 
             
         var refPath = "Users/" + getURLParameter("q") + uid;  
