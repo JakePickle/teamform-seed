@@ -187,7 +187,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
         userInfo.Email = $scope.email;
 
         birthDate = new Date($scope.birthdayString);
-        $scope.birthday = birthDate.UTC();
+        $scope.birthday = birthDate.getTime();
         userInfo.Birthday = $scope.birthday;
 
         userInfo.Languages = $scope.languages;
