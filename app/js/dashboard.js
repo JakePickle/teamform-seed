@@ -85,10 +85,12 @@ angular.module('teamform-dashboard-app', ['firebase'])
     uid = getCookie("uid");
 
     $scope.male;
+    $scope.female;
 
     $scope.ass;
     $scope.bac;
     $scope.mas;
+    $scope.phd;
 
     $scope.username;
     $scope.email;
@@ -122,6 +124,10 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
                 if ( data.child("Gender").val() != null ) {
                     $scope.gender = data.child("Gender").val();
+                    if($scope.gender = "Male")
+                        $scope.male = true;
+                    else
+                        $scope.female = true;
                 } else {
                     $scope.gender = "";
                 }
@@ -152,6 +158,14 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
                 if ( data.child("Education").val() != null ) {
                     $scope.education = data.child("Education").val();
+                    if($scope.education = "Associate Degree")
+                        $scope.ass = true;
+                    else if($scope.education = "Bachelor's Degree")
+                        $scope.bac = true;
+                    else if($scope.education = "Master's Degree")
+                        $scope.mas = true;
+                    else
+                        $scope.phd = true;
                 } else {
                     $scope.education = "";
                 }
