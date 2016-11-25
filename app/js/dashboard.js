@@ -84,6 +84,16 @@ angular.module('teamform-dashboard-app', ['firebase'])
     initializeFirebase();
     uid = getCookie("uid");
 
+    $scope.username;
+    $scope.email;
+    $scope.photoUrl;
+    $scope.gender;
+    $scope.birthday;
+    $scope.languages;
+    $scope.education;
+    $scope.skills
+    $scope.intoduction;
+
     //////////////////////////////////////////////////////////////SCOPE FUNCTIONS
 
     $scope.loadFunc = function() {
@@ -182,16 +192,6 @@ angular.module('teamform-dashboard-app', ['firebase'])
     }
 
     //////////////////////////////////////////////////END FUNCTIONS
-
-    $scope.username;
-    $scope.email;
-    $scope.photoUrl;
-    $scope.gender;
-    $scope.birthday;
-    $scope.languages;
-    $scope.education;
-    $scope.skills
-    $scope.intoduction;
 
     $scope.loadFunc();
 
