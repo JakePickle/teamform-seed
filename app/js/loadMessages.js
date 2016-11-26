@@ -72,7 +72,7 @@ angular.module('teamform-message-app', ['firebase'])
         }
     }
 
-    $scope.displayMessage = function(id){
+    $scope.displayMessageInbox = function(id){
       var message;
 
       if(uid != "")
@@ -90,15 +90,38 @@ angular.module('teamform-message-app', ['firebase'])
 
           $scope.currentTime = messString;
           $scope.currentFrom = message.From;
-          $scope.currentTo = message.To;
           $scope.currentTitle = message.Title;
           $scope.currentContent = message.Content;
 
           $scope.$apply();
         });
       }
+    }
 
-      
+    $scope.displayMessageOutbox = function(id){
+      var message;
+
+      if(uid != "")
+      {
+        var refPath = "Users/" + getURLParameter("q") + uid;
+        retrieveOnceFirebase(firebase, refPath, function(data) {
+          if ( data.child("Outbox").val() != null ) {
+            message = data.child("Outbox").child(id).val();
+          } else {
+            message = "";
+          }
+
+          messDate = new Date(message.Time);
+          messString = messDate.toDateString();
+
+          $scope.currentTime = messString;
+          $scope.currentTo= message.To;
+          $scope.currentTitle = message.Title;
+          $scope.currentContent = message.Content;
+
+          $scope.$apply();
+        });
+      }
     }
 
     $scope.loadFunc();
