@@ -1,4 +1,4 @@
- // Initialize Firebase
+ /*// Initialize Firebase
   var config = {
     apiKey: "AIzaSyCGA1xMB_cjAf1pEKyROtcMkLjtTbpjxis",
     authDomain: "comp3111hproj.firebaseapp.com",
@@ -18,9 +18,9 @@
  // To find the location of messages.
   function getDatabaseMessages(User_id) {
 	return database.ref().child("Users").child(UserID);
-  }	
+  }	*/
 
-app.controller("teamform-messages-ctrl", function($scope, $firebaseArray) {
+/*app.controller("teamform-messages-ctrl", function($scope, $firebaseArray) {
 	//var ref = 0;//new firebase.database().ref("https://comp3111hproj.firebaseio.com/Users/" + UserID +"/Inbox");
 
 
@@ -31,4 +31,40 @@ app.controller("teamform-messages-ctrl", function($scope, $firebaseArray) {
 	$scope.outbox = $firebaseArray(mesRef.child("Outbox"));
 
 
-});
+});*/
+
+angular.module('teamform-message-app', ['firebase'])
+.controller('MessageCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
+
+  initializeFirebase();
+
+  uid = getCookie("uid");
+
+  $scope.inbox;
+  $scope.outbox;
+
+  $scope.loadFunc = function() {
+        if($scope.uid != "")
+        {
+            var refPath = "Users/" + getURLParameter("q") + uid;
+            retrieveOnceFirebase(firebase, refPath, function(data) {
+
+                if ( data.child("Inbox").val() != null ) {
+                    $scope.inbox = $firebaseArrary(data.child("Inbox"));
+                } else {
+                    $scope.inbox = "";
+                }
+
+                if ( data.child("Outbox").val() != null ) {
+                    $scope.outbox = $firebaseArrary(data.child("Outbox"));
+                } else {
+                    $scope.outbox = "";
+                }
+
+                $scope.$apply();
+            });
+        }
+    }
+
+
+}]);

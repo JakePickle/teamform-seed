@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="teamform-message-app">
 
 <head>
     <meta charset="utf-8">
@@ -31,7 +31,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="MessageCtrl">
         <!--Navigation Bar-->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <!--Content-->
-            <div class="col-sm-10 setMargin" ng-app="teamform-messages-app">
+            <div class="col-sm-10 setMargin">
                 <!--buttonWrapper wraps the inbox and outbox toggle buttons-->
                 <div class="row buttonWrapper" style="margin: 0">
                     <div class="col-sm-6">
@@ -84,7 +84,7 @@
                 </div>
                 <!--inboxView is displayed by default; it contains the inbox messages-->
                 <div class="row inboxView">
-                    <div class="col-md-4" ng-controller="teamform-messages-ctrl">
+                    <div class="col-md-4">
                         <a href="#" ng-repeat="message in inbox">
                             <!--messageBrief is a brief version of the message-->
                             <!-- !!! The "active" class tag to be modified later -->
