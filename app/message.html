@@ -18,8 +18,6 @@
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
 
-
-
     <!-- Angular and Angular-route libraries (v1.5.7) -->
     <script src="lib/angular.min.js"></script>
     <script src="lib/angular-route.min.js"></script>
@@ -87,93 +85,39 @@
                     <div class="col-md-4" ng-controller="teamform-messages-ctrl">
                         <a href="#" ng-repeat="message in inbox">
                             <!--messageBrief is a brief version of the message-->
-                            <!-- !!! The "active" class tag to be modified later -->
+                            <!--TODO: Only introduce the active class when a message is being viewed-->
                             <div class="messageBrief active">
+                                <!--TODO: exclamation symbol only appears for unread messages-->
                                 <h4><i class="fa fa-exclamation" aria-hidden="true"></i>&nbsp; {{message.Title}}</h4>
                                 <p>
+                                    <!--TODO: add parser to message.Time for readability-->
                                     {{message.Time}}
                                 </p>
                                 <p>
                                     {{message.From}}
                                 </p>
                                 <p>
+                                    <!--TODO: This is a brief version of the content, maybe add a parser to display only first 100 characters-->
                                     {{message.Content}}
                                 </p>
                             </div>
                         </a>
-                        <!--
-                        <a href=#"">
-                            <div class="messageBrief">
-                                <h4><i class="fa fa-exclamation" aria-hidden="true"></i>&nbsp; Request from userName to join Event2 / Team2</h4>
-                                <p>
-                                    Received time:
-                                </p>
-                                <p>
-                                    Read messages do not have exclamation mark and appear after unread messages.
-                                    lorem ipsem
-                                </p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="messageBrief">
-                                <h4>Invitation to Join Event3 / Team3</h4>
-                                <p>
-                                    Received time:
-                                </p>
-                                <p>
-                                    Unread message has a exclamtion mark in the front.
-                                    Brief summary with limited length.
-                                </p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="messageBrief">
-                                <h4>Request to join Event4 / Team4</h4>
-                                <p>
-                                    Received time:
-                                </p>
-                                <p>
-                                    Read messages do not have exclamation mark and appear after unread messages.
-                                    lorem ipsem
-                                </p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="messageBrief">
-                                <h4>Invitation to Join Event5 / Team5</h4>
-                                <p>
-                                    Received time:
-                                </p>
-                                <p>
-                                    Unread message has a exclamtion mark in the front.
-                                    Brief summary with limited length.
-                                </p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="messageBrief">
-                                <h4>Request to join Event6 / Team6</h4>
-                                <p>
-                                    Received time:
-                                </p>
-                                <p>
-                                    Read messages do not have exclamation mark and appear after unread messages.
-                                    lorem ipsem
-                                </p>
-                            </div>
-                        </a> -->
                     </div>
                     <div class="col-md-8">
                         <!--messageDetailed is the full content of the message-->
                         <div class="messageDetailed">
                             <p>
+                                <!--TODO: link to backend-->
                                 Received Time:
                             </p>
+                            <!--TODO: link to backend-->
                             <h3>Invitation to Join Event1 / Team1</h3>
                             <p>
+                                <!--TODO: link to backend-->
                                 From User:
                             </p>
                             <p>
+                                <!--TODO: link to backend-->
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                                 commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
@@ -184,6 +128,12 @@
                                 voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
                                 non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </p>
+                            <div class="buttonWrapper">
+                                <!--TODO: after clicking either button, these two buttons will disappear! It cannot be added by frontend, or if the page reloads, the buttons will reappear-->
+                                <!--TODO: add function. after clicking accept, the user (if invitation), or the sender (if request), will be added to the team-->
+                                <button type="button" name="acceptButton" id="acceptButton">Accept</button>
+                                <button type="button" name="declineButton" id="declineButton">Decline</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -191,86 +141,37 @@
                 <div class="row outboxView">
                     <div class="col-md-4" ng-controller="teamform-messages-ctrl">
                         <a href="#" ng-repeat="message in outbox">
+                            <!--TODO: Only introduce the active class when a message is being viewed-->
                             <div class="messageBrief active">
                                 <h4>{{message.Title}}</h4>
                                 <p>
+                                    <!--TODO: add parser to message.Time for readability-->
                                     {{message.Time}}
                                 </p>
                                 <p>
                                     {{message.To}}
                                 </p>
                                 <p>
+                                    <!--TODO: This is a brief version of the content, maybe add a parser to display only first 100 characters-->
                                     {{message.Content}}
                                 </p>
                             </div>
                         </a>
-                        <!--
-                        <a href="#">
-                            <div class="messageBrief">
-                                <h4>Request to join Event2 / Team2</h4>
-                                <p>
-                                    Sent time:
-                                </p>
-                                <p>
-                                    lorem ipsem
-                                </p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="messageBrief">
-                                <h4>Invitation to Join Event3 / Team3</h4>
-                                <p>
-                                    Sent time:
-                                </p>
-                                <p>
-                                    Brief summary with limited length.
-                                </p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="messageBrief">
-                                <h4>Request to join Event4 / Team4</h4>
-                                <p>
-                                    Sent time:
-                                </p>
-                                <p>
-                                    lorem ipsem
-                                </p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="messageBrief">
-                                <h4>Invitation to Join Event5 / Team5</h4>
-                                <p>
-                                    Sent time:
-                                </p>
-                                <p>
-                                    Brief summary with limited length.
-                                </p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="messageBrief">
-                                <h4>Request to join Event6 / Team6</h4>
-                                <p>
-                                    Sent time:
-                                </p>
-                                <p>
-                                    lorem ipsem
-                                </p>
-                            </div>
-                        </a> -->
                     </div>
                     <div class="col-md-8">
                         <div class="messageDetailed">
                             <p>
+                                <!--TODO: link to backend-->
                                 Sent Time:
                             </p>
+                            <!--TODO: link to backend-->
                             <h3>Invitation to Join Event1 / Team1</h3>
                             <p>
+                                <!--TODO: link to backend-->
                                 To User:
                             </p>
                             <p>
+                                <!--TODO: link to backend-->
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                                 commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
