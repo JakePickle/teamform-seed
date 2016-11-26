@@ -73,12 +73,11 @@ angular.module('teamform-message-app', ['firebase'])
     }
 
     $scope.displayMessage = function(id){
-      var inboxVar = $scope.inbox;
       $scope.currentTime = id;
       $scope.currentFrom = "test";
       $scope.currentTo = "test";
-      $scope.currentTitle = inboxVar[id].Title;
-      $scope.currentContent = inboxVar[id].Content;
+      $scope.currentTitle = $scope.inbox;
+      $scope.currentContent = $scope.inbox;
     }
 
     $scope.loadFunc();
