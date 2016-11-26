@@ -10,7 +10,7 @@ profileApp.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArr
     $scope.languages;
     $scope.country;
     $scope.city;
-    $sccope.education;
+    $scope.education;
 
     $scope.loadFunc = function() {
         if($scope.uid != "")
