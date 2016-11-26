@@ -66,5 +66,7 @@ angular.module('teamform-message-app', ['firebase'])
         }
     }
 
+    $scope.loadFunc();
+
 
 }]);
