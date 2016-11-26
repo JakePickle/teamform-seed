@@ -84,15 +84,18 @@ angular.module('teamform-message-app', ['firebase'])
           } else {
             message = "";
           }
+
+          $scope.currentTime = id;
+          $scope.currentFrom = "test";
+          $scope.currentTo = "test";
+          $scope.currentTitle = message.Title;
+          $scope.currentContent = $scope.inbox;
+
           $scope.$apply();
         });
       }
 
-      $scope.currentTime = id;
-      $scope.currentFrom = "test";
-      $scope.currentTo = "test";
-      $scope.currentTitle = message.Title;
-      $scope.currentContent = $scope.inbox;
+      
     }
 
     $scope.loadFunc();
