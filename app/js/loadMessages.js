@@ -126,7 +126,7 @@ angular.module('teamform-message-app', ['firebase'])
     }
 
     $scope.acceptInvitation = function(){
-      var refPath = "Teams/" + $scope.currentTeam + "Members";
+      var refPath = "Teams/" + $scope.currentTeam + "/Members";
       var ref = firebase.database().ref(refPath);
 
       var members = {};
