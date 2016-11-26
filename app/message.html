@@ -74,10 +74,10 @@
                 <!--buttonWrapper wraps the inbox and outbox toggle buttons-->
                 <div class="row buttonWrapper" style="margin: 0">
                     <div class="col-sm-6">
-                        <button type="button" id="inboxButton" class="active" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Inbox</button>
+                        <button type="button" ng-click="loadFunc();" id="inboxButton" class="active" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Inbox</button>
                     </div>
                     <div class="col-sm-6">
-                        <button type="button" id="outboxButton" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Outbox</button>
+                        <button type="button" ng-click="loadFunc();" id="outboxButton" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Outbox</button>
                     </div>
                 </div>
                 <!--inboxView is displayed by default; it contains the inbox messages-->
