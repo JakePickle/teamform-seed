@@ -86,7 +86,7 @@
                         <a href="#" ng-repeat="message in inbox">
                             <!--messageBrief is a brief version of the message-->
                             <!--TODO: Only introduce the active class when a message is being viewed-->
-                            <div class="messageBrief active">
+                            <div class="messageBrief active" ng-click="displayMessage($index);">
                                 <!--TODO: exclamation symbol only appears for unread messages-->
                                 <h4><i class="fa fa-exclamation" aria-hidden="true"></i>&nbsp; {{message.Title}}</h4>
                                 <p>
@@ -108,25 +108,17 @@
                         <div class="messageDetailed">
                             <p>
                                 <!--TODO: link to backend-->
-                                Received Time:
+                                Received Time: {{currentTime}}
                             </p>
                             <!--TODO: link to backend-->
-                            <h3>Invitation to Join Event1 / Team1</h3>
+                            <h3>{{currentTitle}}</h3>
                             <p>
                                 <!--TODO: link to backend-->
-                                From User:
+                                From User: {{currentFrom}}
                             </p>
                             <p>
                                 <!--TODO: link to backend-->
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.<br>                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                {{currentContent}}
                             </p>
                             <div class="buttonWrapper">
                                 <!--TODO: after clicking either button, these two buttons will disappear! It cannot be added by frontend, or if the page reloads, the buttons will reappear-->

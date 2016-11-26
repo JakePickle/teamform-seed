@@ -43,6 +43,12 @@ angular.module('teamform-message-app', ['firebase'])
   $scope.inbox;
   $scope.outbox;
 
+  $scope.currentTime;
+  $scope.currentFrom;
+  $scope.currentTo;
+  $scope.currentTitle;
+  $scope.currentContent;
+
   $scope.loadFunc = function() {
         if($scope.uid != "")
         {
@@ -64,6 +70,14 @@ angular.module('teamform-message-app', ['firebase'])
                 $scope.$apply();
             });
         }
+    }
+
+    $scope.displayMessage = function(id){
+      $scope.currentTime = id;
+      $scope.currentFrom = "test";
+      $scope.currentTo = "test";
+      $scope.currentTitle = "test";
+      $scope.currentContent = "test";
     }
 
     $scope.loadFunc();
