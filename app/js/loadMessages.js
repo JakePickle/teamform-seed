@@ -92,6 +92,7 @@ angular.module('teamform-message-app', ['firebase'])
           $scope.currentFrom = message.From;
           $scope.currentTitle = message.Title;
           $scope.currentContent = message.Content;
+          $scope.currentTeam = message.Team;
 
           $scope.$apply();
         });
@@ -122,6 +123,20 @@ angular.module('teamform-message-app', ['firebase'])
           $scope.$apply();
         });
       }
+    }
+
+    $scope.acceptInvitation = function(){
+      var refPath = "Teams/" + $scope.currentTeam + "Members";
+      var ref = firebase.database().ref(refPath);
+
+      var members = {};
+      members.a = uid;
+
+      ref.set(members, function(){
+
+      }).catch(function(error) {
+        console.log(error);
+      });
     }
 
     $scope.loadFunc();
