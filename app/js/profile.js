@@ -10,6 +10,7 @@ profileApp.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArr
     $scope.languages;
     $scope.country;
     $scope.city;
+    $sccope.education;
 
     $scope.loadFunc = function() {
         if($scope.uid != "")
@@ -104,7 +105,7 @@ profileApp.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArr
         //form.City = $('input[name=city]').val();//deprecated
         form.country = $scope.country;
         form.city = $scope.city;
-        form.Education = $('input[name=education]:checked').val();
+        form.Education = $scope.education;
         form.Skills = $('#skill').val().split(/[^\w+|C\+\+]/).filter(Boolean);
         form.Introduction = $('#introduction').val();
 
