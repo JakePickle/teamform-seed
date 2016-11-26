@@ -89,10 +89,13 @@ angular.module('teamform-dashboard-app', ['firebase'])
     $scope.photoUrl;
     $scope.gender;
     $scope.birthday;
+    $scope.birthdayString;
     $scope.languages;
     $scope.education;
     $scope.skills
+    $scope.skillsRaw;
     $scope.intoduction;
+    $scope.intoductionRaw;
 
     //////////////////////////////////////////////////////////////SCOPE FUNCTIONS
 
@@ -122,12 +125,19 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
                 if ( data.child("Birthday").val() != null ) {
                     $scope.birthday = data.child("Birthday").val();
+                    birthDate = new Date($scope.birthday);
+                    $scope.birthdayString = birthDate.toDateString();
                 } else {
                     $scope.birthday = "";
                 }
 
                 if ( data.child("Languages").val() != null ) {
-                    $scope.languages = data.child("Languages").val();
+                    $scope.languagesRaw = data.child("Languages").val();
+                    var temp = "";
+                    temp += $scope.languagesRaw;
+                    temp = temp.replace("[","");
+                    temp = temp.replace(",",", ");
+                    $scope.languages = temp.replace("\"","");
                 } else {
                     $scope.languages = "";
                 }
@@ -151,7 +161,12 @@ angular.module('teamform-dashboard-app', ['firebase'])
                 }
 
                 if ( data.child("Skills").val() != null ) {
-                    $scope.skills = data.child("Skills").val();
+                    $scope.skillsRaw = data.child("Skills").val();
+                    var temp = "";
+                    temp += $scope.skillsRaw;
+                    temp = temp.replace("[","");
+                    temp = temp.replace(",",", ");
+                    $scope.skills = temp.replace("\"","");
                 } else {
                     $scope.skills = "";
                 }
@@ -172,7 +187,11 @@ angular.module('teamform-dashboard-app', ['firebase'])
         var userInfo = {};
         userInfo.Name = $scope.username;
         userInfo.Email = $scope.email;
+
+        birthDate = new Date($scope.birthdayString);
+        $scope.birthday = birthDate.getTime();
         userInfo.Birthday = $scope.birthday;
+
         userInfo.Languages = $scope.languages;
         userInfo.Country = $scope.country;
         userInfo.City = $scope.city;
