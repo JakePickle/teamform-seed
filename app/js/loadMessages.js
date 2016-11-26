@@ -50,13 +50,13 @@ angular.module('teamform-message-app', ['firebase'])
             retrieveOnceFirebase(firebase, refPath, function(data) {
 
                 if ( data.child("Inbox").val() != null ) {
-                    $scope.inbox = $firebaseArray(refPath.child("Inbox"));
+                    $scope.inbox = data.child("Inbox").val();
                 } else {
                     $scope.inbox = "";
                 }
 
                 if ( data.child("Outbox").val() != null ) {
-                    $scope.outbox = $firebaseArray(refPath.child("Outbox"));
+                    $scope.outbox = data.child("Outbox").val();
                 } else {
                     $scope.outbox = "";
                 }
