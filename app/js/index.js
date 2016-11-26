@@ -1,13 +1,13 @@
-// variable declaration
 var navh = $(".navbar").innerHeight();
 
 $(document).ready(function(){
   // set margin-top of the height of navigation bar
-  // so that the navigation bar opacity will not be affected by different
-  // opacities of the headline section
+  // so that the navigation bar opacity will not be affected by different opacities of the headline section
   $(".headline").css("margin-top", navh);
   $(".connect").css("margin-top", navh);
+  // in mobile view, no above issue
   $(".mobileView .connect").css("margin-top", 0);
+  // smooth scrolling
   $(".navbar a").on('click', function(event) {
     if (this.hash !== "") {
       event.preventDefault();
