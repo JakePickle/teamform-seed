@@ -75,7 +75,7 @@ angular.module('teamform-message-app', ['firebase'])
     $scope.displayMessage = function(id){
       var message;
 
-      if($scope.uid != "")
+      if(uid != "")
       {
         var refPath = "Users/" + getURLParameter("q") + uid;
         retrieveOnceFirebase(firebase, refPath, function(data) {
@@ -85,11 +85,14 @@ angular.module('teamform-message-app', ['firebase'])
             message = "";
           }
 
-          $scope.currentTime = id;
-          $scope.currentFrom = "test";
-          $scope.currentTo = "test";
+          messDate = new Date(message.Time);
+          messString = messDate.toDateString();
+
+          $scope.currentTime = messString;
+          $scope.currentFrom = message.From;
+          $scope.currentTo = message.To;
           $scope.currentTitle = message.Title;
-          $scope.currentContent = $scope.inbox;
+          $scope.currentContent = message.Content;
 
           $scope.$apply();
         });
