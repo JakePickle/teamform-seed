@@ -97,7 +97,6 @@
                                     {{message.From}}
                                 </p>
                                 <p>
-                                    <!--TODO: This is a brief version of the content, maybe add a parser to display only first 100 characters-->
                                     {{message.Content}}
                                 </p>
                             </div>
@@ -107,22 +106,17 @@
                         <!--messageDetailed is the full content of the message-->
                         <div class="messageDetailed">
                             <p>
-                                <!--TODO: link to backend-->
                                 Received Time: {{currentTime}}
                             </p>
-                            <!--TODO: link to backend-->
                             <h3>{{currentTitle}}</h3>
                             <p>
-                                <!--TODO: link to backend-->
                                 From User: {{currentFrom}}
                             </p>
                             <p>
-                                <!--TODO: link to backend-->
                                 {{currentContent}}
                             </p>
                             <div class="buttonWrapper">
                                 <!--TODO: after clicking either button, these two buttons will disappear! It cannot be added by frontend, or if the page reloads, the buttons will reappear-->
-                                <!--TODO: add function. after clicking accept, the user (if invitation), or the sender (if request), will be added to the team-->
                                 <button type="button" name="acceptButton" id="acceptButton" ng-click="acceptInvitation();rejectInvitation();loadFunc();">Accept</button>
                                 <button type="button" name="declineButton" id="declineButton" ng-click="rejectInvitation();loadFunc();">Decline</button>
                             </div>
@@ -144,7 +138,6 @@
                                     {{message.To}}
                                 </p>
                                 <p>
-                                    <!--TODO: This is a brief version of the content, maybe add a parser to display only first 100 characters-->
                                     {{message.Content}}
                                 </p>
                             </div>
@@ -153,17 +146,13 @@
                     <div class="col-md-8">
                         <div class="messageDetailed">
                             <p>
-                                <!--TODO: link to backend-->
                                 Sent Time: {{currentTime}}
                             </p>
-                            <!--TODO: link to backend-->
                             <h3>{{currentTitle}}</h3>
                             <p>
-                                <!--TODO: link to backend-->
                                 To User: {{currentTo}}
                             </p>
                             <p>
-                                <!--TODO: link to backend-->
                                 {{currentContent}}
                             </p>
                         </div>
