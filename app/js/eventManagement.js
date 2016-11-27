@@ -53,10 +53,124 @@ var eventManageApp = angular.module("teamform-event-manage-app", ["firebase"]);
 //For current testing only
 //
 var EventId = "evtID1";
-eventManageApp.controller("team-valid-team-ctrl", function($scope, $firebaseArray) {
-	var ref = firebase.database().ref("Events").child(EventId).child("Participants");
+eventManageApp.value("EventID", "evtID1");
 
-	$scope.validTeams = $firebaseArray(ref);
+// Fetch information from firebase and show it
+eventManageApp.controller("teamInfo-ctrl", function($scope, EventID) {
+                          var ref = firebase.database().ref("Events").child(EventID);
+                          ref.on("value", function(snapshot) {
+                                  $scope.infoName = snapshot.val().Name;
+                                 $scope.infoStatus = snapshot.val().Status;
+                                 $scope.infoTime = snapshot.val().Time;
+                                 $scope.infoLocation = snapshot.val().Location;
+                                  $scope.infoMaxTeamNumber = snapshot.val().Requirements.maxTeamNumber;
+                                  $scope.infoKeywords = snapshot.val().Keywords;
+                                 $scope.infoMaxTeamSize = snapshot.val().Requirements.maxTeamSize;
+                                   $scope.infoMinTeamSize = snapshot.val().Requirements.minTeamSize;
+                                 $scope.infoIntroduction = snapshot.val().Introduction;
+                                 });
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+});
+
+eventManageApp.controller("update-event-ctrl", function($scope, EventID) {
+                         firebase.database().ref().child("Events").child(EventID).once('value').then(function(snapshot){
+                          $scope.name = snapshot.val().Name;
+                          $scope.status = snapshot.val().Status;
+                                                                                                     
+                                                                                                     
+                                                                                                     
+                                                                                                     
+                          // Problems! Do not know how to parse.
+                          //$scope.time = Date(snapshot.val().Time);
+                                                                                                     
+                                                                                                     
+                                                                                                     
+                          $scope.location = snapshot.val().Location;
+                          $scope.maxTeamNumber = parseInt(snapshot.val().Requirements.maxTeamNumber);
+                          $scope.keywords = snapshot.val().Keywords;
+                          $scope.maxTeamSize = parseInt(snapshot.val().Requirements.maxTeamSize);
+                          $scope.minTeamSize = parseInt(snapshot.val().Requirements.minTeamSize);
+                          $scope.introduction = snapshot.val().Introduction;
+                        });
+                          
+                     
+                          $scope.updateEvent = function() {
+         
+                            var ref = firebase.database().ref().child("Events").child(EventID);
+                       
+                          
+                            var eventObj = {};
+                            eventObj.Type = "Event";
+                          // eventObj.Name = $scope.eventName;
+                            eventObj.Time = combineDateTime($scope.date, $scope.time).getTime();
+                            eventObj.Location = {
+                                "Country": $scope.country,
+                                "City": $scope.city
+                            }
+                            eventObj.Status = "open";
+                            eventObj.Requirements = {
+                            "maxTeamNumber": $scope.maxTeamNumber,
+                            "maxTeamSize": $scope.maxTeamSize,
+                            "minTeamSize": $scope.minTeamSize
+                            };
+                          
+                            // Bugs here!
+                            //eventObj.Keywords = search.extractWord($scope.keywords);
+                            eventObj.Introduction = $scope.introduction;
+            
+                          
+                            ref.update(eventObj);
+                          
+                          
+                        };
+                          
+                          
+                          
+                          
+                          
+});
+
+
+
+
+
+eventManageApp.controller("team-valid-team-ctrl", function($scope, $firebaseArray) {
+                         
+	var ref = firebase.database().ref("Events").child(EventId).child("Participants");
+                          var list = $firebaseArray(ref);
+                          $scope.validTeams = [];
+                          
+         
+                          
+                          
+                          
+                          
+                          ref.on("child_added", function(data) {
+                                 console.log(data.val());
+                                 firebase.database().ref("Teams").child(data.val()).once("value").then(function(snapshot) {
+                                        $scope.validTeams.push(snapshot.val());
+                                                                                               
+                                    });
+                                 $scope.$apply();
+                                 
+
+                                 });
+                          ref.on("child_removed", function(data) {
+                                // $scope.validTeams.push(data.val());
+                                 
+                                 });
+
+                          ref.on("child_changed", function(data) {
+                             //    $scope.validTeams.push(data.val());
+                                 
+                                 });
+
 
 
 });

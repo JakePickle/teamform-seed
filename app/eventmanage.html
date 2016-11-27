@@ -79,18 +79,17 @@
             <!--Content-->
             <div class="col-sm-10 setMargin">
                 <!--eventInfoView wraps the event information-->
-                <div class="eventInfoView">
-                    <h2>exampleEvent</h2>
+                <div class="eventInfoView" ng-controller="teamInfo-ctrl">
+                    <h2>{{infoName}} {{EventID}}</h2>
                     <ul style="list-style-type:none">
-                        <li class="row"><div class="col-xs-3">Status</div><div class="col-xs-9">Open</div></li>
-                        <li class="row"><div class="col-xs-3">Time</div><div class="col-xs-9">Nov 16, 2016 12:00</div></li>
-                        <li class="row"><div class="col-xs-3">Location</div><div class="col-xs-9">Hong Kong, Hong Kong</div></li>
-                        <li class="row"><div class="col-xs-3">Max Team Number</div><div class="col-xs-9">50</div></li>
-                        <li class="row"><div class="col-xs-3">Team Size Limit</div><div class="col-xs-9">5 to 8</div></li>
-                        <li class="row"><div class="col-xs-3">Keywords</div><div class="col-xs-9">Hackathon, Java, CS</div></li>
+                        <li class="row"><div class="col-xs-3">Status</div><div class="col-xs-9">{{infoStatus}}</div></li>
+                        <li class="row"><div class="col-xs-3">Time</div><div class="col-xs-9">{{infoTime}}</div></li>
+                        <li class="row"><div class="col-xs-3">Location</div><div class="col-xs-9">{{infoLocation}}</div></li>
+                        <li class="row"><div class="col-xs-3">Max Team Number</div><div class="col-xs-9">{{infoMaxTeamNumber}}</div></li>
+                        <li class="row"><div class="col-xs-3">Team Size Limit</div><div class="col-xs-9">{{infoMinTeamSize}} to {{infoMaxTeamSize}}</div></li>
+                        <li class="row"><div class="col-xs-3">Keywords</div><div class="col-xs-9">{{infoKeywords}}</div></li>
                         <li class="row"><div class="col-xs-3">Introduction</div><div class="col-xs-9">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            {{infoIntroduction}}
                         </div></li>
                     </ul>
                     <!--Click the updateEventInfo button will toggle the view to editing-->
@@ -136,7 +135,7 @@
                             <div class="form-inline col-xs-9" id="location">
                                 <div class="form-group">
 
-                                    <select name="country" class="form-control" required>
+                                    <select name="country" ng-model="country" class="form-control" required>
                                         <option value="AFG">Afghanistan</option>
                                         <option value="ALA">Åland Islands</option>
                                         <option value="ALB">Albania</option>
@@ -441,12 +440,15 @@
                                 <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
                             </div>
                         </div>
-                    </form>
+                    
                     <div class="row buttonWrapper" style="margin: 0">
 
                         <button type="submit" name="button" ng-disabled="eventManageForm.date.$invalid || eventManageForm.time.$invalid || eventManageForm.maxTeamNumber.$invalid || eventManageForm.minTeamSize.$invalid || eventManageForm.maxTeamSize.$invalid || eventManageForm.city.$invalid || eventManageForm.introduction.$invalid" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;" class="btn btn-default">Update!</button>
 
                     </div>
+                    
+                    
+                    </form>
                 </div>
                 <!--teamMemberView wraps the validTeamList and pendingTeamList-->
                 <div class="teamMemberView">

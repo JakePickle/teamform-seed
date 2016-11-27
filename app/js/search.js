@@ -119,7 +119,7 @@ Search.prototype.extractWord = function(paragraph)
         return value.trim().toLowerCase();
     }).filter(function(val) {
         return Boolean(val) && (val.length>1) && !(that.filterWordList.hasOwnProperty(val));
-    }).sort().uniqueArray()
+              }).sort().uniqueArray();
 }
 
 //
