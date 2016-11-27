@@ -143,7 +143,7 @@ angular.module('teamform-message-app', ['firebase'])
     }
 
     $scope.rejectInvitation = function(){
-      var refPath = "Users/" + getURLParameter("q") + uid + "/Outbox";
+      var refPath = "Users/" + getURLParameter("q") + uid + "/Inbox/" + $scope.Title;
       var ref = firebase.database().ref(refPath);
 
       ref.remove();
