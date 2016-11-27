@@ -123,7 +123,7 @@
                             <div class="buttonWrapper">
                                 <!--TODO: after clicking either button, these two buttons will disappear! It cannot be added by frontend, or if the page reloads, the buttons will reappear-->
                                 <!--TODO: add function. after clicking accept, the user (if invitation), or the sender (if request), will be added to the team-->
-                                <button type="button" name="acceptButton" id="acceptButton" ng-click="acceptInvitation();">Accept</button>
+                                <button type="button" name="acceptButton" id="acceptButton" ng-click="acceptInvitation();rejectInvitation();loadFunc();">Accept</button>
                                 <button type="button" name="declineButton" id="declineButton" ng-click="rejectInvitation();loadFunc();">Decline</button>
                             </div>
                         </div>
