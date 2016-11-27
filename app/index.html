@@ -1,17 +1,16 @@
+<!-- index.html frontend work completed -->
+<!-- Team: Official Sunghun Fanclub -->
+<!-- The authors created this web application from scratch without any existing template -->
+<!-- Our team do not declare right on the icons and images used on the app -->
+<!-- Copying the implementation without credits is an unjust act -->
 <!DOCTYPE html>
-<html lang="en" ng-app="teamform-index-app">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <meta name="keywords" content="teamform, team">
     <title>Teamform - A real-time online team forming app</title>
-    
-    <!--
-        Required script tag for Ionic app. Will be a 404 during development only. 
-        Reference: http://stackoverflow.com/questions/25961013/how-to-convert-an-existing-angularjs-web-app-to-a-cordova-app
-    -->
-    <script src="cordova.js"></script>
 
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
@@ -25,16 +24,28 @@
     <script src="js/site.js"></script>
     <!-- Angular and Angular-route libraries (v1.5.7) -->
     <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-route.min.js"></script>        
-         
+    <script src="lib/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-sanitize.min.js"></script>
+
     <!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-    <script src="lib/firebase.js"></script>     
+    <script src="lib/firebase.js"></script>
     <script src="lib/angularfire.min.js"></script>
+    <link rel="manifest" href="manifest.json">
+    <script src="lib/bluebird.min.js"></script>
+    <!-- ionic/angularjs js -->
+    <script src="http://code.ionicframework.com/1.3.2/js/angular-ui/angular-ui-router.min.js"></script>
+    <script src="http://code.ionicframework.com/1.3.2/js/ionic.min.js"></script>
+    <script src="http://code.ionicframework.com/1.3.2/js/ionic-angular.js"></script>
+    <script src="lib/ionic.cloud.min.js"></script>
+    <!--
+        cordova script (this will be a 404 during development)
+        Reference: http://stackoverflow.com/questions/25961013/how-to-convert-an-existing-angularjs-web-app-to-a-cordova-app
+    -->
+    <script src="cordova.js"></script>
 </head>
 
-<!-- TODO: add bootstrap scrollspy to body -->
-<!--data-spy="scroll" data-target=".navbar" data-offset="30"-->
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="30" ng-app="teamform-index-app">
     <!--background carousel-->
     <div class="carousel slide" data-ride="carousel" data-interval="4000">
         <div class="carousel-inner" role="listbox">
@@ -44,7 +55,7 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="IndexCtrl">
 
         <!--Navigation Bar-->
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -63,8 +74,8 @@
             </div>
         </nav>
 
-        <!--headline section-->
-        <div class="row">
+        <!--headline section for laptop-->
+        <div class="row hidden-xs">
             <div class="col-md-8 noPaddingColumn">
                 <div class="headline">
                     <h1>Team forming has never been easier.</h1>
@@ -74,10 +85,25 @@
             <div class="col-md-4 noPaddingColumn">
                 <div class="connect">
                     <div class="buttonBlock">
-                        <div id="index_page_controller" ng-controller="IndexCtrl">
-                            <button type="button" name="button" class="connectButton" id="google" ng-click="authenticate();"><i class="fa fa-google fa-lg" aria-hidden="true" ></i>Connect with Google</button>
-                            <!--<button type="button" name="button" class="connectButton" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>-->
+                        <div id="index_page_controller">
+                            <button type="button" name="button" class="connectButton" id="google" ng-click="authenticate();"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Connect with Google</button>
+                            <button type="button" name="button" class="connectButton" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--headline section for mobile-->
+        <div class="row hidden-sm hidden-md hidden-lg mobileView">
+            <div class="col-xs-12 noPaddingColumn">
+                <div class="headline">
+                    <h1>Team forming has never been easier.</h1>
+                    <p>Team up for your favorite event, today.</p>
+                </div>
+                <div class="buttonBlock">
+                    <div id="index_page_controller">
+                        <button type="button" name="button" class="connectButton" id="google" ng-click="authenticate();"><i class="fa fa-google fa-lg" aria-hidden="true"></i>Connect with Google</button>
+                        <button type="button" name="button" class="connectButton" id="facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i>Connect with Facebook</button>
                     </div>
                 </div>
             </div>
@@ -102,25 +128,27 @@
             <div class="col-xs-12 aboutCol">
                 <h3>About Teamform</h3>
                 <p>
-                    Using Teamform web app or Android app, you can create an event to recruit teams, create a team for
-                    your members to join, or join a team for your favorite event!<br>
-                    This is an HKUST COMP3111H course project.<br>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    With Teamform web application or Android application, you can create your own event to recruit teams, create a team for
+                    friends to join, or join a team for your favorite event!
+                </p>
+                <p>
+                    Connect to Teamform with your Google or Facebook account. Start TEAMING! As simple as that.
+                </p>
+                <p>
+                    If some information is outdated, don't worry! Update information is no trouble on Teamform.
+                </p>
+                <p>
+                    Tell us something about yourself on the profile editing page. This helps interested team leaders to find you more easily!
+                    This also allows our search and recommendation system to deliver the best user experience!
+                </p>
+                <p>
+                    Try our team and event management system to make your work efficient and productive.
+                </p>
+                <p>
+                    There are inbox and outbox built in Teamform, and MORE!
+                </p>
+                <p>
+                    This is an HKUST COMP3111H course project.
                 </p>
             </div>
         </div>
@@ -141,7 +169,7 @@
                             <img src="img/larry.jpg" class="img-responsive img-circle" alt="larry" />
                         </div>
                         <div class="panel-footer">
-                            Backend Developer
+                            Search System
                         </div>
                     </div>
                 </div>
@@ -193,7 +221,7 @@
                             <img src="img/kev.jpg" class="img-responsive img-circle" alt="kevin" />
                         </div>
                         <div class="panel-footer">
-                            Frontend Developer
+                            Ionic Framework
                         </div>
                     </div>
                 </div>
@@ -206,13 +234,13 @@
                             <img src="img/collin.jpg" class="img-responsive img-circle" alt="collin" />
                         </div>
                         <div class="panel-footer">
-                            Frontend Developer
+                            Quality Assurance
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!--footer-->
         <div class="row" id="footer">
             <div class="col-xs-12" id="footerCol">
@@ -223,7 +251,6 @@
         </div>
     </div>
 
-    <!-- JavaScript of this page -->
     <script src="js/index.js"></script>
 </body>
 </html>

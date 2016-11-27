@@ -128,6 +128,12 @@ span.badge {
 .createEventView .buttonWrapper {
     margin-top: 30px;
 }
+#language {
+    width: 60%;
+}
+#location {
+    padding-bottom: 10px;
+}
 
 /*Formatting of eventinfo and teaminfo view*/
 .createTeamView form {
@@ -227,4 +233,19 @@ span.badge {
 }
 .pendingRequest:hover, .pendingInvitation:hover, .pendingTeamMember:hover {
     background: rgba(255, 245, 130, 0.2);
+}
+
+/*Formatting for frontend validation*/
+input.ng-invalid.ng-touched {
+    background-color: pink;
+}
+textarea.ng-invalid.ng-touched {
+    background-color: pink;
+}
+.errorMessage {
+    color: pink;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    margin-bottom: 0;
 }

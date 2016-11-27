@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=latin-ext,vietnamese');
 body {
     background: url('../img/background.png');
-    /* Refer to whar font Github has used */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", 'Roboto', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     color: white;
 }
@@ -39,8 +38,8 @@ form {
 .help-block {
     color: white;
 }
-#firstRadio {
-    margin-top: 0;
+#language {
+    width: 60%;
 }
 #buttonDiv {
     text-align: center;
@@ -49,8 +48,23 @@ form {
 .btn-default {
     font-size: 1.5em;
     font-weight: bolder;
-    width: 50%;
+    width: 65%;
     background: rgba(255, 255, 255, 0.3);
     color: white;
     border: 0;
+}
+
+/* Formatting of frontend validation*/
+input.ng-invalid.ng-touched {
+    background-color: pink;
+}
+textarea.ng-invalid.ng-touched {
+    background-color: pink;
+}
+.errorMessage {
+    color: pink;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    margin-bottom: 0;
 }
