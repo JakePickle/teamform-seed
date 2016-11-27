@@ -7,6 +7,10 @@ profileApp.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArr
     $scope.uid = "";
     $scope.username = "";
     $scope.email = "";
+    $scope.languages;
+    $scope.country;
+    $scope.city;
+    $scope.education;
 
     $scope.loadFunc = function() {
         if($scope.uid != "")
@@ -95,10 +99,13 @@ profileApp.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArr
         form.Email = $('#email').val();
         form.Gender = $('input[name=gender]:checked').val();
         form.Birthday = new Date($('#birthday').val()).getTime();
-        form.Languages = $('#language').val().split(/\W+/).filter(Boolean);
-        form.Country = $('input[name=country]').val();
-        form.City = $('input[name=city]').val();
-        form.Education = $('input[name=education]:checked').val();
+        //form.Languages = $('#language').val().split(/\W+/).filter(Boolean);//deprecated
+        form.Languages = $scope.languages;
+        //form.Country = $('input[name=country]').val();//deprecated
+        //form.City = $('input[name=city]').val();//deprecated
+        form.country = $scope.country;
+        form.city = $scope.city;
+        form.Education = $scope.education;
         form.Skills = $('#skill').val().split(/[^\w+|C\+\+]/).filter(Boolean);
         form.Introduction = $('#introduction').val();
 

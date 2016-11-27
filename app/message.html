@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="teamform-message-app">
 
 <head>
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="MessageCtrl">
         <!--Navigation Bar-->
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
@@ -70,23 +70,23 @@
                 </div>
             </div>
             <!--Content-->
-            <div class="col-sm-10 setMargin" ng-app="teamform-messages-app">
+            <div class="col-sm-10 setMargin">
                 <!--buttonWrapper wraps the inbox and outbox toggle buttons-->
                 <div class="row buttonWrapper" style="margin: 0">
                     <div class="col-sm-6">
-                        <button type="button" id="inboxButton" class="active" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Inbox</button>
+                        <button type="button" ng-click="loadFunc();" id="inboxButton" class="active" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Inbox</button>
                     </div>
                     <div class="col-sm-6">
-                        <button type="button" id="outboxButton" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Outbox</button>
+                        <button type="button" ng-click="loadFunc();" id="outboxButton" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin: 0;">Outbox</button>
                     </div>
                 </div>
                 <!--inboxView is displayed by default; it contains the inbox messages-->
                 <div class="row inboxView">
-                    <div class="col-md-4" ng-controller="teamform-messages-ctrl">
+                    <div class="col-md-4">
                         <a href="#" ng-repeat="message in inbox">
                             <!--messageBrief is a brief version of the message-->
                             <!--TODO: Only introduce the active class when a message is being viewed-->
-                            <div class="messageBrief active">
+                            <div class="messageBrief active" ng-click="displayMessageInbox(message.Title);">
                                 <!--TODO: exclamation symbol only appears for unread messages-->
                                 <h4><i class="fa fa-exclamation" aria-hidden="true"></i>&nbsp; {{message.Title}}</h4>
                                 <p>
@@ -97,7 +97,6 @@
                                     {{message.From}}
                                 </p>
                                 <p>
-                                    <!--TODO: This is a brief version of the content, maybe add a parser to display only first 100 characters-->
                                     {{message.Content}}
                                 </p>
                             </div>
@@ -107,42 +106,29 @@
                         <!--messageDetailed is the full content of the message-->
                         <div class="messageDetailed">
                             <p>
-                                <!--TODO: link to backend-->
-                                Received Time:
+                                Received Time: {{currentTime}}
                             </p>
-                            <!--TODO: link to backend-->
-                            <h3>Invitation to Join Event1 / Team1</h3>
+                            <h3>{{currentTitle}}</h3>
                             <p>
-                                <!--TODO: link to backend-->
-                                From User:
+                                From User: {{currentFrom}}
                             </p>
                             <p>
-                                <!--TODO: link to backend-->
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.<br>                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                {{currentContent}}
                             </p>
                             <div class="buttonWrapper">
                                 <!--TODO: after clicking either button, these two buttons will disappear! It cannot be added by frontend, or if the page reloads, the buttons will reappear-->
-                                <!--TODO: add function. after clicking accept, the user (if invitation), or the sender (if request), will be added to the team-->
-                                <button type="button" name="acceptButton" id="acceptButton">Accept</button>
-                                <button type="button" name="declineButton" id="declineButton">Decline</button>
+                                <button type="button" name="acceptButton" id="acceptButton" ng-click="acceptInvitation();rejectInvitation();loadFunc();">Accept</button>
+                                <button type="button" name="declineButton" id="declineButton" ng-click="rejectInvitation();loadFunc();">Decline</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--outboxView contains outbox messages and is displayed after outbox button is clicked-->
                 <div class="row outboxView">
-                    <div class="col-md-4" ng-controller="teamform-messages-ctrl">
+                    <div class="col-md-4" >
                         <a href="#" ng-repeat="message in outbox">
                             <!--TODO: Only introduce the active class when a message is being viewed-->
-                            <div class="messageBrief active">
+                            <div class="messageBrief active" ng-click="displayMessageOutbox(message.Title);">
                                 <h4>{{message.Title}}</h4>
                                 <p>
                                     <!--TODO: add parser to message.Time for readability-->
@@ -152,7 +138,6 @@
                                     {{message.To}}
                                 </p>
                                 <p>
-                                    <!--TODO: This is a brief version of the content, maybe add a parser to display only first 100 characters-->
                                     {{message.Content}}
                                 </p>
                             </div>
@@ -161,26 +146,14 @@
                     <div class="col-md-8">
                         <div class="messageDetailed">
                             <p>
-                                <!--TODO: link to backend-->
-                                Sent Time:
+                                Sent Time: {{currentTime}}
                             </p>
-                            <!--TODO: link to backend-->
-                            <h3>Invitation to Join Event1 / Team1</h3>
+                            <h3>{{currentTitle}}</h3>
                             <p>
-                                <!--TODO: link to backend-->
-                                To User:
+                                To User: {{currentTo}}
                             </p>
                             <p>
-                                <!--TODO: link to backend-->
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.<br>                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                                non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                {{currentContent}}
                             </p>
                         </div>
                     </div>

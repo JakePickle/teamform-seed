@@ -83,7 +83,7 @@
                     <label for="location">Current Location *</label>
                     <div class="form-inline" id="location">
                         <div class="form-group">
-                            <select name="country" class="form-control" required>
+                            <select name="country" class="form-control" ng-model="country" required>
                                 <option value="AFG">Afghanistan</option>
                                 <option value="ALA">Åland Islands</option>
                                 <option value="ALB">Albania</option>
@@ -344,7 +344,7 @@
                 </div>
                 <div class="form-group">
                     <label for="language">Languages *</label>
-                    <select multiple name="language" id="language" class="form-control" aria-describedby="helpLanguage" required>
+                    <select multiple name="language" id="language" class="form-control" aria-describedby="helpLanguage" ng-model="languages" required>
                         <option value="Afrikanns">Afrikanns</option>
                         <option value="Albanian">Albanian</option>
                         <option value="Arabic">Arabic</option>
@@ -422,11 +422,11 @@
                 </div>
                 <div class="form-group">
                     <label for="education">Education *</label>
-                    <select name="education" id="education" class="form-control" required>
-                        <option value="associate">Associate's Degree</option>
-                        <option value="bachlor" selected>Bachlor's Degree</option>
-                        <option value="master">Master's Degree</option>
-                        <option value="phd">PhD</option>
+                    <select name="education" id="education" class="form-control" ng-model="education" required>
+                        <option value="Associate's Degree">Associate Degree</option>
+                        <option value="Bachlor's Degree" selected>Bachlor's Degree</option>
+                        <option value="Master's Degree">Master's Degree</option>
+                        <option value="PhD">PhD</option>
                         <option value="others">Others</option>
                     </select>
                 </div>
