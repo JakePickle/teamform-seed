@@ -1,5 +1,5 @@
 var navh = $(".navbar").innerHeight();
-
+var a = null;
 $(document).ready(function () {
   // set margin-top of the height of navigation bar
   // so that the navigation bar opacity will not be affected by different opacities of the headline section
@@ -41,8 +41,8 @@ angular.module('teamform-index-app', ['firebase', 'ionic', 'ionic.cloud'])
       }
     });
   })
-  .controller('IndexCtrl', ['$scope', '$ionicPush', '$firebaseObject', '$firebaseArray', '$interval', '$timeout',
-    function ($scope, $ionicPush, $firebaseObject, $firebaseArray, $interval, $timeout) {
+  .controller('IndexCtrl', ['$scope', '$ionicPush', '$firebaseObject', '$firebaseArray', '$interval', '$timeout', '$http',
+    function ($scope, $ionicPush, $firebaseObject, $firebaseArray, $interval, $timeout, $http) {
       $scope.$on('cloud:push:notification', function (event, data) {
         var msg = data.message;
         alert(msg.title + '\n' + msg.text);
@@ -108,6 +108,37 @@ angular.module('teamform-index-app', ['firebase', 'ionic', 'ionic.cloud'])
         $interval($scope.getInfo(), 1000, 4);
         $scope.saveFunc();
       }
+      // Code that if a path on Firebase is updated, a push notification will be sent automatically
+      // TODO change the database path
+      var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZTZiNmVkNC0xM2UxLTRlZDEtYWQxZi02OWYxODhmZWE5MGMifQ.4rO2w0H6xHgPnb5FK6yD4TWyZHFe3r45CR-WeT-t-ik'
+      var starCountRef = firebase.database().ref('Users');
+      starCountRef.on('value', function (snapshot) {
+        console.log(snapshot);
+        console.log(a);
+        if (a != null) {
+          var options = {
+            method: 'POST',
+            url: 'https://api.ionic.io/push/notifications',
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Content-Type': 'application/json',
+            },
+            data: {
+              "tokens": [a],
+              "profile": "dev",
+              "notification": {
+                "message": "Firebase updated, Please check"
+              }
+            }
+          };
+          console.log(options);
+          $http(options).then(function (response) {
+            console.log(response);
+          }, function (response) {
+            console.error(response);
+          });
+        }
+      });
     }])
   .run(function ($ionicPlatform, $ionicPush) {
     $ionicPlatform.ready(function () {
@@ -127,6 +158,7 @@ angular.module('teamform-index-app', ['firebase', 'ionic', 'ionic.cloud'])
         return $ionicPush.saveToken(t);
       }).then(function (t) {
         console.log('Token saved:', t.token);
+        a = t.token;
       });
     });
   });
