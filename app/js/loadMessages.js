@@ -142,6 +142,13 @@ angular.module('teamform-message-app', ['firebase'])
       });
     }
 
+    $scope.rejectInvitation = function(){
+      var refPath = var refPath = "Users/" + getURLParameter("q") + uid + "/Outbox";
+      var ref = firebase.database().ref(refPath);
+
+      ref.remove();
+    }
+
     $scope.loadFunc();
 
 
