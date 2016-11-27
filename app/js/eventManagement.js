@@ -135,3 +135,52 @@ eventApp.directive('maxDirective', function() {
 		}
 	};
 });
+eventManageApp.directive('cityDirective', function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attr, mCtrl) {
+			function cityValidation(value) {
+				if (value.length > 1 && /^[a-zA-Z ]*$/.test(value)) {
+					mCtrl.$setValidity('charE', true);
+				} else {
+					mCtrl.$setValidity('charE', false);
+				}
+				return value;
+			}
+			mCtrl.$parsers.push(cityValidation);
+		}
+	};
+});
+eventManageApp.directive('introductionDirective', function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attr, mCtrl) {
+			function introductionValidation(value) {
+				if (value.length <= 200) {
+					mCtrl.$setValidity('charE', true);
+				} else {
+					mCtrl.$setValidity('charE', false);
+				}
+				return value;
+			}
+			mCtrl.$parsers.push(introductionValidation);
+		}
+	};
+});
+eventManageApp.directive('maxDirective', function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attr, mCtrl) {
+			function maxValidation(value) {
+				var mts = parseInt(angular.element("#minTeamSize").val());
+				if (parseInt(value) >= mts) {
+					mCtrl.$setValidity('charE', true);
+				} else {
+					mCtrl.$setValidity('charE', false);
+				}
+				return value;
+			}
+			mCtrl.$parsers.push(maxValidation);
+		}
+	};
+});
