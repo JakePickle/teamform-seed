@@ -29,6 +29,7 @@
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
     <script src="js/eventManagement.js"></script>
+    <script src="js/search.js"></script>
 
 </head>
 <body ng-app="teamform-event-manage-app">
@@ -100,20 +101,20 @@
                     </div>
                 </div>
                 <!--updateEventInfoView wraps the form to update information-->
-                <div class="updateEventInfoView">
+                <div class="updateEventInfoView" ng-controller="update-event-ctrl">
                     <h2>exampleEvent</h2>
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" ng-submit="updateEvent()">
                         <div class="form-group stand-alone-form-group">
                             <label class="col-xs-3 control-label">Status</label>
                             <div class="col-xs-9">
                                 <label class="radio-inline">
-                                    <input type="radio" name="status" id="open" value="open" checked> Open
+                                    <input type="radio" name="status" id="open" value="open" ng-model="status" checked> Open
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="status" id="closed" value="closed"> Closed
+                                    <input type="radio" name="status" id="closed" ng-model="status" value="closed"> Closed
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="status" id="terminated" value="terminated"> Terminated
+                                    <input type="radio" name="status" id="terminated" ng-model="status" value="terminated"> Terminated
                                 </label>
                             </div>
                         </div>
@@ -121,10 +122,10 @@
                             <label class="col-xs-3 control-label">Time</label>
                             <div class="form-inline col-xs-9" id="eventTime">
                                 <div class="form-group">
-                                    <input type="date" class="form-control" name="date" value="2016-11-06">
+                                    <input type="date" class="form-control" name="date" value="2016-11-06" ng-model="date">
                                 </div>
                                 <div class="form-group">
-                                    <input type="time" class="form-control" name="time" value="12:00">
+                                    <input type="time" class="form-control" name="time" value="12:00" ng-model="time">
                                 </div>
                             </div>
                         </div>
@@ -132,48 +133,48 @@
                             <label class="col-xs-3 control-label">Event Location</label>
                             <div class="form-inline col-xs-9" id="location">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="country" placeholder="Country" value="Hong Kong">
+                                    <input type="text" class="form-control" name="country" placeholder="Country" value="Hong Kong" ng-model="country">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="city" placeholder="City" value="Hong Kong">
+                                    <input type="text" class="form-control" name="city" placeholder="City" value="Hong Kong" ng-model="city">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group stand-alone-form-group">
                             <label class="col-xs-3 control-label">Maximum Team Number</label>
                             <div class="col-xs-9">
-                                <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number" value="50">
+                                <input class="form-control" type="number" name="teamNumber" id="teamNumber" placeholder="Max Team Number" value="50" ng-model="maxTeamNumber">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Team Size</label>
                             <div class="form-inline col-xs-9" id="groupSize">
                                 <div class="form-group">
-                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum" value="5">
+                                    <input type="number" class="form-control" name="minGroupSize" placeholder="Minimum" value="5" ng-model="minTeamSize">
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum" value="8">
+                                    <input type="number" class="form-control" name="maxGroupSize" placeholder="Maximum" value="8" ng-model="maxTeamSize">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group stand-alone-form-group">
                             <label class="col-xs-3 control-label">Keywords</label>
                             <div class="col-xs-9">
-                                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" value="Hackathon,Java,CS">
+                                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="Keywords" aria-describedby="helpKeyword" value="Hackathon,Java,CS" ng-model="keywords">
                                 <span id="helpKeyword" class="help-block">Use commas to separate multiple keywords (e.g. hackathon,Java,CS).</span>
                             </div>
                         </div>
                         <div class="form-group stand-alone-form-group">
                             <label class="col-xs-3 control-label">Brief Introduction</label>
                             <div class=" col-xs-9">
-                                <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                <textarea name="name" class="form-control" rows="4" placeholder="Briefly introduce this event." aria-describedby="helpIntroduction" ng-model="introduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                 </textarea>
                                 <span id="helpIntroduction" class="help-block">Max 200 characters allowed.</span>
                             </div>
                         </div>
                     </form>
                     <div class="row buttonWrapper" style="margin: 0">
-                        <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Update!</button>
+                        <button type="submit" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Update!</button>
                     </div>
                 </div>
                 <!--teamMemberView wraps the validTeamList and pendingTeamList-->
