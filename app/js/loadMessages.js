@@ -70,6 +70,12 @@ angular.module('teamform-message-app', ['firebase'])
                 $scope.$apply();
             });
         }
+
+        $scope.currentTime = 0;
+        $scope.currentFrom = "";
+        $scope.currentTo = "";
+        $scope.currentTitle = "";
+        $scope.currentContent = "";
     }
 
     $scope.displayMessageInbox = function(id){
@@ -116,7 +122,7 @@ angular.module('teamform-message-app', ['firebase'])
           messString = messDate.toDateString();
 
           $scope.currentTime = messString;
-          $scope.currentTo= message.To;
+          $scope.currentTo = message.To;
           $scope.currentTitle = message.Title;
           $scope.currentContent = message.Content;
 
