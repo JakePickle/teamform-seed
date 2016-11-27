@@ -86,7 +86,7 @@
                         <a href="#" ng-repeat="message in inbox">
                             <!--messageBrief is a brief version of the message-->
                             <!--TODO: Only introduce the active class when a message is being viewed-->
-                            <div class="messageBrief active" ng-click="displayMessageInbox($index);">
+                            <div class="messageBrief active" ng-click="displayMessageInbox(message.Title);">
                                 <!--TODO: exclamation symbol only appears for unread messages-->
                                 <h4><i class="fa fa-exclamation" aria-hidden="true"></i>&nbsp; {{message.Title}}</h4>
                                 <p>
@@ -134,7 +134,7 @@
                     <div class="col-md-4" >
                         <a href="#" ng-repeat="message in outbox">
                             <!--TODO: Only introduce the active class when a message is being viewed-->
-                            <div class="messageBrief active" ng-click="displayMessageOutbox($index);">
+                            <div class="messageBrief active" ng-click="displayMessageOutbox(message.Title);">
                                 <h4>{{message.Title}}</h4>
                                 <p>
                                     <!--TODO: add parser to message.Time for readability-->
