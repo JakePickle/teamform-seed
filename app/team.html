@@ -84,7 +84,7 @@
                     <!--teams wraps all the team items-->
                     <div class="teams">
                         <div ng-repeat="(key, team) in teams">
-                        <a ng-href="teammanage.html#team/{{team.ID}}">
+                            <a ng-href="team{{isLeader(team.Leader)?'manage':'info'}}.html#team/{{team.ID}}">
                             <div class="row {{team.Status}}Team">
                                 <div class="col-sm-offset-1 col-xs-11">
                                     <h3>{{team.EventName}} / {{team.Name}}<i class="fa fa-star-o" aria-hidden="true" ng-show="isLeader(team.Leader)"></i></h3>
