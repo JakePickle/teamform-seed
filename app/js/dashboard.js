@@ -78,8 +78,10 @@ $(document).ready(function () {
     });
 });
 
-angular.module('teamform-dashboard-app', ['firebase'])
-.controller('DashboardCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
+
+var dashboardApp = angular.module('teamform-dashboard-app', ['firebase']);
+
+dashboardApp.controller('DashboardCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
 
     initializeFirebase();
     uid = getCookie("uid");
@@ -104,7 +106,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
         {
             var refPath = "Users/" + getURLParameter("q") + uid;
             retrieveOnceFirebase(firebase, refPath, function(data) {
-                                
+
                 if ( data.child("Name").val() != null ) {
                     $scope.username = data.child("Name").val();
                 } else {
@@ -179,7 +181,7 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
                 $scope.$apply();
             });
-        }  
+        }
     }
 
     $scope.UpdateUser = function()
@@ -201,10 +203,10 @@ angular.module('teamform-dashboard-app', ['firebase'])
         userInfo.Education = $scope.education;
 
 
-            
-        var refPath = "Users/" + getURLParameter("q") + uid;  
+
+        var refPath = "Users/" + getURLParameter("q") + uid;
         var ref = firebase.database().ref(refPath);
-        
+
         ref.set(userInfo, function(){
             window.location.href= "dashboard.html";
         }).catch(function(error) {
@@ -219,3 +221,55 @@ angular.module('teamform-dashboard-app', ['firebase'])
 
 }]);
 
+// Frontend Validation Functions
+// validate username
+dashboardApp.directive('usernameDirective', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) {
+            function usernameValidation(value) {
+                if (value.length >= 5 && value.length <= 20 && /^[a-zA-Z0-9-_]*$/.test(value)) {
+                    mCtrl.$setValidity('charE', true);
+                } else {
+                    mCtrl.$setValidity('charE', false);
+                }
+                return value;
+            }
+            mCtrl.$parsers.push(usernameValidation);
+        }
+    };
+});
+// validate city
+dashboardApp.directive('cityDirective', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) {
+            function cityValidation(value) {
+                if (value.length > 1 && /^[a-zA-Z ]*$/.test(value)) {
+                    mCtrl.$setValidity('charE', true);
+                } else {
+                    mCtrl.$setValidity('charE', false);
+                }
+                return value;
+            }
+            mCtrl.$parsers.push(cityValidation);
+        }
+    };
+});
+// validate introduction
+dashboardApp.directive('introductionDirective', function() {
+    return {
+        require: 'ngModel',
+        link: function(scope, element, attr, mCtrl) {
+            function introductionValidation(value) {
+                if (value.length <= 200) {
+                    mCtrl.$setValidity('charE', true);
+                } else {
+                    mCtrl.$setValidity('charE', false);
+                }
+                return value;
+            }
+            mCtrl.$parsers.push(introductionValidation);
+        }
+    };
+});
