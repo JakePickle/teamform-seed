@@ -113,15 +113,15 @@ teamInfoApp.controller("team-info-ctrl", function($scope, $firebaseObject){
                                                                                                                               ref.update(count);
                                                                     firebase.database().ref().child("Users").child(userID).child("Teams").push().set($scope.data.Event);
                                                                                                                   if(snapshot.val().Requirements.maxTeamSize <= value.val().Count - 1)
-                                                                                                                                                                                       firebase.database().ref().child("Events").child($scope.data.Event).update({"Status":"terminated"});
+                                                                                                                                                                                       ref.update({"Status":"terminated"});
                                                                                                                                                                                        
                                                                                                                                                                                        
                                                                                                                                                                                        
                                                                                                                   }
                                                                                                                   else if(snapshot.val().Requirements.minTeamSize > value.val().Count){
-                                                                                                                   firebase.database().ref().child("Events").child($scope.data.Event).update({"Status":"pending"});
+                                                                                                                   ref.update({"Status":"pending"});
                                                                                                                   }
-                                                                                                                  else  firebase.database().ref().child("Events").child($scope.data.Event).update({"Status":"vallid"});
+                                                                                                                  else  ref.update({"Status":"valid"});
                                                                                                                                                                                        
                                                                                                                                                                                        });
                                     
