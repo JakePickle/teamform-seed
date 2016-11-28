@@ -40,6 +40,8 @@ function initializeFirebase() {
   firebase.initializeApp(config);
 };
 
+initializeFirebase();
+
 //
 // User-defined function - Useful for retrieving an object once, without 3-way sync
 // For 3-way sync, use $firebaseObject or $firebaseArray provided by AngularFire

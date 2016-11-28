@@ -9,7 +9,11 @@
 
     <script src="lib/jquery.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
-
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-route.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
+    <script src="lib/angularfire.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -19,8 +23,8 @@
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
 </head>
-<body>
-    <div class="container-fluid">
+<body ng-app="eventInfo-app">
+    <div class="container-fluid" ng-controller="eventInfo-ctrl">
 
         <!--Navigation Bar-->
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -70,28 +74,25 @@
                     <!--This design prevents the duplication of view elements-->
                     <form class="row">
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="Team Name">
+                            <input type="text" class="form-control" placeholder="Team Name" ng-model="teamName">
                         </div>
                         <div class="col-sm-3">
                             <!--click the search button will toggle the view to searchResultView-->
-                            <button class="btn btn-default" type="button" id="searchButton">Create Team</button>
+                            <button class="btn btn-default" type="button" id="searchButton" ng-click="createTeam()">Create Team</button>
                         </div>
                     </form>
                 </div>
                 <!--eventInfoView wraps the event information that is visible to non-administrators-->
                 <div class="eventInfoView">
-                    <h2>exampleEvent</h2>
+                    <h2>{{data.Name}}</h2>
                     <ul style="list-style-type:none">
-                        <li class="row"><div class="col-xs-3">Status</div><div class="col-xs-9">Open</div></li>
-                        <li class="row"><div class="col-xs-3">Time</div><div class="col-xs-9">Nov 16, 2016 12:00</div></li>
-                        <li class="row"><div class="col-xs-3">Location</div><div class="col-xs-9">Hong Kong, Hong Kong</div></li>
-                        <li class="row"><div class="col-xs-3">Team Size Limit</div><div class="col-xs-9">5 to 8</div></li>
-                        <li class="row"><div class="col-xs-3">Keywords</div><div class="col-xs-9">Hackathon, Java, CS</div></li>
+                        <li class="row"><div class="col-xs-3">Status</div><div class="col-xs-9">{{data.Status}}</div></li>
+                        <li class="row"><div class="col-xs-3">Time</div><div class="col-xs-9">{{data.Time | date}}</div></li>
+                        <li class="row"><div class="col-xs-3">Location</div><div class="col-xs-9">{{data.Location}}</div></li>
+                        <li class="row"><div class="col-xs-3">Team Size Limit</div><div class="col-xs-9">{{data.Requirements.minTeamSize}} to {{data.Requirements.maxTeamSize}}</div></li>
+                        <li class="row"><div class="col-xs-3">Keywords</div><div class="col-xs-9">{{data.Keywords | keywordString}}</div></li>
                         <li class="row"><div class="col-xs-3">Introduction</div><div class="col-xs-9">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            {{data.Introduction}}
                         </div></li>
                     </ul>
                 </div>
@@ -101,5 +102,6 @@
 
     <!--dashboard.js formats the navigation bars to enforce consistent UI-->
     <script src="js/dashboard.js"></script>
+    <script src="js/eventInfo.js"></script>
 </body>
 </html>
