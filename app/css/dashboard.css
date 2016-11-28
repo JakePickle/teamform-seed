@@ -107,3 +107,17 @@ form {
     margin-top: 50px;
     margin-bottom: 15px;
 }
+/* Formatting of frontend validation*/
+input.ng-invalid.ng-touched {
+    background-color: pink;
+}
+textarea.ng-invalid.ng-touched {
+    background-color: pink;
+}
+.errorMessage {
+    color: pink;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
