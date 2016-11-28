@@ -1,5 +1,11 @@
 var eventID = getEventID();
 
+
+// !!!!!!!!!!!
+// For current testing only!
+var userID = "nullUPfkVFjyZCfZQjJhsJkc2GD9z1N2";
+
+
 function getEventID() {
     var path = window.location.href;
     console.log(path);
@@ -38,23 +44,29 @@ eventInfoApp.controller("eventInfo-ctrl", function($scope, $firebaseObject, $fir
                         $scope.createTeam = function() {
                         
                         // To check if the event is full
-                        if(ref.maxTeamNumber <= ref.Participants.length) {
+                        if(ref.maxTeamNumber <= ref.child("Participants").length) {
                             alert("The event is full!");
                             return;
                         }
                         
                             // To generate a team id
-                            var key = firebase.database().ref().child("Teams").push();
+                            var keys = firebase.database().ref().child("Teams").push();
                         
-                        
+              
                         
                             // Append the team id to the Event
-                            ref.child("Participants").push().set(key.key);
+                            ref.child("Participants").push().set(keys.key.toString());
                             var team = {};
                             team.Name = $scope.teamName;
-                        
+                            team.ID = keys.key;
+                            team.Type = "Team";
+                            team.Event = eventID;
+                            team.EventName = ref.child("Name").toString();
+                            team.Leader = userID;
+                            team.Members = [];
+                            team.Members.push(userID);
                             // Create a team at the "Teams"
-                            key.set(team);
+                            keys.set(team);
                         };
                         
                         
