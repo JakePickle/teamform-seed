@@ -53,7 +53,6 @@
         <div class="row" id="main">
             <!--The side navigation bar-->
             <div class="col-sm-2 hidden-xs setMargin">
-                <!--TODO Link the background-image of #profilePic with the profile picture database-->
                 <div class="sideNav" id="profilePic">
                     <a href="dashboard.html"></a>
                 </div>
@@ -74,14 +73,13 @@
             <!--Class .profileView is displayed in the dashboard profile view-->
             <!--Class .updateProfileView is displayed after clicking "updateProfileView Profile" button-->
             <div class="col-sm-10 setMargin">
-                <!--TODO: All values in the profile are dummy values! Link them to the database with AngularFire!-->
-                <!--TODO: The name attributes of the form input fields need to correspond with that in the database!-->
-                <form class="form-horizontal">
+                <form name="updateProfileForm" class="form-horizontal">
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Username</label>
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">{{ username }}</p>
-                            <input type="text" class="form-control updateProfileView" name="username" aria-describedby="helpUsername" placeholder="Username" ng-model="username">
+                            <input type="text" name="username" ng-model="username" aria-describedby="helpUsername" placeholder="Username" class="form-control updateProfileView" username-directive required>
+                            <p ng-show="updateProfileForm.username.$touched && updateProfileForm.username.$invalid" class="errorMessage">The username is invalid!</p>
                             <span id="helpUsername" class="help-block updateProfileView">Length limited to 5-20 characters. Only letters, digits, hyphens and underscores are allowed.</span>
                         </div>
                     </div>
@@ -89,7 +87,8 @@
                         <label class="col-xs-4 control-label">Email</label>
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">{{ email }}</p>
-                            <input type="email" class="form-control updateProfileView" name="email" placeholder="Email Address" ng-model="email">
+                            <input type="email" name="email" ng-model="email" class="form-control updateProfileView" placeholder="Email Address" required>
+                            <p ng-show="updateProfileForm.email.$touched && updateProfileForm.email.$invalid" class="errorMessage">The Email address is invalid!</p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -110,18 +109,19 @@
                         <label class="col-xs-4 control-label">Birthday</label>
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">{{ birthdayString }}</p>
-                            <input type="text" class="form-control updateProfileView" name="birthday" ng-model="birthdayString">
+                            <input type="date" class="form-control updateProfileView" name="birthday" ng-model="birthdayString" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Location</label>
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">{{ country }}, {{ city }}</p>
-                            <input type="text" class="form-control updateProfileView" name="country" placeholder="Country" ng-model="country">
-                            <input type="text" class="form-control updateProfileView" name="city" placeholder="City" id="cityInput" ng-model="city">
-
+                            <input type="text" class="form-control updateProfileView" name="country" placeholder="Country" ng-model="country" required>
+                            <input type="text" class="form-control updateProfileView" name="city" id="cityInput" ng-model="city" placeholder="City" city-directive required>
+                            <p ng-show="updateProfileForm.city.$touched && updateProfileForm.city.$invalid" class="errorMessage">The city name is invalid!</p>
                         </div>
                     </div>
+                    <!--I won't change this language input to dropdown for fear of conflicts.-->
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Languages</label>
                         <div class="col-xs-8">
@@ -129,35 +129,19 @@
                             <input type="text" class="form-control updateProfileView" name="language" id="language" placeholder="Languages you speak"
                                 aria-describedby="helpLanguage" ng-model="languagesRaw">
                             <span id="helpLanguage" class="help-block updateProfileView">Use commas to separate multiple languages (e.g. English, Mandarin, Cantonese).</span>
-
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-4 control-label">Education</label>
                         <div class="col-xs-8">
                             <p class="form-control-static profileView">{{ education }}</p>
-                            <div id="education" class="updateProfileView">
-                                <div class="radio" id="firstRadio">
-                                    <label>
-                                        <input type="radio" name="education" value="Associate Degree" ng-model="education">Associate Degree
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="education" value="Bachelor's Degree" ng-model="education" checked> Bachelor's Degree
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="education" value="Master's Degree" ng-model="education"> Master's Degree
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="education" value="PhD" ng-model="education"> PhD
-                                    </label>
-                                </div>
-                            </div>
+                                <select name="education" id="education" ng-model="education" class="form-control updateProfileView" required>
+                                    <option value="Associate's Degree">Associate Degree</option>
+                                    <option value="Bachlor's Degree" selected>Bachlor's Degree</option>
+                                    <option value="Master's Degree">Master's Degree</option>
+                                    <option value="PhD">PhD</option>
+                                    <option value="others">Others</option>
+                                </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -177,7 +161,8 @@
                             <p class="form-control-static profileView">
                                 {{ introduction }}
                             </p>
-                            <textarea name="name" class="form-control updateProfileView" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction" ng-model="introduction"></textarea>
+                            <textarea name="introduction" ng-model="introduction" class="form-control updateProfileView" rows="4" placeholder="Briefly introduce yourself!" aria-describedby="helpIntroduction" introduction-directive></textarea>
+                            <p ng-show="updateProfileForm.introduction.$touched && updateProfileForm.introduction.$invalid" class="errorMessage">This introduction is too long!</p>
                             <span id="helpIntroduction" class="help-block updateProfileView">Max 200 characters allowed.</span>
                         </div>
                     </div>
@@ -186,7 +171,7 @@
                 <!--TODO: Behaviour after clicking the "updateProfileView!" button needs to be added in backend!-->
                 <div class="buttonWrapper">
                     <button type="button" name="button" class="profileView" id="updateProfile">Update Profile</button>
-                    <button type="button" name="button" class="updateProfileView" ng-click="UpdateUser();">Update!</button>
+                    <button type="button" name="button" class="updateProfileView" ng-click="UpdateUser();" class="btn btn-default" ng-disabled="updateProfileForm.username.$invalid || updateProfileForm.email.$invalid || updateProfileForm.city.$invalid || updateProfileForm.introduction.$invalid">Update!</button>
                 </div>
             </div>
         </div>
