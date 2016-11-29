@@ -1,4 +1,4 @@
-initializeFirebase();
+
 // The angular app for event.html
 var eventApp = angular.module("teamform-event-app", ["firebase"]);
 
@@ -154,8 +154,8 @@ eventManageApp.controller("team-valid-team-ctrl", function($scope, $firebaseArra
                           ref.on("child_added", function(data) {
                                  console.log(data.val());
                                  firebase.database().ref("Teams").child(data.val()).once("value").then(function(snapshot) {
-                                        $scope.validTeams.push(snapshot.val());
-                                                       $scope.$apply();
+                                                                                                       if(snapshot){  $scope.validTeams.push(snapshot.val());
+                                                                                                       $scope.$apply();}
                                     });
                             
                                  
