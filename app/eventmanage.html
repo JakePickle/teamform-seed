@@ -459,7 +459,7 @@
                             <ul ng-controller="team-valid-team-ctrl">
                                 <!--Click on the cross icon will remove the view-->
                                 <!--TODO click on the cross icon will remove corresponding record in the database-->
-                                <a href="#" ng-repeat="team in validTeams">
+                                <a ng-href="teammanage.html#team/{{team.ID}}" ng-repeat="team in validTeams">
                                     <li class="validTeamMember">{{team.Name}}<i class="fa fa-times fa-lg" aria-hidden="true"></i></li>
                                 </a>
                             </ul>
