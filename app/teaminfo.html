@@ -11,7 +11,7 @@
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/angular.min.js"></script>
     <script src="lib/angular-route.min.js"></script>
-    <script src="lib/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
     <script src="lib/angularfire.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
@@ -22,9 +22,10 @@
     <link rel="icon" href="img/icon.png">
     <!-- Customized libraries shared by pages -->
     <script src="js/site.js"></script>
+    <script src="js/teamManagement.js"></script>
 </head>
-<body>
-    <div class="container-fluid">
+<body ng-app="team-info-app">
+    <div class="container-fluid" ng-controller="team-info-ctrl">
 
         <!--Navigation Bar-->
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -73,24 +74,21 @@
                 <!--TODO The same logic will be: hide this button if teaminfo.html is directed by team.html but not explore.html-->
                 <!--This design prevents the duplication of view elements-->
                 <div class="row buttonWrapper" style="margin: 0">
-                    <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;">Join This Team</button>
+                    <button type="button" name="button" style="width: 100%; padding-top: 20px; padding-bottom: 20px; margin-bottom: 0;" ng-click="joinTeam()">Join This Team</button>
                 </div>
                 <!--teamInfoView wraps the team information-->
                 <div class="teamInfoView">
-                    <h2>exampleEvent / exampleTeam</h2>
+                    <h2>{{data.EventName}} / {{data.Name}}</h2>
                     <ul style="list-style-type:none">
                         <!--team member with a star sign is the team leader-->
-                        <li class="row"><div class="col-xs-3">Members</div><div class="col-xs-9"><ul style="list-style-type:none">
-                            <li>memberA&nbsp; <i class="fa fa-star-o" aria-hidden="true"></i></li>
-                            <li>memberB</li>
+                        <li class="row"><div class="col-xs-3">Members</div><div class="col-xs-9"><ul style="list-style-type:none"  ng-repeat="(key, ppl) in members">
+                            <li>{{ppl.Name}}&nbsp; <i class="fa fa-star-o" aria-hidden="true" ng-show="ppl.isLeader"></i></li>
+                            <!--<li>memberB</li>
                             <li>memberC</li>
-                            <li>memberD</li>
+                            <li>memberD</li> -->
                         </ul></div></li>
                         <li class="row"><div class="col-xs-3">Introduction</div><div class="col-xs-9">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            {{data.Introduction}}
                         </div></li>
                     </ul>
                 </div>

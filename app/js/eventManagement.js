@@ -155,9 +155,9 @@ eventManageApp.controller("team-valid-team-ctrl", function($scope, $firebaseArra
                                  console.log(data.val());
                                  firebase.database().ref("Teams").child(data.val()).once("value").then(function(snapshot) {
                                         $scope.validTeams.push(snapshot.val());
-                                                                                               
+                                                       $scope.$apply();
                                     });
-                                 $scope.$apply();
+                            
                                  
 
                                  });
