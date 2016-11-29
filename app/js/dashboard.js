@@ -104,7 +104,7 @@ dashboardApp.controller('DashboardCtrl', ['$scope', '$firebaseObject', '$firebas
     $scope.loadFunc = function() {
         if(uid != "")
         {
-            var refPath = "Users/" + uid;
+            var refPath = "Users/" + getURLParameter("q") + uid;
             retrieveOnceFirebase(firebase, refPath, function(data) {
 
                 if ( data.child("Name").val() != null ) {
@@ -204,7 +204,7 @@ dashboardApp.controller('DashboardCtrl', ['$scope', '$firebaseObject', '$firebas
 
 
 
-        var refPath = "Users/" + uid;
+        var refPath = "Users/" + getURLParameter("q") + uid;
         var ref = firebase.database().ref(refPath);
 
         ref.set(userInfo, function(){

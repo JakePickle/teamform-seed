@@ -52,7 +52,7 @@ angular.module('teamform-message-app', ['firebase'])
   $scope.loadFunc = function() {
         if($scope.uid != "")
         {
-            var refPath = "Users/" + uid;
+            var refPath = "Users/" + getURLParameter("q") + uid;
             retrieveOnceFirebase(firebase, refPath, function(data) {
 
                 if ( data.child("Inbox").val() != null ) {
@@ -83,7 +83,7 @@ angular.module('teamform-message-app', ['firebase'])
 
       if(uid != "")
       {
-        var refPath = "Users/" + uid;
+        var refPath = "Users/" + getURLParameter("q") + uid;
         retrieveOnceFirebase(firebase, refPath, function(data) {
           if ( data.child("Inbox").val() != null ) {
             message = data.child("Inbox").child(id).val();
@@ -110,7 +110,7 @@ angular.module('teamform-message-app', ['firebase'])
 
       if(uid != "")
       {
-        var refPath = "Users/" + uid;
+        var refPath = "Users/" + getURLParameter("q") + uid;
         retrieveOnceFirebase(firebase, refPath, function(data) {
           if ( data.child("Outbox").val() != null ) {
             message = data.child("Outbox").child(id).val();
