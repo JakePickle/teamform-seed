@@ -1,5 +1,5 @@
 var teamApp = angular.module("team-app", ["firebase"]);
-var userID = getCookie("uid");
+var userID = "user_1";
 
 teamApp.controller("team-ctrl", function($scope) {
                    $scope.teams = {};
@@ -10,7 +10,7 @@ teamApp.controller("team-ctrl", function($scope) {
                    user.on("child_added", function(data) {
                            console.log(data.val());
                            firebase.database().ref("Teams").child(data.val()).once("value").then(function(snapshot) {
-                                                                                            
+                                                                                                 
                                                                                                  $scope.teams[snapshot.val().ID] = snapshot.val();
                                                                                                 
                                                                                                  $scope.$apply();
@@ -130,3 +130,143 @@ teamInfoApp.controller("team-info-ctrl", function($scope, $firebaseObject){
                        
                        
 });
+
+
+
+var teamManagementApp = angular.module("team-manage-app", ["firebase"] );
+teamManagementApp.controller("team-manage-ctrl", function($scope){
+                             console.log(teamID);
+                             $scope.member = {};
+                             $scope.pending = {};
+                             $scope.invitation = {};
+                             $scope.updateTeam = function() {
+                             var tmp = {};
+                             tmp["Introduction"] = $scope.introduction;
+                             firebase.database().ref().child("Teams").child(teamID).update(tmp);
+                             console.log($scope.introduction);
+                             window.location.reload();                             };
+                             
+                             var ref=firebase.database().ref().child("Teams").child(teamID);
+                             ref.on("value", function(snapshot){
+                                                  $scope.data = snapshot.val();
+                                    $scope.$apply();
+                                                  });
+                         
+                             ref.child("Members").on("child_added", function(data){
+                                                     if(data) {
+                                                      var user = firebase.database().ref().child("Users").child(data.val());
+                                                      user.once("value").then(function(snapshot){
+                                              //                                console.log(snapshot.val().Name);
+                                                                              if(snapshot.val()){
+                                                                              $scope.member[snapshot.val().ID] = snapshot.val();
+                                                                        //      console.log($scope.member);
+                                                                              $scope.$apply();
+
+                                                                              }
+                                                                                                                                                       });
+                                                     }
+                                                  
+                                        });
+                             ref.child("Pending").on("child_added", function(data){
+                                                     if(data) {
+                                                     var user = firebase.database().ref().child("Users").child(data.val());
+                                                     user.once("value").then(function(snapshot){
+                                                                             //                                console.log(snapshot.val().Name);
+                                                                             if(snapshot.val()){
+                                                                             $scope.pending[snapshot.val().ID] = snapshot.val();
+                                                                             //      console.log($scope.member);
+                                                                             $scope.$apply();
+
+                                                                             }
+                                                                                                                                                         });
+                                                     }
+                                                     
+                                                     });
+
+                             ref.child("Invitation").on("child_added", function(data){
+                                                        if(data){
+                                                     var user = firebase.database().ref().child("Users").child(data.val());
+                                                     user.once("value").then(function(snapshot){
+                                                                             //                                console.log(snapshot.val().Name);
+                                                                             if(snapshot.val()){
+                                                                             $scope.invitation[snapshot.val().ID] = snapshot.val();
+                                                                             //      console.log($scope.member);
+                                                                              $scope.$apply();
+                                                                             }
+                                                                            
+                                                                             });
+                                                     
+                                                        }
+                                                     });
+                             ref.child("Members").on("child_removed", function(data){
+                                                     if(data) {
+                                                     var user = firebase.database().ref().child("Users").child(data.val());
+                                                     user.once("value").then(function(snapshot){
+                                                                             //                                console.log(snapshot.val().Name);
+                                                                             if(snapshot.val()){
+                                                                             delete $scope.member[snapshot.val().ID];
+                                                                             //      console.log($scope.member);
+                                                                             $scope.$apply()
+                                                                             }
+                                                                             ;
+                                                                             });
+                                                     }
+                                                     
+                                                     });
+
+                             ref.child("Pending").on("child_removed", function(data){
+                                                     if(data) {
+                                                     var user = firebase.database().ref().child("Users").child(data.val());
+                                                     user.once("value").then(function(snapshot){
+                                                                             //                                console.log(snapshot.val().Name);
+                                                                             if(snapshot.val()){
+                                                                             delete $scope.pending[snapshot.val().ID];
+                                                                             //      console.log($scope.member);
+                                                                              $scope.$apply();
+                                                                             }
+                                                                            
+                                                                             });
+                                                     }
+                                                     
+                                                     });
+                             
+                             ref.child("Invitation").on("child_removed", function(data){
+                                                     if(data) {
+                                                     var user = firebase.database().ref().child("Users").child(data.val());
+                                                     user.once("value").then(function(snapshot){
+                                                                             //                                console.log(snapshot.val().Name);
+                                                                             if(snapshot.val()){
+                                                                             delete $scope.invitation[snapshot.val().ID];
+                                                                             //      console.log($scope.member);
+                                                                             $scope.$apply();
+                                                                             }
+                                                                             
+                                                                             });
+                                                     }
+                                                     
+                                                     });
+                             
+                             ref.child("Introduction").once("value").then(function(snapshot){
+                                                                          if(snapshot) {
+                                                                          $scope.introduction = snapshot.val(); }
+                                                                           $scope.$apply();
+                                                                          });
+                             
+                             
+                             
+                             
+                             
+                             
+});
+
+
+
+
+
+
+
+
+
+
+
+
