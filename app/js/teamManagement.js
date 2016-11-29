@@ -1,8 +1,6 @@
 var teamApp = angular.module("team-app", ["firebase"]);
 var userID = getCookie("uid");
 
-initializeFirebase();
-
 teamApp.controller("team-ctrl", function($scope) {
                    $scope.teams = {};
                    $scope.isLeader = function(str) {
