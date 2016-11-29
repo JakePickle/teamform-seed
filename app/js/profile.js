@@ -15,7 +15,7 @@ profileApp.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArr
     $scope.loadFunc = function() {
         if($scope.uid != "")
         {
-            var refPath = "Users/" + getURLParameter("q") + $scope.uid;
+            var refPath = "Users/" + $scope.uid;
             retrieveOnceFirebase(firebase, refPath, function(data) {
 
                 if ( data.child("name").val() != null ) {
@@ -68,7 +68,7 @@ profileApp.controller('ProfileCtrl', ['$scope', '$firebaseObject', '$firebaseArr
         userInfo.Type = "User";
 
 
-        var refPath = "Users/" + getURLParameter("q") + $scope.uid;
+        var refPath = "Users/" + $scope.uid;
         var ref = firebase.database().ref(refPath);
 
         ref.set(userInfo, function(){

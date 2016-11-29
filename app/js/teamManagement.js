@@ -1,13 +1,5 @@
 var teamApp = angular.module("team-app", ["firebase"]);
-var userID = getCurrentUserID();
-
-
-
-
-// For local tests only!!!!!!!!!!!!!
-function getCurrentUserID() {
-    return "user_1";
-}
+var userID = getCookie("uid");
 
 teamApp.controller("team-ctrl", function($scope) {
                    $scope.teams = {};
