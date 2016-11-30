@@ -17,7 +17,6 @@ $(window).trigger('resize');
 $(document).ready(function () {
     // Default hidden classes
     $(".updateProfileView").hide();
-    $(".searchResultView").hide();
     $(".outboxView").hide();
     $(".createEventView").hide();
     $(".updateTeamInfoView").hide();
@@ -32,11 +31,7 @@ $(document).ready(function () {
         $(".profileView").hide();
         $(".updateProfileView").show();
     });
-    // toggle the explore view
-    $("#searchButton").click(function(){
-        $(".recommendationView").hide();
-        $(".searchResultView").show();
-    });
+    
 
     // toggle the message view
     $("#inboxButton").click(function(){

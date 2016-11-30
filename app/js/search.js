@@ -337,6 +337,42 @@ Search.prototype.indexNewEvent = function(newEvent, eventRef)
 
 // attach search function to #searchButton
 var search = new Search();
-$("#searchButton").click(function(){
-	search.fuzzySearch($("#searchBox").val());
+
+// toggle the explore view
+$(document).ready(function() {
+    $("#searchButton").click(function(){
+        $(".recommendationView").hide();
+        $(".searchResultView").show();
+        search.fuzzySearch($("#searchBox").val());
+    });
+    $(".recommendationView").hide();
+    $(".searchResultView").show();
+
+    var loading_data_arr = ["Events", "Teams", "Users"].map(function(value) {
+        return firebase.database().ref(value).once("value").then(function(dataRef) {
+            return dataRef;
+        })
+    });
+
+    Promise.all(loading_data_arr).then(function(data_snap_arr) {
+        var data_arr = [];
+        data_snap_arr.forEach(function(currentValue) {
+            var snap_path = currentValue.ref.toString();
+            var type = null;
+            if(snap_path.search("Users")!=-1) {
+                type = "User";
+            }else if(snap_path.search("Teams")!=-1) {
+                type = "Team";
+            }else if(snap_path.search("Events")) {
+                type = "Event";
+            }
+            var content = currentValue.val();
+            for(var key in content) {
+                var item = content[key];
+                item.Type = type;
+                data_arr.push(item);
+            }
+        });
+		search.renderSearchResult(data_arr);
+	});     
 });
