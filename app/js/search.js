@@ -143,11 +143,33 @@ Search.prototype.fuzzySearch = function(searchSentence)
             }
         });
 		var LoadingData = matchRefs.reduceAndCount().sort(function(a, b) {return b.count - a.count}).map(function(value) {
-            return that.database.ref(value.Element).once('value').then(function(dataRef){return dataRef.val();});
+            return that.database.ref(value.Element).once('value').then(function(dataRef){
+                var Value = dataRef.val();
+				if(Value) {
+					var Path = dataRef.ref.toString();
+					if(Path.search("Users")!=-1) {
+						Value.Type = "User";
+					}else if(Path.search("Teams")!=-1) {
+						Value.Type = "Team";
+					}else if(Path.search("Events")!=-1) {
+						Value.Type = "Event";
+					}else {
+						Value.Type = "";
+					}
+				}
+				return Value;
+            });
         });
 		Promise.all(LoadingData).then(function(data_arr) {
             console.log("render data");
-            that.renderSearchResult(data_arr);
+            console.log(data_arr);
+			data_arr = data_arr.filter(Boolean).map(function(currentValue) {
+				if(!Array.isArray(currentValue.Skills) && currentValue.Skills) {
+					currentValue.Skills = search.extractWord(currentValue.Skills);
+				}
+				return currentValue;
+			});
+            that.renderSearchResult(data_arr.filter(Boolean));
         });
     });
 }
@@ -232,6 +254,7 @@ Search.prototype.renderTeamElement = function(teamObj)
 //
 Search.prototype.renderEventElement = function(eventObj)
 {
+    console.log(eventObj);
     var divEle = $("<div></div>").addClass("col-sm-offset-1 col-xs-11");
     divEle.append($("<h3></h3>").html(eventObj.Name));
     divEle.append($("<p></p>").text(eventObj.Introduction).append($("<br/>")));
@@ -248,9 +271,15 @@ Search.prototype.renderEventElement = function(eventObj)
 Search.prototype.renderUserElement = function(userObj)
 {
     var divEle = $("<div></div>").addClass("col-sm-offset-1 col-xs-11");
-    divEle.append($("<h3></h3>").html(userObj.Name));
+    divEle.append($("<h3></h3>").html(userObj.Name || userObj.name));
     divEle.append($("<p></p>").text(userObj.Introduction).append($("<br/>")));
-    divEle.append($("<p></p>").html('<span>Skills: ' + userObj.Skills.join(', ') + '</span>'));
+    var skillStr = null;
+    if(Array.isArray(userObj.Skills)) {
+        skillStr = userObj.Skills.join(", ");
+    }else {
+        skillStr = "";
+    }
+    divEle.append($("<p></p>").html('<span>Skills: ' + skillStr + '</span>'));
 
     var userElement = divEle.wrap("<div></div>").parent().addClass("row pendingTeam").wrap("<a></a>").parent().attr("href", "#").wrap("<div></div>").parent().addClass("teams");
     return userElement;
