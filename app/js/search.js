@@ -254,7 +254,7 @@ Search.prototype.renderTeamElement = function(teamObj)
 //
 Search.prototype.renderEventElement = function(eventObj)
 {
-    console.log(eventObj);
+    //console.log(eventObj);
     var divEle = $("<div></div>").addClass("col-sm-offset-1 col-xs-11");
     divEle.append($("<h3></h3>").html(eventObj.Name));
     divEle.append($("<p></p>").text(eventObj.Introduction).append($("<br/>")));
@@ -353,26 +353,28 @@ $(document).ready(function() {
             return dataRef;
         })
     });
-
-    Promise.all(loading_data_arr).then(function(data_snap_arr) {
-        var data_arr = [];
-        data_snap_arr.forEach(function(currentValue) {
-            var snap_path = currentValue.ref.toString();
-            var type = null;
-            if(snap_path.search("Users")!=-1) {
-                type = "User";
-            }else if(snap_path.search("Teams")!=-1) {
-                type = "Team";
-            }else if(snap_path.search("Events")) {
-                type = "Event";
-            }
-            var content = currentValue.val();
-            for(var key in content) {
-                var item = content[key];
-                item.Type = type;
-                data_arr.push(item);
-            }
-        });
-		search.renderSearchResult(data_arr);
-	});     
+	if(window.location.href.search("explore.html")!=-1) {
+		$(".searchResultView").empty();
+		Promise.all(loading_data_arr).then(function(data_snap_arr) {
+			var data_arr = [];
+			data_snap_arr.forEach(function(currentValue) {
+				var snap_path = currentValue.ref.toString();
+				var type = null;
+				if(snap_path.search("Users")!=-1) {
+					type = "User";
+				}else if(snap_path.search("Teams")!=-1) {
+					type = "Team";
+				}else if(snap_path.search("Events")) {
+					type = "Event";
+				}
+				var content = currentValue.val();
+				for(var key in content) {
+					var item = content[key];
+					item.Type = type;
+					data_arr.push(item);
+				}
+			});
+			search.renderSearchResult(data_arr);
+		});    
+	};
 });
