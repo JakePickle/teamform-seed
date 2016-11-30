@@ -115,11 +115,12 @@ Search.prototype.extractWord = function(paragraph)
 {
     var that = this;
 
+    console.log(paragraph);
 	return paragraph.split(/[^\w+|C\+\+]/).map(function(value){
         return value.trim().toLowerCase();
     }).filter(function(val) {
         return Boolean(val) && (val.length>1) && !(that.filterWordList.hasOwnProperty(val));
-              }).sort().uniqueArray();
+    }).sort().uniqueArray();
 }
 
 //
@@ -127,6 +128,8 @@ Search.prototype.extractWord = function(paragraph)
 //
 Search.prototype.fuzzySearch = function(searchSentence)
 {
+    if(!Boolean(searchSentence) || searchSentence.length == 0)
+        return;
     var that = this;
     
 	firebase.database().ref('Index').orderByKey().once("value").then(function(snapshot) {
@@ -286,7 +289,7 @@ Search.prototype.renderUserElement = function(userObj)
 }
 
 
-Search.prototype.extracDatabasePath = function(Ref)
+Search.prototype.extractDatabasePath = function(Ref)
 {
 	return Ref.toString().substring(Ref.root.toString().length);
 }
@@ -296,7 +299,7 @@ Search.prototype.extracDatabasePath = function(Ref)
 //
 Search.prototype.indexNewUser = function(newUser, userRef)
 {
-	var storePath = this.extracDatabasePath(userRef);
+	var storePath = this.extractDatabasePath(userRef);
 
     var content_arr = [];
     content_arr.push(newUser.Name);
@@ -317,7 +320,7 @@ Search.prototype.indexNewUser = function(newUser, userRef)
 
 Search.prototype.indexNewEvent = function(newEvent, eventRef)
 {
-	var storePath = this.extracDatabasePath(eventRef);
+	var storePath = this.extractDatabasePath(eventRef);
 
 	var content_arr = [];
 	content_arr.push(newEvent.Name);
@@ -332,6 +335,19 @@ Search.prototype.indexNewEvent = function(newEvent, eventRef)
 	word_arr.forEach(function(value) {
 		indexRef.child(value).push(storePath);
 	})
+}
+
+Search.prototype.indexNewTeam = function(newTeam, teamRef) {
+    var storePath = this.extractDatabasePath(teamRef);
+
+    var content_arr = [];
+    content_arr.push(newTeam.Name);
+
+    var word_arr = this.extractWord(content_arr.join(" , "));
+    var indexRef = firebase.database().ref("Index");
+    word_arr.forEach(function(value) {
+        indexRef.child("value").push(storePath);
+    });
 }
 
 
