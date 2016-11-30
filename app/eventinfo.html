@@ -88,7 +88,7 @@
                     <ul style="list-style-type:none">
                         <li class="row"><div class="col-xs-3">Status</div><div class="col-xs-9">{{data.Status}}</div></li>
                         <li class="row"><div class="col-xs-3">Time</div><div class="col-xs-9">{{data.Time | date}}</div></li>
-                        <li class="row"><div class="col-xs-3">Location</div><div class="col-xs-9">{{data.Location}}</div></li>
+                        <li class="row"><div class="col-xs-3">Location</div><div class="col-xs-9">City: {{data.Location.City}}, Country: {{data.Location.Country}}</div></li>
                         <li class="row"><div class="col-xs-3">Team Size Limit</div><div class="col-xs-9">{{data.Requirements.minTeamSize}} to {{data.Requirements.maxTeamSize}}</div></li>
                         <li class="row"><div class="col-xs-3">Keywords</div><div class="col-xs-9">{{data.Keywords | keywordString}}</div></li>
                         <li class="row"><div class="col-xs-3">Introduction</div><div class="col-xs-9">
