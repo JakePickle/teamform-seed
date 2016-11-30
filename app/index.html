@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="css/index.css" media="screen">
     <link rel="icon" href="img/icon.png">
     <!-- Customized libraries shared by pages -->
-    <script src="js/site.js"></script>
+    
     <!-- Angular and Angular-route libraries (v1.5.7) -->
     <script src="lib/angular.min.js"></script>
     <script src="lib/angular-route.min.js"></script>
@@ -29,7 +29,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-sanitize.min.js"></script>
 
     <!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-    <script src="lib/firebase.js"></script>
+    <!--<script src="lib/firebase.js"></script>-->
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+    <!--
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCGA1xMB_cjAf1pEKyROtcMkLjtTbpjxis",
+            authDomain: "comp3111hproj.firebaseapp.com",
+            databaseURL: "https://comp3111hproj.firebaseio.com",
+            storageBucket: "comp3111hproj.appspot.com",
+            messagingSenderId: "622320647090"
+        };
+        firebase.initializeApp(config);
+    </script>
+    -->
+    <script src="js/site.js"></script>
     <script src="lib/angularfire.min.js"></script>
     <link rel="manifest" href="manifest.json">
     <script src="lib/bluebird.min.js"></script>
