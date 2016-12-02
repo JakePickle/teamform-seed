@@ -86,7 +86,7 @@
                     <div class="events" ng-controller="event-display-ctrl">
                         <div ng-repeat="event in events">
                             <!-- TODO: add backend code to determine the href and the status of every event link -->
-                            <a href="eventmanage.html">
+                            <a href="eventmanage.html#event/{{event.ID}}">
                                 <div class="row {{event.Status}}Event">
                                     <div class="col-sm-offset-1 col-xs-11">
                                         <!-- TODO: whether the star icon is displayed depends on whether the user is the administrator! -->
@@ -134,7 +134,7 @@
                             <label for="location">Event Location *</label>
                             <div class="form-inline" id="location">
                                 <div class="form-group">
-                                    <select name="country" class="form-control" required>
+                                    <select name="country" class="form-control" ng-model="country" required>
                                         <option value="AFG">Afghanistan</option>
                                         <option value="ALA">Åland Islands</option>
                                         <option value="ALB">Albania</option>

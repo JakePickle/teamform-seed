@@ -1,4 +1,4 @@
-initializeFirebase();
+
 // The angular app for event.html
 var eventApp = angular.module("teamform-event-app", ["firebase"]);
 
@@ -10,6 +10,7 @@ eventApp.controller("event-display-ctrl", function($scope, $firebaseArray) {
 
 eventApp.controller("teamform-create-event-ctrl", function($scope, $firebaseArray) {
 	$scope.createNewEvent = function() {
+		console.log("create new event");
 		var ref = firebase.database().ref().child("Events");
 		var list = $firebaseArray(ref);
 		var eventID;
@@ -31,7 +32,19 @@ eventApp.controller("teamform-create-event-ctrl", function($scope, $firebaseArra
 		eventObj.Keywords = search.extractWord($scope.keywords);
 		eventObj.Introduction = $scope.introduction;
 
+		/*
+		console.log(eventObj);
+		firebase.database().ref("Events").push(eventObj).then(function(evtRef) {
+			var search = new Search();
+			search.indexNewEvent(eventObj, evtRef);
+			console.log("create new event successfully!");
+		}).catch(function(error) {
+			console.log("faile to create new user!");
+			console.log(error);
+		});
+		*/
 		list.$add(eventObj).then(function(eventRef) {
+			console.log("create new event done!");
 			search.indexNewEvent(eventObj, eventRef);
 		});
 	};
@@ -154,8 +167,8 @@ eventManageApp.controller("team-valid-team-ctrl", function($scope, $firebaseArra
                           ref.on("child_added", function(data) {
                                  console.log(data.val());
                                  firebase.database().ref("Teams").child(data.val()).once("value").then(function(snapshot) {
-                                        $scope.validTeams.push(snapshot.val());
-                                                       $scope.$apply();
+                                                                                                       if(snapshot){  $scope.validTeams.push(snapshot.val());
+                                                                                                       $scope.$apply();}
                                     });
                             
                                  

@@ -115,11 +115,12 @@ Search.prototype.extractWord = function(paragraph)
 {
     var that = this;
 
+    console.log(paragraph);
 	return paragraph.split(/[^\w+|C\+\+]/).map(function(value){
         return value.trim().toLowerCase();
     }).filter(function(val) {
         return Boolean(val) && (val.length>1) && !(that.filterWordList.hasOwnProperty(val));
-              }).sort().uniqueArray();
+    }).sort().uniqueArray();
 }
 
 //
@@ -127,6 +128,8 @@ Search.prototype.extractWord = function(paragraph)
 //
 Search.prototype.fuzzySearch = function(searchSentence)
 {
+    if(!Boolean(searchSentence) || searchSentence.length == 0)
+        return;
     var that = this;
     
 	firebase.database().ref('Index').orderByKey().once("value").then(function(snapshot) {
@@ -143,11 +146,33 @@ Search.prototype.fuzzySearch = function(searchSentence)
             }
         });
 		var LoadingData = matchRefs.reduceAndCount().sort(function(a, b) {return b.count - a.count}).map(function(value) {
-            return that.database.ref(value.Element).once('value').then(function(dataRef){return dataRef.val();});
+            return that.database.ref(value.Element).once('value').then(function(dataRef){
+                var Value = dataRef.val();
+				if(Value) {
+					var Path = dataRef.ref.toString();
+					if(Path.search("Users")!=-1) {
+						Value.Type = "User";
+					}else if(Path.search("Teams")!=-1) {
+						Value.Type = "Team";
+					}else if(Path.search("Events")!=-1) {
+						Value.Type = "Event";
+					}else {
+						Value.Type = "";
+					}
+				}
+				return Value;
+            });
         });
 		Promise.all(LoadingData).then(function(data_arr) {
             console.log("render data");
-            that.renderSearchResult(data_arr);
+            console.log(data_arr);
+			data_arr = data_arr.filter(Boolean).map(function(currentValue) {
+				if(!Array.isArray(currentValue.Skills) && currentValue.Skills) {
+					currentValue.Skills = search.extractWord(currentValue.Skills);
+				}
+				return currentValue;
+			});
+            that.renderSearchResult(data_arr.filter(Boolean));
         });
     });
 }
@@ -232,6 +257,7 @@ Search.prototype.renderTeamElement = function(teamObj)
 //
 Search.prototype.renderEventElement = function(eventObj)
 {
+    //console.log(eventObj);
     var divEle = $("<div></div>").addClass("col-sm-offset-1 col-xs-11");
     divEle.append($("<h3></h3>").html(eventObj.Name));
     divEle.append($("<p></p>").text(eventObj.Introduction).append($("<br/>")));
@@ -248,16 +274,22 @@ Search.prototype.renderEventElement = function(eventObj)
 Search.prototype.renderUserElement = function(userObj)
 {
     var divEle = $("<div></div>").addClass("col-sm-offset-1 col-xs-11");
-    divEle.append($("<h3></h3>").html(userObj.Name));
+    divEle.append($("<h3></h3>").html(userObj.Name || userObj.name));
     divEle.append($("<p></p>").text(userObj.Introduction).append($("<br/>")));
-    divEle.append($("<p></p>").html('<span>Skills: ' + userObj.Skills.join(', ') + '</span>'));
+    var skillStr = null;
+    if(Array.isArray(userObj.Skills)) {
+        skillStr = userObj.Skills.join(", ");
+    }else {
+        skillStr = "";
+    }
+    divEle.append($("<p></p>").html('<span>Skills: ' + skillStr + '</span>'));
 
     var userElement = divEle.wrap("<div></div>").parent().addClass("row pendingTeam").wrap("<a></a>").parent().attr("href", "#").wrap("<div></div>").parent().addClass("teams");
     return userElement;
 }
 
 
-Search.prototype.extracDatabasePath = function(Ref)
+Search.prototype.extractDatabasePath = function(Ref)
 {
 	return Ref.toString().substring(Ref.root.toString().length);
 }
@@ -267,7 +299,7 @@ Search.prototype.extracDatabasePath = function(Ref)
 //
 Search.prototype.indexNewUser = function(newUser, userRef)
 {
-	var storePath = this.extracDatabasePath(userRef);
+	var storePath = this.extractDatabasePath(userRef);
 
     var content_arr = [];
     content_arr.push(newUser.Name);
@@ -288,7 +320,7 @@ Search.prototype.indexNewUser = function(newUser, userRef)
 
 Search.prototype.indexNewEvent = function(newEvent, eventRef)
 {
-	var storePath = this.extracDatabasePath(eventRef);
+	var storePath = this.extractDatabasePath(eventRef);
 
 	var content_arr = [];
 	content_arr.push(newEvent.Name);
@@ -305,9 +337,60 @@ Search.prototype.indexNewEvent = function(newEvent, eventRef)
 	})
 }
 
+Search.prototype.indexNewTeam = function(newTeam, teamRef) {
+    var storePath = this.extractDatabasePath(teamRef);
+
+    var content_arr = [];
+    content_arr.push(newTeam.Name);
+
+    var word_arr = this.extractWord(content_arr.join(" , "));
+    var indexRef = firebase.database().ref("Index");
+    word_arr.forEach(function(value) {
+        indexRef.child("value").push(storePath);
+    });
+}
+
 
 // attach search function to #searchButton
 var search = new Search();
-$("#searchButton").click(function(){
-	search.fuzzySearch($("#searchBox").val());
+
+// toggle the explore view
+$(document).ready(function() {
+    $("#searchButton").click(function(){
+        $(".recommendationView").hide();
+        $(".searchResultView").show();
+        search.fuzzySearch($("#searchBox").val());
+    });
+    $(".recommendationView").hide();
+    $(".searchResultView").show();
+
+    var loading_data_arr = ["Events", "Teams", "Users"].map(function(value) {
+        return firebase.database().ref(value).once("value").then(function(dataRef) {
+            return dataRef;
+        })
+    });
+	if(window.location.href.search("explore.html")!=-1) {
+		$(".searchResultView").empty();
+		Promise.all(loading_data_arr).then(function(data_snap_arr) {
+			var data_arr = [];
+			data_snap_arr.forEach(function(currentValue) {
+				var snap_path = currentValue.ref.toString();
+				var type = null;
+				if(snap_path.search("Users")!=-1) {
+					type = "User";
+				}else if(snap_path.search("Teams")!=-1) {
+					type = "Team";
+				}else if(snap_path.search("Events")) {
+					type = "Event";
+				}
+				var content = currentValue.val();
+				for(var key in content) {
+					var item = content[key];
+					item.Type = type;
+					data_arr.push(item);
+				}
+			});
+			search.renderSearchResult(data_arr);
+		});    
+	};
 });

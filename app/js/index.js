@@ -47,7 +47,7 @@ angular.module('teamform-index-app', ['firebase', 'ionic', 'ionic.cloud'])
         var msg = data.message;
         alert(msg.title + '\n' + msg.text);
       });
-      initializeFirebase();
+      //initializeFirebase();
       var user;
       $scope.username = "";
       $scope.email = "";
