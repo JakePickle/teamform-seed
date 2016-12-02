@@ -127,7 +127,7 @@ angular.module('teamform-index-app', ['firebase', 'ionic', 'ionic.cloud'])
               "tokens": [a],
               "profile": "dev",
               "notification": {
-                "message": "Firebase updated, Please check"
+                "message": "Someone wants to join your team, please check your app."
               }
             }
           };
